@@ -1,0 +1,368 @@
+{
+    "users": {
+        "1234":{
+            "username":"iraldo",
+            "password":"asd"
+        },
+        "5678":{
+            "username":"humiel",
+            "password":"asd"
+        },
+        "9012":{
+            "username":"david",
+            "password":"asd"
+        },
+        "3456":{
+            "username":"nico",
+            "password":"asd"
+        },
+        "7890":{
+            "username":"fran",
+            "password":"asd"
+        }
+    },
+    
+    "games": {
+        "123456":{
+            "name":"Equinox 2 - Pepasos",
+            "date":"1/1/2021",
+            "lastDate":"8/1/2021",
+            "owner":"5678",
+            "players":[{"id":"1234","cid":"0"},{"id":"9012","cid":"1"}],
+            "invitedPlayers":[{"id":"3456","cid":""}],
+            "version":"2.0",
+            "characters": {
+                "0":{
+                    "nombre": "zalan",
+                    "stats": {
+                        "vida":11,
+                        "mana":9,
+                        "energia":21,
+                        "sangre":15
+                    },
+                    "currentStats": {
+                        "vida":11,
+                        "mana":9,
+                        "energia":21,
+                        "sangre":15
+                    },
+                    "clase":"explorador",
+                    "nivel":10,
+                    "advanced":false,
+                    "unitTypes":["tela"],
+                    "unitRoles":["support", "dpsfisico"],
+                    "movilidad":4,
+                    "iniciativa":11,
+                    "player":"1234",
+                    "atributos": {
+                        "fuerza":4,
+                        "destreza":3,
+                        "resistencia":4,
+                        "inteligencia":2,
+                        "manipulacion":4,
+                        "velo":3,
+                        "astucia":6,
+                        "agilidad":5,
+                        "sensitividad":4
+                    },
+                    "habilidades": {
+                        "c1":{
+                            "actuar":1,
+                            "arte":2,
+                            "atletismo":5,
+                            "coser":0,
+                            "esquivar":3,
+                            "excavacion":1,
+                            "ingenieria":0,
+                            "instinto":5,
+                            "lanzamiento":1,
+                            "natacion":1,
+                            "persuasion":0,
+                            "presencia":0,
+                            "seguridad":0,
+                            "sigilo":3,
+                            "tallar":0,
+                            "voluntad":5,
+                            "vuelo":0
+                        },
+                        "c2":{
+                            "adiestrar":0,
+                            "armas distancia":7,
+                            "armas ligeras":2,
+                            "armas pesadas":0,
+                            "artes marciales":5,
+                            "artesania":0,
+                            "cocina":3,
+                            "control":5,
+                            "desollar":8,
+                            "determinacion":5,
+                            "equitacion":1,
+                            "fabricacion":0,
+                            "forjar":0,
+                            "pilotar":0,
+                            "prestidigitacion":2,
+                            "rastreo":3,
+                            "ritual":4
+                        },
+                        "c3":{
+                            "alquimia":0,
+                            "arcano":2,
+                            "biologia":5,
+                            "botanica":2,
+                            "costura":0,
+                            "encantamiento":0,
+                            "entomologia":0,
+                            "geologia":1,
+                            "geografia":4,
+                            "ictiologia":0,
+                            "mecanica":0,
+                            "medicina":1,
+                            "misticismo":1,
+                            "quimica":0,
+                            "sociologia":3,
+                            "supervivencia":5,
+                            "teologia":1
+                        }
+                    }
+                },
+                "1":{
+                    "nombre": "zen",
+                    "stats": {
+                        "vida":8,
+                        "mana":10,
+                        "energia":27,
+                        "sangre":10
+                    },
+                    "currentStats": {
+                        "vida":8,
+                        "mana":10,
+                        "energia":27,
+                        "sangre":10
+                    },
+                    "clase":"tirador",
+                    "nivel":1,
+                    "advanced":true,
+                    "unitTypes":["tela","volador"],
+                    "unitRoles":["dpsfisico","dpsmagico"],
+                    "movilidad":5,
+                    "iniciativa":8,
+                    "player":"9012",
+                    "atributos": {
+                        "fuerza":4,
+                        "destreza":8,
+                        "resistencia":4,
+                        "inteligencia":2,
+                        "manipulacion":3,
+                        "velo":3,
+                        "astucia":4,
+                        "agilidad":3,
+                        "sensitividad":4
+                    },
+                    "habilidades": {
+                        "c1":{
+                            "actuar":1,
+                            "arte":2,
+                            "atletismo":3,
+                            "coser":0,
+                            "esquivar":3,
+                            "excavacion":1,
+                            "ingenieria":5,
+                            "instinto":5,
+                            "lanzamiento":1,
+                            "natacion":1,
+                            "persuasion":0,
+                            "presencia":0,
+                            "seguridad":0,
+                            "sigilo":2,
+                            "tallar":0,
+                            "voluntad":0,
+                            "vuelo":5
+                        },
+                        "c2":{
+                            "adiestrar":0,
+                            "armas distancia":8,
+                            "armas ligeras":2,
+                            "armas pesadas":0,
+                            "artes marciales":1,
+                            "artesania":8,
+                            "cocina":1,
+                            "control":5,
+                            "desollar":0,
+                            "determinacion":5,
+                            "equitacion":2,
+                            "fabricacion":5,
+                            "forjar":0,
+                            "pilotar":0,
+                            "prestidigitacion":2,
+                            "rastreo":1,
+                            "ritual":0
+                        },
+                        "c3":{
+                            "alquimia":2,
+                            "arcano":2,
+                            "biologia":2,
+                            "botanica":2,
+                            "costura":0,
+                            "encantamiento":0,
+                            "entomologia":0,
+                            "geologia":0,
+                            "geografia":2,
+                            "ictiologia":0,
+                            "mecanica":0,
+                            "medicina":2,
+                            "misticismo":1,
+                            "quimica":2,
+                            "sociologia":2,
+                            "supervivencia":4,
+                            "teologia":1
+                        }
+                    }
+                },
+                "2":{
+                    "nombre": "zevek",
+                    "stats": {
+                        "vida":99,
+                        "mana":99,
+                        "energia":99,
+                        "sangre":99
+                    },
+                    "currentStats": {
+                        "vida":99,
+                        "mana":99,
+                        "energia":99,
+                        "sangre":99
+                    },
+                    "clase":"asesino",
+                    "nivel":99,
+                    "advanced":true,
+                    "unitTypes":["tela"],
+                    "unitRoles":["dpsfisico","dpsmagico"],
+                    "movilidad":9,
+                    "iniciativa":99,
+                    "player":"",
+                    "atributos": {
+                        "fuerza":10,
+                        "destreza":10,
+                        "resistencia":10,
+                        "inteligencia":10,
+                        "manipulacion":10,
+                        "velo":10,
+                        "astucia":10,
+                        "agilidad":10,
+                        "sensitividad":10
+                    },
+                    "habilidades": {
+                        "c1":{
+                            "actuar":10,
+                            "arte":10,
+                            "atletismo":1,
+                            "coser":10,
+                            "esquivar":10,
+                            "excavacion":10,
+                            "ingenieria":10,
+                            "instinto":10,
+                            "lanzamiento":10,
+                            "natacion":10,
+                            "persuasion":10,
+                            "presencia":10,
+                            "seguridad":10,
+                            "sigilo":10,
+                            "tallar":10,
+                            "voluntad":10,
+                            "vuelo":10
+                        },
+                        "c2":{
+                            "adiestrar":10,
+                            "armas distancia":10,
+                            "armas ligeras":10,
+                            "armas pesadas":10,
+                            "artes marciales":10,
+                            "artesania":10,
+                            "cocina":10,
+                            "control":10,
+                            "desollar":10,
+                            "determinacion":10,
+                            "equitacion":10,
+                            "fabricacion":10,
+                            "forjar":10,
+                            "pilotar":10,
+                            "prestidigitacion":10,
+                            "rastreo":10,
+                            "ritual":10
+                        },
+                        "c3":{
+                            "alquimia":10,
+                            "arcano":10,
+                            "biologia":10,
+                            "botanica":10,
+                            "costura":10,
+                            "encantamiento":10,
+                            "entomologia":10,
+                            "geologia":10,
+                            "geografia":10,
+                            "ictiologia":10,
+                            "mecanica":0,
+                            "medicina":10,
+                            "misticismo":10,
+                            "quimica":10,
+                            "sociologia":10,
+                            "supervivencia":10,
+                            "teologia":10
+                        }
+                    }
+                }
+            },
+            "combats":{
+                "12":{
+                    "name":"Zevek",
+                    "date":"11/7/2020",
+                    "state":1,
+                    "turns":{
+                        "0":{
+        
+                        },
+                        "1":{
+                            
+                        },
+                        "2":{
+                            
+                        }
+                    },
+                    "sides":{
+                        "jugadores":[{"cid":"0"},{"cid":"1"}],
+                        "enemigos":[{"cid":"2"}]
+                    }
+                },
+                "34":{
+                    "name":"Guan bi guan",
+                    "date":"19/7/2020",
+                    "state":1,
+                    "turns":{
+                        "0":{
+                            
+                        },
+                        "1":{
+                            
+                        },
+                        "2":{
+                            
+                        }
+                    },
+                    "sides":{
+                        "zalango":[{"cid":"1234"}],
+                        "zeningo":[{"cid":"9012"}]
+                    }
+                }
+            }
+        },
+        "789012":{
+            "name":"El Exilio",
+            "date":"5/9/2018",
+            "lastDate":"19/7/2020",
+            "owner":"5678",
+            "players":[],
+            "invitedPlayers":[{"id":"1234","cid":""},{"id":"9012","cid":""},{"id":"7890","cid":""}],
+            "version":"1.0"
+        }
+    }
+}

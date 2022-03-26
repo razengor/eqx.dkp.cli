@@ -1,0 +1,80 @@
+{
+    "users": {
+        "user-id":{
+            "name":"",
+            "password":""
+        }
+    },
+    "characters": {
+
+    },
+    "npcs":{
+
+    },
+    "games": {
+        "name":"",
+        "startDate":"5/9/2018",
+        "owner":"5678",
+        "players":["1234","9012"],
+        "invitedPlayers":["3456","7890"],
+        "combatHistory":{
+            "12":{
+                "name":"Amigo de Zevek",
+                "date":"11/7/2020",
+                "turnHistory":{
+                    "0":{
+
+                    },
+                    "1":{
+                        
+                    },
+                    "2":{
+                        
+                    }
+                },
+                "sides":{
+                    "jugadores":[{"player":true,"id":"1234"},{"player":true,"id":"9012"}],
+                    "enemigos":[{"player":false,"id":"1"}]
+                }
+            },
+            "34":{
+                "name":"Viejos compañeros",
+                "date":"19/7/2020",
+                "turnHistory":{
+                    "0":{
+                        
+                    },
+                    "1":{
+                        
+                    },
+                    "2":{
+                        
+                    }
+                },
+                "sides":{
+                    "jugadores":[{"player":true,"id":"1234"},{"player":true,"id":"9012"}],
+                    "enemigos":[{"player":false,"id":"2"},{"player":false,"id":"3"},{"player":false,"id":"4"}]
+                }
+            },
+            "56":{
+                "name":"Salida a cazar 12/10/2019",
+                "date":"12/10/2019",
+                "turnHistory":{
+                    "0":{
+                        
+                    },
+                    "1":{
+                        
+                    },
+                    "2":{
+                        
+                    }
+                },
+                "sides":{
+                    "jugadores":[{"player":true,"id":"1234"},{"player":true,"id":"9012"}],
+                    "enemigos":[{"player":false,"id":"2"},{"player":false,"id":"3"},{"player":false,"id":"4"}]
+                }
+            }
+        }
+    }
+}
