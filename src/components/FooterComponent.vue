@@ -24,8 +24,6 @@ export default {
     margin: 10px;
   }
   #main-footer {
-    position: absolute;
-    bottom: 0px;
     width: 100vw;
 
     display: flex;

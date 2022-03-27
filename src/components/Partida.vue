@@ -1,7 +1,7 @@
 <template>
   <div class="partida">
-    <router-link :to="`g/${id}`">
-      {{ nombre }}
+    <router-link :to="`/g/${game.id}`">
+      {{ game.name }}
     </router-link>
   </div>
 </template>
@@ -9,7 +9,7 @@
 <script>
 export default {
   name: 'PartidaComponent',
-  props: ["id","nombre"],
+  props: ["game"],
   data () {
     return {
     }

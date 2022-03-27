@@ -3,7 +3,7 @@
     <Header/>
     <div id="index-body">
       <section id="games">
-        <partida v-for="partida in games" :key="partida.id" :id="partida.id" :nombre="partida.nombre" />
+        <partida v-for="partida in games" :key="partida.id" :game="partida"  />
       </section>
     </div>
     <Footer/>
@@ -14,6 +14,7 @@
 import Header from '@/components/HeaderComponent'
 import Footer from '@/components/FooterComponent'
 import Partida from '@/components/Partida'
+import {mapActions, mapState} from 'vuex'
 
 export default {
   name: 'IndexView',
@@ -24,13 +25,23 @@ export default {
   },
   data: function() {
     return {
-      
+
     };
-  }, 
+  },
+  methods: {
+    ...mapActions(['getGames'])
+  },
   computed: {
-    games() {
-      return this.$store.state.games
-    }
+    ...mapState(['games'])
+  },
+  created() {
+
+  },
+  mounted() {
+    this.getGames()
+  },
+  beforeMount() {
+    
   }
 }
 </script>
@@ -40,6 +51,7 @@ export default {
 #index {
   height: 100%;
   width: 100%;
+  display: grid;
 }
 #index-body {
   padding-top: 200px;
