@@ -19,11 +19,12 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #main-header {
+    text-align: center;
     position: fixed;
     width: 100%;
+    background-color: rgb(109, 109, 109);
 }
 #main-header div {
     display: flex;

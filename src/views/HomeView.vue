@@ -1,42 +1,81 @@
 <template>
   <div id="home">
-    <Header/>
-    <div id="home-body">
-      <section id="game-box">
-        Game Id {{ gameid }}
-      </section>
+    <Header v-if="games[0]" :gameName="getGame(gameid)?getGame(gameid).name:'Default'" :gameVersion="gameVersion" @changeTab="changeTab"/>
+    
+    <window-config  v-if="games[0]" v-show="selected=='conf'" />
+    <window-players v-if="games[0]" v-show="selected=='play'" />
+    <window-char    v-if="games[0]" v-show="selected=='char'" :game="game" />
+    <window-comb    v-if="games[0]" v-show="selected=='comb'" />
+
+    <div class="loading-screen" v-if="!games[0]">
+      <h1>LOADING</h1>
     </div>
-    <Footer/>
   </div>
 </template>
 
 <script>
-import Header from '@/components/HeaderComponent'
-import Footer from '@/components/FooterComponent'
+import Header from '@/components/HomeHeaderComponent'
+import ConfigWindow from '@/components/ConfigWindow'
+import PlayersWindow from '@/components/PlayersWindow'
+import CharactersWindow from '@/components/CharactersWindow'
+import CombatsWindow from '@/components/CombatsWindow'
+
+import {mapActions, mapState} from 'vuex'
 
 export default {
   name: 'HomeView',
   components: {
     "Header": Header,
-    "Footer": Footer
+    "window-config": ConfigWindow,
+    "window-players": PlayersWindow,
+    "window-char": CharactersWindow,
+    "window-comb": CombatsWindow
   },
   data: function() {
     return {
-      gameid: null
+      gameid: null,
+      loaded: false,
+      gameName: "",
+      gameVersion: "",
+      selected: "conf",
+      game: {}
     };
   },
-  computed: {
-    gameData() {
-      return this.$route.params.gameid;
+  methods: {
+    ...mapActions(['getGames']),
+    getGame(gameId) {
+      //console.log("getGame");
+      var result;
+      this.games.forEach(game => {
+        if(game.id == gameId) {
+          result = game;
+        }
+      });
+      //console.log("-Result:");
+      //console.log(result);
+      if(result) {
+        this.gameName = result.name;
+        this.gameVersion = "EQUINOX "+result.version;
+        this.game = result;
+      }
+      return result;
+    },
+    changeTab(event, tab) {
+      event;
+      this.selected = tab;
     }
   },
+  computed: {
+    ...mapState(['games']),
+    ...mapState(['users'])
+  },
   mounted() {
+    this.loaded=this.getGames(),
     this.gameid = this.$route.params.gameid
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #home-body {
   padding-top: 200px;

@@ -3,7 +3,7 @@
     <Header/>
     <div id="index-body">
       <section id="games">
-        <partida v-for="partida in games" :key="partida.id" :game="partida"  />
+        <partida v-for="partida in games" :key="partida.id" :game="partida" />
       </section>
     </div>
     <Footer/>
@@ -32,16 +32,15 @@ export default {
     ...mapActions(['getGames'])
   },
   computed: {
-    ...mapState(['games'])
-  },
-  created() {
-
+    ...mapState(['games']),
+    ...mapState(['users'])
   },
   mounted() {
     this.getGames()
+    //console.log("mounted")
   },
-  beforeMount() {
-    
+  created() {
+    //console.log("created")
   }
 }
 </script>

@@ -1,18 +1,21 @@
 <template>
-  <div class="partida">
-    <router-link :to="`/g/${game.id}`">
-      {{ game.name }}
-      <span>{{game.user.username}}</span>
-    </router-link>
-  </div>
+  <section>
+    <span :data-filter="group.gName">
+      {{group.gName}}
+      <img src="../assets/img/ico_arrow-down.png">
+    </span>
+    <div :id="'grupo-'+group.gName" class="char-group">
+      
+    </div>
+  </section>
 </template>
 
 <script>
 //import {mapState} from 'vuex'
 
 export default {
-  name: 'PartidaComponent',
-  props: ["game"],
+  name: 'CharacterGroup',
+  props: ["game","group"],
   data () {
     return {
     }
