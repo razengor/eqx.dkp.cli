@@ -2,22 +2,23 @@
 body div#app {
     //display: flex;
     div#home {
-        /*display: grid;
-        grid-template-rows: 166px 1fr;*/
+        display: grid;
+        grid-template-rows: 166px 1fr;
         background-image: url("/assets/img/bg-white.jpg");
         //background: rgba(223, 223, 223, 0.164);
     }
 }
 body div#app div#home {
     flex-wrap: wrap;
-    display: flex;
-    min-height: 100%;
+    //display: flex;
+
     .info-header {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         width: 100%;
         box-sizing: border-box;
+        max-height: 166px;
         //height: 205px;
         padding: 10px 14px 0 14px;
         h1 {
@@ -212,6 +213,7 @@ body div#app div#home {
             display: block;
             width: 100%;
             margin-top: 15px;
+            padding-bottom: 2px;
             border-bottom: 1px solid black;
             font-size: 1.3em;
             img {

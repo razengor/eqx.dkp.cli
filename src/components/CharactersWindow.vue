@@ -2,7 +2,7 @@
     <div id="window-char" class="window shown">
         <h3>FICHAS</h3>
         <div id="info-char" class="char-box" v-if="loadedChars">
-          <character-group v-for="group in charGroups" :key="group.gname" :game="game" :group="group" />
+          <character-group-name v-for="group in charGroups" :key="'g-'+group.gname" :game="game" :group="group" />
         </div>
         <div class="window-footer">
             <button class="save">GUARDAR</button>
@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import CharacterGroup from '@/components/CharacterGroup'
+import CharacterGroupName from '@/components/CharacterGroupName'
 
 export default {
   name: 'CharactersWindow',
   props: ["game"],
   components: {
-    "character-group": CharacterGroup
+    "character-group-name": CharacterGroupName
   },
   data () {
     return {
@@ -38,7 +38,7 @@ export default {
         if(!this.charGroups[char.grupo]) {
           //Si no existe ya el grupo lo inicializamos
           let tempGroup = {};
-          tempGroup.characters = [];
+          tempGroup.characters = {};
           tempGroup.gName = char.grupo;
           this.charGroups[char.grupo] = tempGroup;
         }

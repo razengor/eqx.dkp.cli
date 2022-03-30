@@ -24,9 +24,7 @@ export default {
   name: 'HomeHeaderComponent',
   props: ["gameName","gameVersion"],
   data () {
-    return {
-
-    }
+    return {}
   },
   methods: {
     removeSelected() {
@@ -47,7 +45,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 </style>
