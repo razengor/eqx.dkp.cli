@@ -4,8 +4,10 @@
     
     <window-config  v-if="games[0]" v-show="selected=='conf'" />
     <window-players v-if="games[0]" v-show="selected=='play'" />
-    <window-char    v-if="games[0]" v-show="selected=='char'" :game="game" />
+    <window-char    v-if="games[0]" v-show="selected=='char'" :game="game" @editChar="openCharEditWindow" />
     <window-comb    v-if="games[0]" v-show="selected=='comb'" />
+
+    <edit-char-window v-if="editingChar" :char="charToEdit" :game="game" @closeChar="closeCharWindow" />
 
     <div class="loading-screen" v-if="!games[0]">
       <h1>LOADING</h1>
@@ -19,6 +21,7 @@ import ConfigWindow from '@/components/ConfigWindow'
 import PlayersWindow from '@/components/PlayersWindow'
 import CharactersWindow from '@/components/CharactersWindow'
 import CombatsWindow from '@/components/CombatsWindow'
+import CharacterEditWindow from '@/components/CharacterEditWindow'
 
 import {mapActions, mapState} from 'vuex'
 
@@ -29,7 +32,8 @@ export default {
     "window-config": ConfigWindow,
     "window-players": PlayersWindow,
     "window-char": CharactersWindow,
-    "window-comb": CombatsWindow
+    "window-comb": CombatsWindow,
+    "edit-char-window": CharacterEditWindow
   },
   data: function() {
     return {
@@ -38,7 +42,9 @@ export default {
       gameName: "",
       gameVersion: "",
       selected: "conf",
-      game: {}
+      game: {},
+      charToEdit: {},
+      editingChar: false
     };
   },
   methods: {
@@ -63,6 +69,18 @@ export default {
     changeTab(event, tab) {
       event;
       this.selected = tab;
+    },
+    openCharEditWindow(event, char) {
+      event;char;
+      console.log("Opening char edit window...");
+      this.charToEdit = char;
+      this.editingChar = true;
+      document.getElementById("body").classList.add('editing-char');
+      window.scrollTo(0, 0);
+    },
+    closeCharWindow() {
+      this.editingChar = false;
+      document.getElementById("body").classList.remove('editing-char');
     }
   },
   computed: {

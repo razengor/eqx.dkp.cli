@@ -268,6 +268,11 @@ body div#app div#home {
 }
 
 // DATOS FICHAS
+
+//para manipular el scroll...
+body#body.editing-char {
+    overflow: hidden;
+}
 #game-card-sheet {
     position: absolute;
     z-index: 90;
@@ -277,6 +282,7 @@ body div#app div#home {
     display: flex;
     justify-content: center;
     letter-spacing: 1px;
+    width: 100vw;
     #gcs-capa {
         background-image: linear-gradient(rgb(195, 195, 195), rgb(200, 200, 200), rgb(206, 206, 206), rgb(240, 240, 240));
         width: 90%;

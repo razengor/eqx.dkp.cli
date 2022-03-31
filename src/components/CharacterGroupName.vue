@@ -5,7 +5,7 @@
       <img src="../assets/img/ico_arrow-down.png">
     </span>
     <div :id="'grupo-'+group.gName.toLowerCase()" class="char-group">
-      <character-card v-for="(char, index) in group.characters" :key="index" :game="game" :char="char" />
+      <character-card v-for="(char, index) in group.characters" :key="index" :game="game" :char="char" @editChar="transmitEvent" />
     </div>
   </section>
 </template>
@@ -22,11 +22,10 @@ export default {
   data () {
     return {}
   },
-  mounted() {
-    console.log("grupo "+this.group.gName);
-    console.log(this.group);
-    //console.log(this.group.characters);
-    //this.characterGroup = this.group.characters;
+  methods: {
+    transmitEvent(event,char) {
+      this.$emit('editChar',event,char);
+    }
   }
 }
 </script>
