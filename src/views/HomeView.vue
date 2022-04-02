@@ -7,7 +7,7 @@
     <window-char    v-if="games[0]" v-show="selected=='char'" :game="game" @editChar="openCharEditWindow" />
     <window-comb    v-if="games[0]" v-show="selected=='comb'" />
 
-    <edit-char-window v-if="editingChar" :char="charToEdit" :game="game" @closeChar="closeCharWindow" />
+    <edit-char-window v-if="editingChar" :char="charToEdit" :charToEditId="charToEditId" :game="game" @closeChar="closeCharWindow" @saveChar="saveCharToEdit" />
 
     <div class="loading-screen" v-if="!games[0]">
       <h1>LOADING</h1>
@@ -24,6 +24,10 @@ import CombatsWindow from '@/components/CombatsWindow'
 import CharacterEditWindow from '@/components/CharacterEditWindow'
 
 import {mapActions, mapState} from 'vuex'
+
+import app from '../firebase'
+import { getDatabase, ref, set } from "firebase/database";
+
 
 export default {
   name: 'HomeView',
@@ -44,6 +48,7 @@ export default {
       selected: "conf",
       game: {},
       charToEdit: {},
+      charToEditId: null,
       editingChar: false
     };
   },
@@ -70,10 +75,12 @@ export default {
       event;
       this.selected = tab;
     },
-    openCharEditWindow(event, char) {
-      event;char;
+    openCharEditWindow(holder) {
       console.log("Opening char edit window...");
-      this.charToEdit = char;
+      this.charToEdit = holder.char;
+      this.charToEditId = holder.id;
+      console.log(holder.char);
+      console.log(this.charToEdit);
       this.editingChar = true;
       document.getElementById("body").classList.add('editing-char');
       window.scrollTo(0, 0);
@@ -81,6 +88,10 @@ export default {
     closeCharWindow() {
       this.editingChar = false;
       document.getElementById("body").classList.remove('editing-char');
+    },
+    saveCharToEdit(holder) {
+      const db = getDatabase(app);
+      set(ref(db, "games/"+this.game.id+"/characters/"+holder.id), holder.char);
     }
   },
   computed: {

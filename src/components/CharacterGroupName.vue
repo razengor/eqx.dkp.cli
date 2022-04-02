@@ -5,7 +5,7 @@
       <img src="../assets/img/ico_arrow-down.png">
     </span>
     <div :id="'grupo-'+group.gName.toLowerCase()" class="char-group">
-      <character-card v-for="(char, index) in group.characters" :key="index" :game="game" :char="char" @editChar="transmitEvent" />
+      <character-card v-for="(char, index) in group.characters" :key="index" :game="game" :charId="index" :char="char" @editChar="transmitEvent" />
     </div>
   </section>
 </template>
@@ -15,7 +15,7 @@ import CharacterCard from '@/components/CharacterCard'
 
 export default {
   name: 'CharacterGroupName',
-  props: ["game","group"],
+  props: ["game","group","charId"],
   components: {
     "character-card": CharacterCard
   },
@@ -23,8 +23,10 @@ export default {
     return {}
   },
   methods: {
-    transmitEvent(event,char) {
-      this.$emit('editChar',event,char);
+    transmitEvent(holder) {
+      console.log("holder desde CharacterGroupName");
+      console.log(holder);
+      this.$emit('editChar',holder);
     }
   }
 }

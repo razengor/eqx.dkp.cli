@@ -1,5 +1,5 @@
 <template>
-  <div :id="char.nombre.toUpperCase()" class="char-card" :filter-ini="char.iniciativa" :data-grupo="char.grupo" @click="this.$emit('editChar',$event,char)">
+  <div :id="char.nombre.toUpperCase()" class="char-card" :filter-ini="char.iniciativa" :data-grupo="char.grupo" @click="editCharEvent">
     <div class="card-shape">
       <div class="card-header">
         <img class="profile" :src="'../assets/img/profiles/profile_'+char.nombre.toLowerCase()+'.jpg'"/>
@@ -41,9 +41,18 @@
 <script>
 export default {
   name: 'CharacterCard',
-  props: ["game", "char"],
+  props: ["game", "char", "charId"],
   data () {
     return {}
+  },
+  methods: {
+    editCharEvent() {
+      var holder = {
+        char: this.char,
+        id: this.charId
+      }
+      this.$emit('editChar',holder);
+    }
   }
 }
 </script>

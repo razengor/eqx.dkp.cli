@@ -49,8 +49,10 @@ export default {
       //console.log(this.charGroups);
       this.loadedChars = true;
     },
-    transmitEvent(event,char) {
-      this.$emit('editChar',event,char);
+    transmitEvent(holder) {
+      console.log("holder desde CharactersWindow");
+      console.log(holder);
+      this.$emit('editChar',holder);
     }
   },
   created() {
