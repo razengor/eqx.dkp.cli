@@ -24,8 +24,6 @@ export default {
   },
   methods: {
     transmitEvent(holder) {
-      console.log("holder desde CharacterGroupName");
-      console.log(holder);
       this.$emit('editChar',holder);
     }
   }

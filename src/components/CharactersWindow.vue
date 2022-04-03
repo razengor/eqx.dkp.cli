@@ -29,12 +29,9 @@ export default {
   methods: {
     loadGroups() {
       var game = this.game;
-      //var gGroup = [];
       Object.keys(game.characters).forEach(cid => {
         var char = game.characters[cid];
-        //console.log(char.grupo);
         if (!char.grupo) char.grupo = "General"
-        //console.log(char.grupo);
         if(!this.charGroups[char.grupo]) {
           //Si no existe ya el grupo lo inicializamos
           let tempGroup = {};
@@ -44,26 +41,19 @@ export default {
         }
         this.charGroups[char.grupo].characters[cid] = char;
       });
-      //console.log(gGroup);
-      //this.charGroups = gGroup;
-      //console.log(this.charGroups);
       this.loadedChars = true;
     },
     transmitEvent(holder) {
-      console.log("holder desde CharactersWindow");
-      console.log(holder);
       this.$emit('editChar',holder);
     }
   },
   created() {
-    console.log("created")
   },
   mounted() {
     this.$nextTick(() => {
       //Esperamos a que se haya generado el temario para clasificar las fichas de personaje por grupo
       this.loadGroups();
     });
-    console.log("mounted")
   }
 }
 </script>

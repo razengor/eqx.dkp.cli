@@ -77,11 +77,8 @@ export default {
       this.selected = tab;
     },
     openCharEditWindow(holder) {
-      console.log("Opening char edit window...");
       this.charToEdit = holder.char;
       this.charToEditId = holder.id;
-      console.log(holder.char);
-      console.log(this.charToEdit);
       this.editingChar = true;
       document.getElementById("body").classList.add('editing-char');
       window.scrollTo(0, 0);
