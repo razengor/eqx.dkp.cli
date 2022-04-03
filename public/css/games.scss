@@ -524,69 +524,56 @@ body#body.editing-char {
                 }
             }
         }
-        .gcs-tipos-unidad {
+        .gcs-tipos-unidad,.gcs-roles-unidad {
             width: fit-content;
             float: left;
             flex-wrap: wrap;
-            padding-top: 25px;
+            margin-top: 25px;
+            min-width: 200px;
             p {
                 margin: 0 0 10px 0;
                 font-size: 1.1em;
                 width: 100%;
-                text-align: left;
+                text-align: center;
             }
-            .type {
+            .type,.role {
                 margin-right: 5px;
             }
         }
         .gcs-roles-unidad {
-            width: fit-content;
-            float: left;
-            flex-wrap: wrap;
-            padding-top: 25px;
-            padding-left: 30px;
-            p {
-                margin: 0 0 5px 0;
-                font-size: 1.1em;
-                width: 100%;
-                text-align: left;
-            }
-            .role {
-                margin-right: 5px;
-            }
+            margin-left: 30px;
         }
         .gcs-especializaciones {
-            padding-top: 32px;
+            padding-top: 28px;
             display: flex;
             flex-direction: column;
             text-align: left;
             p {
-                margin: 9px 0 9px 6px;
+                margin: 8px 0 9px 8px;
                 width: 100%;
                 $this:&;
                 &:first-child {
-                    margin: 0 0 13px 0;
+                    margin: 0 0 11px 0;
                     font-size: 1.1em;
                 }
                 &:nth-child(2) {
-                    b {
-                        color: rgb(209, 53, 53);
-                    }
+                    b {color: rgb(209, 53, 53);}
                 }
                 &:nth-child(3) {
-                    b {
-                        color: rgb(53, 53, 209);
-                    }
+                    b {color: rgb(53, 53, 209);}
                 }
                 &:nth-child(4) {
-                    b {
-                        color: rgb(49, 209, 67);
-                    }
+                    b {color: rgb(49, 209, 67);}
                 }
             }
         }
         .gcs-dinero {
-            padding-top: 25px;
+            width: auto;
+            padding-top: 15px;
+            float: left;
+            display: flex;
+            flex-direction: column;
+            //align-items: flex-start;
             .money {
                 display: flex;
                 flex-direction: row;
@@ -637,6 +624,11 @@ body#body.editing-char {
                         font-family: 'Varela Round', sans-serif;
                     }
                 }
+            }
+            #gcs-editar-inventario {
+                margin-top: 5px;
+                padding: 6px 14px;
+                font-size: 1.1em;
             }
         }
         .save, .close, .delete {

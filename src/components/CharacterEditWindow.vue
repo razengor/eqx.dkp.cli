@@ -47,30 +47,31 @@
             </button>
           </div>
 
-          <div class="gcs-tipos-unidad">
+          <button id="gcs-editar-tipos" class="gcs-tipos-unidad edit-button-box" title="EDITAR TIPOS">
             <p>TIPOS DE UNIDAD</p>
 
             <img class="type" v-for="unitType in charToEdit.unitTypes"
               :key="charToEdit.nombre+'_'+unitType"
               :src="'../assets/img/ico_'+unitType.toLowerCase()+'.png'"
               :title="unitType.toUpperCase()" :alt="unitType.toUpperCase()" />
-            <img v-if="charToEdit.unitTypes=={}"
+            <img v-if="charToEdit.unitTypes==null"
+              class="type"
               :src="'../assets/img/ico_.png'"
               title="X" alt="X" />
+          </button>
 
-            <button id="gcs-editar-tipos" class="edit-button round-button" title="EDITAR TIPOS"><img src="../assets/img/ico_edit.png" /></button>
-          </div>
-
-          <div class="gcs-roles-unidad">
+          <button id="gcs-editar-roles" class="gcs-roles-unidad edit-button-box" title="EDITAR ROLES">
             <p>ROLES</p>
 
             <img class="role" v-for="unitRole in charToEdit.unitRoles"
               :key="charToEdit.nombre+'_'+unitRole"
               :src="'../assets/img/ico_'+unitRole.toLowerCase()+'.png'"
               :title="unitRole.toUpperCase()" :alt="unitRole.toUpperCase()" />
-
-            <button id="gcs-editar-roles" class="edit-button round-button" title="EDITAR ROLES"><img src="../assets/img/ico_edit.png" /></button>
-          </div>
+            <img v-if="charToEdit.unitRoles==null"
+              class="role"
+              :src="'../assets/img/ico_.png'"
+              title="X" alt="X" />
+          </button>
 
           <div class="gcs-especializaciones">
             <p>
@@ -97,7 +98,9 @@
               <div class="coin copper"><input v-model="capitalToEdit.cobre" type="text" name="cobre"></div>
             </div>
             
-            <button id="gcs-editar-inventario" class="edit-button round-button" title="EDITAR INVENTARIO"><img src="../assets/img/ico_edit.png" /></button>
+            <button id="gcs-editar-inventario" class="edit-button-box" title="EDITAR INVENTARIO">
+              INVENTARIO
+            </button>
           </div>
 
           <button id="gcs-save" class="save round-button" @click="saveChar()" >
