@@ -644,7 +644,8 @@ body#body.editing-char {
 
         button.go-back {
             position: absolute;
-            left: 10px;top: 10px;
+            left: 10px;
+            top: 0px;
 
             border: 2px solid gray;
             background-color: white;
@@ -1650,199 +1651,200 @@ body#body.editing-char {
                 }
             }
         }
-    }
-}
-
-/* EDICIÓN de FICHA */
-#game-card-sheet-edit.container {
-    text-align: center;
-    width: 800px;
-    margin: 10px auto;
-    box-sizing: border-box;
-    border: 2px solid rgb(78, 105, 27);
-    border-radius: 9px;
-    background-image: linear-gradient(rgb(170, 170, 170), rgb(180, 180, 180), rgb(190, 190, 190), rgb(210, 210, 210));
-    //background-image: url("/assets/img/bg-purple.jpg");
-    h4 {
-        margin: 10px 0;
-        font-family: 'Acme', sans-serif;
-        color: rgb(98, 98, 98);
-        border-bottom: 1px solid rgb(98, 98, 98);
-        font-size: 1.1em;
-    }
-    p {
-        width: fit-content;
-    }
-    input {
-        height: max-content;
-        border-radius: 4px;
-        width: 35px;
-        text-align: center;
-        margin: auto 0 auto auto;
-        font-weight: bold;
-        font-size: 1em;
-    }
-    input.name {
-        width: 150px;
-        font-size: 1.5em;
-        margin-top: 5px;
-    }
-    #extra {
-        margin-top: 5px;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Fira Sans', sans-serif;
-        font-weight: bold;
-        color: rgb(27, 27, 27);
-        div {
-            margin: 0 25px;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            p {
-                font-size: 0.9em;
-                margin: 5px 5px 0 8px;
+        /* EDICIÓN de FICHA */
+        #game-card-sheet-ficha.container {
+            text-align: center;
+            position: relative;
+            height: 100%;
+            //width: 800px;
+            //margin: 10px auto;
+            box-sizing: border-box;
+            //border: 2px solid rgb(78, 105, 27);
+            //border-radius: 9px;
+            //background-image: linear-gradient(rgb(170, 170, 170), rgb(180, 180, 180), rgb(190, 190, 190), rgb(210, 210, 210));
+            //background-image: url("/assets/img/bg-purple.jpg");
+            h4 {
+                margin: 10px 0;
+                font-family: 'Acme', sans-serif;
+                color: rgb(98, 98, 98);
+                border-bottom: 1px solid rgb(98, 98, 98);
+                font-size: 1.1em;
             }
-            p:nth-child(1) {
-                font-size: 1em;
+            p {
+                width: fit-content;
             }
             input {
-                width: 50px;
-                font-size: 0.9em;
-                margin: 5px 0 0 0;
+                height: max-content;
+                border-radius: 4px;
+                width: 35px;
+                text-align: center;
+                margin: auto 0 auto auto;
+                font-weight: bold;
+                font-size: 1em;
             }
-            input[name='clase']{
+            input.name {
                 width: 150px;
+                font-size: 1.5em;
+                margin-top: 5px;
             }
-        }
-    }
-    #stat,#stat-2 {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        box-sizing: border-box;
-        padding: 0 100px;
-        font-size: 0.9em;
-        div {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            width: 25%;
-            box-sizing: border-box;
-            padding: 0 2%;
-            font-family: 'Fira Sans', sans-serif;
-            font-weight: bold;
-            color: rgb(27, 27, 27);
-            $this: &;
-            /*&#vida {
-                color: red;
-            }
-            &#sangre {
-                color: fuchsia;
-            }
-            &#energia {
-                color: orange;
-            }
-            &#mana {
-                color: blue;
-            }*/
-        }
-    }
-    #attr {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        height: 140px;
-        box-sizing: border-box;
-        padding: 0 100px;
-        div {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            width: 30%;
-            box-sizing: border-box;
-            padding: 0 1.66%;
-            font-family: 'Fira Sans', sans-serif;
-            font-weight: bold;
-            font-size: 0.9em;
-            color: rgb(27, 27, 27);
-        }
-    }
-    #abil {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        box-sizing: border-box;
-        padding: 0 100px;
-        font-size: 0.9em;
-        div {
-            width: 30%;
-            height: fit-content;
-            box-sizing: border-box;
-            padding: 0 1.66%;
-            div {
+            #extra {
+                margin-top: 5px;
                 width: 100%;
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
+                align-items: center;
                 font-family: 'Fira Sans', sans-serif;
                 font-weight: bold;
                 color: rgb(27, 27, 27);
-                p {
-                    font-size: 0.8em;
-                    margin: 7px 0;
+                div {
+                    margin: 0 25px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    p {
+                        font-size: 0.9em;
+                        margin: 5px 5px 0 8px;
+                    }
+                    p:nth-child(1) {
+                        font-size: 1em;
+                    }
+                    input {
+                        width: 50px;
+                        font-size: 0.9em;
+                        margin: 5px 0 0 0;
+                    }
+                    input[name='clase']{
+                        width: 150px;
+                    }
                 }
             }
-        }
-    }
-    #menu {
-        min-width: 80%;
-        margin: 5px 10% 0 10%;
-        height: 80px;
-        box-sizing: border-box;
-        border-top: 1px solid black;
-        text-align: center;
-        button {
-            cursor: pointer;
-            margin: 20px auto 0 auto;
-            width: 55px;
-            height: 55px;
-            img {
-                padding-top: 4px;
-                width: 28px;
-                height: 28px;
-                margin: auto;
+            .stats {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                box-sizing: border-box;
+                padding: 0 100px;
+                font-size: 0.9em;
+                div {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    width: 25%;
+                    box-sizing: border-box;
+                    padding: 0 2%;
+                    font-family: 'Fira Sans', sans-serif;
+                    font-weight: bold;
+                    color: rgb(27, 27, 27);
+                    $this: &;
+                    /*&#vida {
+                        color: red;
+                    }
+                    &#sangre {
+                        color: fuchsia;
+                    }
+                    &#energia {
+                        color: orange;
+                    }
+                    &#mana {
+                        color: blue;
+                    }*/
+                }
+            }
+            .attr {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                height: 140px;
+                box-sizing: border-box;
+                padding: 0 100px;
+                div {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    width: 30%;
+                    box-sizing: border-box;
+                    padding: 0 1.66%;
+                    font-family: 'Fira Sans', sans-serif;
+                    font-weight: bold;
+                    font-size: 0.9em;
+                    color: rgb(27, 27, 27);
+                }
+            }
+            .abil {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                box-sizing: border-box;
+                padding: 0 100px;
+                font-size: 0.9em;
+                div {
+                    width: 30%;
+                    height: fit-content;
+                    box-sizing: border-box;
+                    padding: 0 1.66%;
+                    div {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        font-family: 'Fira Sans', sans-serif;
+                        font-weight: bold;
+                        color: rgb(27, 27, 27);
+                        p {
+                            font-size: 0.8em;
+                            margin: 7px 0;
+                        }
+                    }
+                }
+            }
+            #menu {
+                min-width: 80%;
+                margin: 5px 10% 0 10%;
+                height: 80px;
+                box-sizing: border-box;
+                border-top: 1px solid black;
+                text-align: center;
+                button {
+                    cursor: pointer;
+                    margin: 20px auto 0 auto;
+                    width: 55px;
+                    height: 55px;
+                    img {
+                        padding-top: 4px;
+                        width: 28px;
+                        height: 28px;
+                        margin: auto;
+                    }
+                }
+                button.save {
+                    background-color: rgb(72, 163, 72);
+                    margin-right: 15px;
+                }
+                button.save:hover {
+                    background-color: rgb(126, 206, 126);
+                }
+                button.cancel {
+                    background-color: rgb(163, 72, 72);
+                    margin-left: 15px;
+                    margin-right: 15px;
+                }
+                button.cancel:hover {
+                    background-color: rgb(206, 126, 126);
+                }
+                /*button.cancel {
+                    border: 2px double rgb(212, 199, 126);
+                    background-color: rgb(197, 179, 73);
+                    margin-left: 15px;
+                }
+                button.cancel:hover {
+                    border: 2px double rgb(197, 179, 73);
+                    background-color: rgb(212, 199, 126);
+                }*/
             }
         }
-        button.save {
-            background-color: rgb(72, 163, 72);
-            margin-right: 15px;
-        }
-        button.save:hover {
-            background-color: rgb(126, 206, 126);
-        }
-        button.cancel {
-            background-color: rgb(163, 72, 72);
-            margin-left: 15px;
-            margin-right: 15px;
-        }
-        button.cancel:hover {
-            background-color: rgb(206, 126, 126);
-        }
-        /*button.cancel {
-            border: 2px double rgb(212, 199, 126);
-            background-color: rgb(197, 179, 73);
-            margin-left: 15px;
-        }
-        button.cancel:hover {
-            border: 2px double rgb(197, 179, 73);
-            background-color: rgb(212, 199, 126);
-        }*/
     }
 }

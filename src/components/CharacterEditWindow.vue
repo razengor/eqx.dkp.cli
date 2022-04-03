@@ -148,6 +148,54 @@
                 <input name="vision" v-model="charToEdit.vision">
               </div>
             </div>
+            <h4>ATRIBUTOS</h4>
+            <div class="attr">
+              <div>
+                <p>AGILIDAD</p>
+                <input type="text" v-model="charToEdit.atributos.agilidad">
+              </div>
+              <div>
+                <p>FUERZA</p>
+                <input type="text" v-model="charToEdit.atributos.fuerza">
+              </div>
+              <div>
+                <p>RESISTENCIA</p>
+                <input type="text" v-model="charToEdit.atributos.resistencia">
+              </div>
+              <div>
+                <p>INTELIGENCIA</p>
+                <input type="text" v-model="charToEdit.atributos.inteligencia">
+              </div>
+              <div>
+                <p>MANIPULACIÓN</p>
+                <input type="text" v-model="charToEdit.atributos.manipulacion">
+              </div>
+              <div>
+                <p>VELO</p>
+                <input type="text" v-model="charToEdit.atributos.velo">
+              </div>
+              <div>
+                <p>ASTUCIA</p>
+                <input type="text" v-model="charToEdit.atributos.astucia">
+              </div>
+              <div>
+                <p>DESTREZA</p>
+                <input type="text" v-model="charToEdit.atributos.destreza">
+              </div>
+              <div>
+                <p>SENSITIVIDAD</p>
+                <input type="text" v-model="charToEdit.atributos.sensitividad">
+              </div>
+            </div>
+            <h4>HABILIDADES</h4>
+            <div class="abil">
+              <div v-for="(column, name) in charToEdit.habilidades" :key="name" :class="name">
+                <div v-for="(value, ability) in column" :key="ability">
+                  <p>{{ability.toUpperCase()}}</p>
+                  <input v-model="charToEdit.habilidades[name][ability]">
+                </div>
+              </div>
+            </div>
           </div>
           
           <!-- EDICIÓN DE RAZA -->
