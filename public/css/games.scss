@@ -329,25 +329,6 @@ body#body.editing-char {
                 background-color: rgb(218, 150, 62);
             }
         }
-        .edit-button-new {
-            font-family: 'Acme', sans-serif;
-            font-size: 1em;
-            background-color: rgb(213, 171, 142);
-            cursor: pointer;
-            width: 45px;
-            height: 45px;
-            margin-left: 10px;
-            img {
-                padding-top: 4px;
-                padding-left: 2px;
-                width: 24px;
-                height: 24px;
-            }
-            $this:&;
-            &:hover {
-                background-color: rgb(195, 141, 102);
-            }
-        }
         .edit-button-box {
             border: 2px solid gray;
             background-color: white;
@@ -656,329 +637,86 @@ body#body.editing-char {
             background-color: rgb(120, 120, 120);
         }
     }
-    #game-card-sheet-class {
-        h2 {
-            margin: 0;
-        }
-        .gcsc-clase-descripcion {
-            height: 35%;
-            width: 100%;
-            .gcsc-clase {
-                float: left;
-                height: 100%;
-                width: 35%;
-                .selects {
-                    width: 100%;
-                    height: 40px;
-                    margin-top: 15px;
-                    select {
-                        height: 100%;
-                        border-radius: 2px;
-                        font-size: 1.3em;
-                        cursor: pointer;
-                    }
-                }
-                .content {
-                    margin-top: 15px;
-                    width: 100%;
-                    max-height: 60%;
-                }
-            }
-            .gcsc-descripcion {
-                float: left;
-                height: 100%;
-                width: 65%;
-            }
-        }
-        .gcsc-talentos {
-            height: 65%;
-            padding-bottom: 75px;
+    #game-card-sheet-edit {
+        border-left: 1px solid rgb(145, 145, 145);
+        box-sizing: border-box;
+        position: relative;
+
+        button.go-back {
+            position: absolute;
+            left: 10px;top: 10px;
+
+            border: 2px solid gray;
+            background-color: white;
+            border-radius: 3px;
             box-sizing: border-box;
-            .gcsc-talentos-disponibles, .gcsc-talento-seleccionado, .gcsc-talentos-actuales {
-                width: 33%;
-                height: 100%;
-                float: left;
-            }
-            .gcsc-talentos-disponibles {
-                padding-right: 0.5%;
-                .search {
-                    margin: 0 auto;
-                    width: 80%;
-                    font-size: 1.1em;
-                    height: 30px;
-                }
-                .content {
-                    margin: 0 auto;
-                    margin-top: 15px;
-                    padding: 10px;
-                    box-sizing: border-box;
-                    background-color: rgb(190, 190, 190);
-                    border: 1px solid gray;
-                    border-radius: 5px;
-                    width: 90%;
-                    min-height: 90px;
-                    max-height: 80%;
-                    overflow-y: scroll;
-                    overflow-x: hidden;
-                    div {
-                        width: 100%;
-                        text-align: left;
-                        cursor: pointer;
-                        box-sizing: border-box;
-                        padding: 4px;
-                        margin-bottom: 8px;
-                        background-color: rgb(175, 175, 175);
-                        border: 1px solid gray;
-                    }
-                    div:hover,.selected:hover,.selected {
-                        background-color: rgb(209, 209, 209);
-                    }
-                }
-            }
-            .gcsc-talento-seleccionado {
-                h2 {
-                    text-decoration: underline;
-                }
-                padding-right: 0.5%;
-                p {
-                    text-align: left;
-                    padding: 0 18px;
-                }
-                p.unmatched {
-                    color: rgb(85, 0, 0);
-                    text-decoration: underline;
-                }
-                p.unmatched::after {
-                    content: " !";
-                    color: rgb(85, 0, 0);
-                    font-weight: bold;
-                }
-                #gcsc-add-talento {
-                    background-color: rgb(72, 163, 72);
-                    cursor: pointer;
-                    width: 50px;
-                    height: 50px;
-                    img {
-                        padding-top: 4px;
-                        width: 24px;
-                        height: 24px;
-                        margin: auto;
-                    }
-                }
-                #gcsc-add-talento:hover {
-                    background-color: rgb(126, 206, 126);
-                }
-                #gcsc-delete-talento {
-                    background-color: rgb(160, 59, 59);
-                    cursor: pointer;
-                    width: 50px;
-                    height: 50px;
-                    img {
-                        padding-top: 4px;
-                        width: 24px;
-                        height: 24px;
-                        margin: auto;
-                    }
-                }
-                #gcsc-delete-talento:hover {
-                    background-color: rgb(204, 91, 91);
-                }
-            }
-            .gcsc-talentos-actuales {
-                padding: 0;
-                .content {
-                    margin: 0 auto;
-                    margin-top: 45px;
-                    padding: 10px;
-                    box-sizing: border-box;
-                    background-color: rgb(190, 190, 190);
-                    border: 1px solid gray;
-                    border-radius: 5px;
-                    width: 90%;
-                    min-height: 90px;
-                    max-height: 80%;
-                    overflow-y: scroll;
-                    overflow-x: hidden;
-                    div {
-                        width: 100%;
-                        text-align: left;
-                        cursor: pointer;
-                        box-sizing: border-box;
-                        padding: 4px;
-                        margin-bottom: 8px;
-                        background-color: rgb(175, 175, 175);
-                        border: 1px solid gray;
-                    }
-                    div:hover,.selected:hover,.selected {
-                        background-color: rgb(209, 209, 209);
-                    }
-                }
+            cursor: pointer;
+            color:rgb(40, 40, 40);
+            font-family: 'Fira Sans', sans-serif;
+            font-size: 1em;
+
+            padding: 3px 6px;
+
+            $this:&;
+            &:hover {
+                background-color: rgb(225, 225, 225);
             }
         }
-    }
-    #game-card-sheet-magics {
-        h2 {
-            margin: 0;
-        }
-        .gcsm-magias {
-            height: 65%;
-            padding-bottom: 75px;
-            box-sizing: border-box;
-            .gcsm-magias-disponibles, .gcsm-magia-seleccionada, .gcsm-magias-actuales {
-                width: 33%;
-                height: 100%;
-                float: left;
+
+        #game-card-sheet-class {
+            h2 {
+                margin: 0;
             }
-            .gcsm-magias-disponibles {
-                padding-right: 0.5%;
-                .search {
-                    margin: 0 auto;
-                    width: 80%;
-                    font-size: 1.1em;
-                    height: 30px;
-                }
-                .content {
-                    margin: 0 auto;
-                    margin-top: 15px;
-                    padding: 10px;
-                    box-sizing: border-box;
-                    background-color: rgb(190, 190, 190);
-                    border: 1px solid gray;
-                    border-radius: 5px;
-                    width: 90%;
-                    min-height: 90px;
-                    max-height: 80%;
-                    overflow-y: scroll;
-                    overflow-x: hidden;
-                    div {
-                        width: 100%;
-                        text-align: left;
-                        cursor: pointer;
-                        box-sizing: border-box;
-                        padding: 4px;
-                        margin-bottom: 8px;
-                        background-color: rgb(175, 175, 175);
-                        border: 1px solid gray;
-                    }
-                    div:hover,.selected:hover,.selected {
-                        background-color: rgb(209, 209, 209);
-                    }
-                }
-            }
-            .gcsm-magia-seleccionada {
-                h2 {
-                    text-decoration: underline;
-                }
-                padding-right: 0.5%;
-                p {
-                    text-align: left;
-                    padding: 0 18px;
-                }
-                p.unmatched {
-                    color: rgb(85, 0, 0);
-                    text-decoration: underline;
-                }
-                p.unmatched::after {
-                    content: " !";
-                    color: rgb(85, 0, 0);
-                    font-weight: bold;
-                }
-                #gcsc-add-magia {
-                    background-color: rgb(72, 163, 72);
-                    cursor: pointer;
-                    width: 50px;
-                    height: 50px;
-                    img {
-                        padding-top: 4px;
-                        width: 24px;
-                        height: 24px;
-                        margin: auto;
-                    }
-                }
-                #gcsc-add-magia:hover {
-                    background-color: rgb(126, 206, 126);
-                }
-                #gcsc-delete-magia {
-                    background-color: rgb(160, 59, 59);
-                    cursor: pointer;
-                    width: 50px;
-                    height: 50px;
-                    img {
-                        padding-top: 4px;
-                        width: 24px;
-                        height: 24px;
-                        margin: auto;
-                    }
-                }
-                #gcsc-delete-magia:hover {
-                    background-color: rgb(204, 91, 91);
-                }
-            }
-            .gcsm-magias-actuales {
-                padding: 0;
-                .content {
-                    margin: 0 auto;
-                    margin-top: 45px;
-                    padding: 10px;
-                    box-sizing: border-box;
-                    background-color: rgb(190, 190, 190);
-                    border: 1px solid gray;
-                    border-radius: 5px;
-                    width: 90%;
-                    min-height: 90px;
-                    max-height: 80%;
-                    overflow-y: scroll;
-                    overflow-x: hidden;
-                    div {
-                        width: 100%;
-                        text-align: left;
-                        cursor: pointer;
-                        box-sizing: border-box;
-                        padding: 4px;
-                        margin-bottom: 8px;
-                        background-color: rgb(175, 175, 175);
-                        border: 1px solid gray;
-                    }
-                    div:hover,.selected:hover,.selected {
-                        background-color: rgb(209, 209, 209);
-                    }
-                }
-            }
-        }
-    }
-    #game-card-sheet-raza {
-        h2 {
-            margin: 0;
-        }
-        .gcsc-raza-capacidades-descripcion-pasivas {
-            //height: 35%;
-            width: 100%;
-            .gcsr-raza, .gcsr-capacidades, .gcsr-descripcion, .gcsr-pasivas {
+            .gcsc-clase-descripcion {
+                height: 35%;
                 width: 100%;
-            }
-            .gcsr-raza-capacidades {
-                float: left;
-                width: 35%;
-                .gcsr-raza {
-                    //background-color: rgba(183, 0, 255, 0.26);
-                    select {
+                .gcsc-clase {
+                    float: left;
+                    height: 100%;
+                    width: 35%;
+                    .selects {
+                        width: 100%;
+                        height: 40px;
                         margin-top: 15px;
-                        height: 35px;
-                        border-radius: 2px;
-                        font-size: 1.3em;
-                        cursor: pointer;
+                        select {
+                            height: 100%;
+                            border-radius: 2px;
+                            font-size: 1.3em;
+                            cursor: pointer;
+                        }
+                    }
+                    .content {
+                        margin-top: 15px;
+                        width: 100%;
+                        max-height: 60%;
                     }
                 }
-                .gcsr-capacidades {
-                    //background-color: rgba(30, 255, 0, 0.26);
-                    padding-top: 35px;
-                    h2 {
-                        width: 50%;
+                .gcsc-descripcion {
+                    float: left;
+                    height: 100%;
+                    width: 65%;
+                }
+            }
+            .gcsc-talentos {
+                height: 65%;
+                padding-bottom: 75px;
+                box-sizing: border-box;
+                .gcsc-talentos-disponibles, .gcsc-talento-seleccionado, .gcsc-talentos-actuales {
+                    width: 33%;
+                    height: 100%;
+                    float: left;
+                }
+                .gcsc-talentos-disponibles {
+                    padding-right: 0.5%;
+                    .search {
                         margin: 0 auto;
+                        width: 80%;
+                        font-size: 1.1em;
+                        height: 30px;
                     }
                     .content {
                         margin: 0 auto;
-                        margin-top: 25px;
+                        margin-top: 15px;
                         padding: 10px;
                         box-sizing: border-box;
                         background-color: rgb(190, 190, 190);
@@ -998,11 +736,85 @@ body#body.editing-char {
                             margin-bottom: 8px;
                             background-color: rgb(175, 175, 175);
                             border: 1px solid gray;
-                            input {
-                                transform: scale(1.5);
-                                cursor: pointer;
-                                margin: 0 10px 5px 5px;
-                            }
+                        }
+                        div:hover,.selected:hover,.selected {
+                            background-color: rgb(209, 209, 209);
+                        }
+                    }
+                }
+                .gcsc-talento-seleccionado {
+                    h2 {
+                        text-decoration: underline;
+                    }
+                    padding-right: 0.5%;
+                    p {
+                        text-align: left;
+                        padding: 0 18px;
+                    }
+                    p.unmatched {
+                        color: rgb(85, 0, 0);
+                        text-decoration: underline;
+                    }
+                    p.unmatched::after {
+                        content: " !";
+                        color: rgb(85, 0, 0);
+                        font-weight: bold;
+                    }
+                    #gcsc-add-talento {
+                        background-color: rgb(72, 163, 72);
+                        cursor: pointer;
+                        width: 50px;
+                        height: 50px;
+                        img {
+                            padding-top: 4px;
+                            width: 24px;
+                            height: 24px;
+                            margin: auto;
+                        }
+                    }
+                    #gcsc-add-talento:hover {
+                        background-color: rgb(126, 206, 126);
+                    }
+                    #gcsc-delete-talento {
+                        background-color: rgb(160, 59, 59);
+                        cursor: pointer;
+                        width: 50px;
+                        height: 50px;
+                        img {
+                            padding-top: 4px;
+                            width: 24px;
+                            height: 24px;
+                            margin: auto;
+                        }
+                    }
+                    #gcsc-delete-talento:hover {
+                        background-color: rgb(204, 91, 91);
+                    }
+                }
+                .gcsc-talentos-actuales {
+                    padding: 0;
+                    .content {
+                        margin: 0 auto;
+                        margin-top: 45px;
+                        padding: 10px;
+                        box-sizing: border-box;
+                        background-color: rgb(190, 190, 190);
+                        border: 1px solid gray;
+                        border-radius: 5px;
+                        width: 90%;
+                        min-height: 90px;
+                        max-height: 80%;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
+                        div {
+                            width: 100%;
+                            text-align: left;
+                            cursor: pointer;
+                            box-sizing: border-box;
+                            padding: 4px;
+                            margin-bottom: 8px;
+                            background-color: rgb(175, 175, 175);
+                            border: 1px solid gray;
                         }
                         div:hover,.selected:hover,.selected {
                             background-color: rgb(209, 209, 209);
@@ -1010,634 +822,832 @@ body#body.editing-char {
                     }
                 }
             }
-            
-            .gcsr-descripcion-pasivas {
-                float: left;
-                height: 100%;
-                width: 65%;
-                p {
-                    margin: 0;
-                    padding: 15px 0 0 0;
-                }
-                /*.gcsr-descripcion {
-                    //background-color: rgba(128, 128, 128, 0.26);
-                }*/
-                .gcsr-pasivas {
-                    //background-color: rgba(255, 0, 0, 0.26);
-                    padding-top: 20px;
-                }
-            }
         }
-    }
-    #game-card-sheet-icons {
-        h2, h3 {
-            margin: 0;
-        }
-        .gcsi-tipos {
-            height: 45%;
-            width: 100%;
-            border-bottom: 1px solid gray;
-            .gcsi-tipos-disponibles, .gcsi-botones, .gcsi-tipos-actuales {
-                min-height: 80%;
-                float: left;
-                width: 33%;
+        #game-card-sheet-magics {
+            h2 {
+                margin: 0;
             }
-            .gcsi-tipos-disponibles {
-                select {
-                    margin-top: 15px;
-                    height: 35px;
-                    border-radius: 2px;
-                    font-size: 1.3em;
-                    cursor: pointer;
-                }
-                .content {
-                    img {
-                        width: 60px;
-                        height: 60px;
-                        margin-top: 15px;
-                    }
-                    p {
-                        font-weight: bold;
-                        margin: 10px 0 0 0;
-                    }
-                    #gcsi-add-tipo {
-                        margin-top: 25px;
-                        background-color: rgb(72, 163, 72);
-                        cursor: pointer;
-                        width: 50px;
-                        height: 50px;
-                        img {
-                            padding-top: 4px;
-                            width: 24px;
-                            height: 24px;
-                            margin: auto;
-                        }
-                    }
-                    #gcsi-add-tipo:hover {
-                        background-color: rgb(126, 206, 126);
-                    }
-                }
-            }
-            .gcsi-tipos-actuales {
-                .content {
-                    margin: 0 auto;
-                    margin-top: 25px;
-                    padding: 10px;
-                    box-sizing: border-box;
-                    background-color: rgb(190, 190, 190);
-                    border: 1px dashed gray;
-                    border-radius: 5px;
-                    width: 90%;
-                    height: 180px;
-                    div {
-                        width: 58px;
-                        height: 58px;
-                        cursor: pointer;
-                        box-sizing: border-box;
-                        padding: 4px;
-                        margin: 0 5px 8px 0;
-                        background-color: rgb(163, 163, 163);
-                        border-radius: 99px;
-                        float: left;//???
-                        img {
-                            width: 50px;
-                            height: 50px;
-                        }
-                    }
-                    div:hover,.selected:hover,.selected {
-                        background-color: rgb(224, 224, 224);
-                    }
-                }
-            }
-        }
-        .gcsi-roles {
-            height: 45%;
-            width: 100%;
-            .gcsi-roles-disponibles, .gcsi-botones, .gcsi-roles-actuales {
-                min-height: 80%;
-                float: left;
-                width: 33%;
-            }
-            .gcsi-roles-disponibles {
-                select {
-                    margin-top: 15px;
-                    height: 35px;
-                    border-radius: 2px;
-                    font-size: 1.3em;
-                    cursor: pointer;
-                }
-                .content {
-                    img {
-                        width: 60px;
-                        height: 60px;
-                        margin-top: 15px;
-                    }
-                    p {
-                        font-weight: bold;
-                        margin: 10px 0 0 0;
-                    }
-                    #gcsi-add-role {
-                        margin-top: 25px;
-                        background-color: rgb(72, 163, 72);
-                        cursor: pointer;
-                        width: 50px;
-                        height: 50px;
-                        img {
-                            padding-top: 4px;
-                            width: 24px;
-                            height: 24px;
-                            margin: auto;
-                        }
-                    }
-                    #gcsi-add-role:hover {
-                        background-color: rgb(126, 206, 126);
-                    }
-                }
-            }
-            .gcsi-roles-actuales {
-                .content {
-                    margin: 0 auto;
-                    margin-top: 25px;
-                    padding: 10px;
-                    box-sizing: border-box;
-                    background-color: rgb(190, 190, 190);
-                    border: 1px dashed gray;
-                    border-radius: 5px;
-                    width: 90%;
-                    height: 180px;
-                    div {
-                        width: 58px;
-                        height: 58px;
-                        cursor: pointer;
-                        box-sizing: border-box;
-                        padding: 4px;
-                        margin: 0 5px 8px 0;
-                        background-color: rgb(163, 163, 163);
-                        border-radius: 99px;
-                        float: left;//???
-                        img {
-                            width: 50px;
-                            height: 50px;
-                        }
-                    }
-                    div:hover,.selected:hover,.selected {
-                        background-color: rgb(224, 224, 224);
-                    }
-                }
-            }
-        }
-        .gcsi-botones {
-            p {
-                margin-top: 50px;
-                width: 100%;
-                button {
-                    margin-left: 5px;
-                    background-color: rgb(216, 216, 216);
-                    cursor: pointer;
-                    width: 35px;
-                    height: 35px;
-                    padding: 0 6px;
-                    img {
-                        padding-top: 2px;
-                        width: 18px;
-                        height: 18px;
-                        margin: auto;
-                    }
-                }
-                button:hover {
-                    background-color: rgb(199, 199, 199);
-                }
-            }
-        }
-    }
-    #game-card-sheet-specials {
-        h2 {
-            margin: 0;
-        }
-        .gcss-especializaciones {
-            height: 65%;
-            padding-bottom: 75px;
-            box-sizing: border-box;
-            .gcss-especializaciones-disponibles, .gcss-especializacion-seleccionada, .gcss-especializaciones-actuales {
-                width: 33%;
-                height: 100%;
-                float: left;
-            }
-            .gcss-especializaciones-disponibles {
-                padding-right: 0.5%;
-                .search {
-                    margin: 0 auto;
-                    width: 80%;
-                    font-size: 1.1em;
-                    height: 30px;
-                }
-                .content {
-                    margin: 0 auto;
-                    margin-top: 15px;
-                    padding: 10px;
-                    box-sizing: border-box;
-                    background-color: rgb(190, 190, 190);
-                    border: 1px solid gray;
-                    border-radius: 5px;
-                    width: 90%;
-                    min-height: 90px;
-                    max-height: 80%;
-                    overflow-y: scroll;
-                    overflow-x: hidden;
-                    div {
-                        width: 100%;
-                        text-align: left;
-                        cursor: pointer;
-                        box-sizing: border-box;
-                        padding: 4px;
-                        margin-bottom: 8px;
-                        background-color: rgb(175, 175, 175);
-                        border: 1px solid gray;
-                    }
-                    div:hover,.selected:hover,.selected {
-                        background-color: rgb(209, 209, 209);
-                    }
-                }
-            }
-            .gcss-especializacion-seleccionada {
-                h2 {
-                    text-decoration: underline;
-                }
-                padding-right: 0.5%;
-                p {
-                    text-align: left;
-                    padding: 0 18px;
-                }
-                p.unmatched {
-                    color: rgb(85, 0, 0);
-                    text-decoration: underline;
-                }
-                p.unmatched::after {
-                    content: " !";
-                    color: rgb(85, 0, 0);
-                    font-weight: bold;
-                }
-                #gcss-add-especializacion {
-                    background-color: rgb(72, 163, 72);
-                    cursor: pointer;
-                    width: 50px;
-                    height: 50px;
-                    img {
-                        padding-top: 4px;
-                        width: 24px;
-                        height: 24px;
-                        margin: auto;
-                    }
-                }
-                #gcss-add-especializacion:hover {
-                    background-color: rgb(126, 206, 126);
-                }
-                #gcss-delete-especializacion {
-                    background-color: rgb(160, 59, 59);
-                    cursor: pointer;
-                    width: 50px;
-                    height: 50px;
-                    img {
-                        padding-top: 4px;
-                        width: 24px;
-                        height: 24px;
-                        margin: auto;
-                    }
-                }
-                #gcsc-delete-especializacion:hover {
-                    background-color: rgb(204, 91, 91);
-                }
-            }
-            .gcss-especializaciones-actuales {
-                padding: 0;
-                .content {
-                    margin: 0 auto;
-                    margin-top: 45px;
-                    padding: 10px;
-                    box-sizing: border-box;
-                    background-color: rgb(190, 190, 190);
-                    border: 1px solid gray;
-                    border-radius: 5px;
-                    width: 90%;
-                    min-height: 90px;
-                    max-height: 80%;
-                    overflow-y: scroll;
-                    overflow-x: hidden;
-                    div {
-                        width: 100%;
-                        text-align: left;
-                        cursor: pointer;
-                        box-sizing: border-box;
-                        padding: 4px;
-                        margin-bottom: 8px;
-                        background-color: rgb(175, 175, 175);
-                        border: 1px solid gray;
-                    }
-                    div:hover,.selected:hover,.selected {
-                        background-color: rgb(209, 209, 209);
-                    }
-                }
-            }
-        }
-    }
-    #game-card-sheet-objects {
-        h2 {
-            margin: 0;
-        }
-        .gcso-inventario-equipo {
-            min-height: 70%;
-            width: 50%;
-            float: left;
-            .gcso-inventario {
-                .content {
-                    box-sizing: border-box;
-                    border: 2px solid rgb(187, 161, 11);
-                    border-radius: 6px;
-                    background-color: rgb(126, 112, 107);
-                    padding: 10px;
-                    margin: 20px auto 0 auto;
-                    height: 298px;
-                    width: 90%;
-                    overflow-y: scroll;
-                    overflow-x: hidden;
-                    div {
-                        float: left;
-                        margin: 5px;
-                        height: 56px;
-                        width: 56px;
-                        border: 2px solid rgb(172, 153, 147);
-                        border-radius: 9px;
-                        background-color: rgb(197, 181, 175);
-                        cursor: pointer;
-                        img {
-                            height: 46px;
-                            width: 46px;
-                            margin: 5px;
-                        }
-                    }
-                    div:hover, div.selected:hover {
-                        border: 2px solid rgb(235, 235, 235);
-                        background-color: rgb(206, 206, 206);
-                    }
-                    div.selected {
-                        border: 2px solid rgb(218, 218, 218);
-                        background-color: rgb(173, 173, 173);
-                    }
-                    div:last-child {
-                        margin-bottom: 15px;
-                    }
-                }
-            }
-            .gcso-equipo {
-                padding-top: 20px;
-                .content {
-                    box-sizing: border-box;
-                    border: 2px solid rgb(187, 161, 11);
-                    border-radius: 6px;
-                    background-color: rgb(126, 112, 107);
-                    padding: 10px;
-                    margin: 20px auto 0 auto;
-                    height: 88px;
-                    width: 90%;
-                    overflow-y: scroll;
-                    overflow-x: hidden;
-                    div {
-                        float: left;
-                        margin: 5px;
-                        height: 56px;
-                        width: 56px;
-                        border: 2px solid rgb(194, 194, 194);
-                        border-radius: 9px;
-                        background-color: rgb(153, 153, 153);
-                        cursor: pointer;
-                    }
-                    div:hover {
-                        background-color: rgb(179, 179, 179);
-                    }
-                    div.selected {
-                        border: 2px solid rgb(219, 219, 219);
-                    }
-                }
-            }
-            .gcso-oro {
-                padding-top: 15px;
-                .money {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-around;
-                    width: 220px;
-                    height: 35px;
-                    box-sizing: border-box;
-                    padding: 3px 5px 2px 0;
-                    border: 3px solid rgb(187, 161, 11);
-                    border-radius: 12px;
-                    background-color: rgb(126, 112, 107);
-                    .gold {
-                        width: 80px;
-                    }
-                    .silver, .copper {
-                        width: 60px;
-                    }
-                    .gold, .silver, .copper {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: end;
-                        p {
-                            color: rgb(219, 219, 219);
-                            font-weight: bold;
-                            width: fit-content;
-                            margin: 0;
-                            font-size: 1.15em;
-                            font-family: 'Varela Round', sans-serif;
-                            height: 22px;
-                        }
-                        img {
-                            margin-left: 3px;
-                            height: 22px;
-                            width: 22px;
-                        }
-                    }
-                }
-            }
-        }
-        .gcso-edicion {
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-            border-left: 1px solid gray;
-            min-height: 80%;
-            float: left;
-            select, input {
-                font-size: 1.2em;
-                border-radius: 1px;
-            }
-            .lista-search {
-                width: 50%;
-                float: left;
-                .search {
-                    margin-top: 20px;
-                    width: 75%;
-                }
-                .lista-objetos {
-                    width: 90%;
-                    height: 316px;
-                    box-sizing: border-box;
-                    padding: 8px;
-                    margin: 15px auto 0 auto;
-                    background-color: rgb(190, 190, 190);
-                    border: 1px solid gray;
-                    border-radius: 5px;
-                    overflow-y: scroll;
-                    overflow-x: hidden;
-                    div {
-                        width: 100%;
-                        box-sizing: border-box;
-                        padding: 3px;
-                        margin: 6px 0;
-                        background-color: rgb(143, 143, 143);
-                        border: 1px solid rgb(110, 110, 110);
-                        border-radius: 2px;
-                        text-align: center;
-                    }
-                    div.t1, div.t2 {
-                        cursor: default;
-                    }
-                    div.t1 {
-                        border: none;
-                        font-size: 1.3em;
-                        font-weight: bold;
-                        text-decoration: underline;
-                        clip-path: polygon(8% 0, 92% 0, 100% 50%, 92% 100%, 8% 100%, 0% 50%);
-                        margin-top: 14px;
-                    }
-                    div.t1:first-child {
-                        margin-top: 0px;
-                    }
-                    div.t2 {
-                        width: 90%;
-                        margin: 9px auto;
-                        font-size: 1.1em;
-                        font-weight: bold;
-                        border-radius: 6px;
-                    }
-                    div.selectable {
-                        text-align: left;
-                        cursor: pointer;
-                        margin-bottom: 6px;
-                        background-color: rgb(175, 175, 175);
-                        border: 1px solid gray;
-                        border-radius: 10px;
-                    }
-                    div.selectable:hover,div.selected:hover,.selected {
-                        background-color: rgb(209, 209, 209);
-                    }
-                }
-            }
-            .nombre-tipo {
-                width: 50%;
+            .gcsm-magias {
+                height: 65%;
+                padding-bottom: 75px;
                 box-sizing: border-box;
-                height: 380px;
-                float: left;
-                .nombre-objeto {
-                    margin-top: 20px;
+                .gcsm-magias-disponibles, .gcsm-magia-seleccionada, .gcsm-magias-actuales {
+                    width: 33%;
+                    height: 100%;
+                    float: left;
                 }
-                .caja-tipo {
-                    width: 100%;
-                    margin-top: 10px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    p {
-                        width: fit-content;
-                        margin: 0 8px 0 0;
-                        font-size: 1.2em;
-                    }
-                    .tipo {
-                        margin: 0;
-                        cursor: pointer;
-                    }
-                }
-                .estadisticas {
-                    margin-top: 15px;
-                    p {
-                        margin: 0;
+                .gcsm-magias-disponibles {
+                    padding-right: 0.5%;
+                    .search {
+                        margin: 0 auto;
+                        width: 80%;
+                        font-size: 1.1em;
+                        height: 30px;
                     }
                     .content {
-                        .estadistica {
-                            padding-top: 10px;
-                            select {
-                                cursor: pointer;
-                            }
-                            .num {
-                                margin-left: 8px;
-                                width: 30px;
-                                text-align: center;
+                        margin: 0 auto;
+                        margin-top: 15px;
+                        padding: 10px;
+                        box-sizing: border-box;
+                        background-color: rgb(190, 190, 190);
+                        border: 1px solid gray;
+                        border-radius: 5px;
+                        width: 90%;
+                        min-height: 90px;
+                        max-height: 80%;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
+                        div {
+                            width: 100%;
+                            text-align: left;
+                            cursor: pointer;
+                            box-sizing: border-box;
+                            padding: 4px;
+                            margin-bottom: 8px;
+                            background-color: rgb(175, 175, 175);
+                            border: 1px solid gray;
+                        }
+                        div:hover,.selected:hover,.selected {
+                            background-color: rgb(209, 209, 209);
+                        }
+                    }
+                }
+                .gcsm-magia-seleccionada {
+                    h2 {
+                        text-decoration: underline;
+                    }
+                    padding-right: 0.5%;
+                    p {
+                        text-align: left;
+                        padding: 0 18px;
+                    }
+                    p.unmatched {
+                        color: rgb(85, 0, 0);
+                        text-decoration: underline;
+                    }
+                    p.unmatched::after {
+                        content: " !";
+                        color: rgb(85, 0, 0);
+                        font-weight: bold;
+                    }
+                    #gcsc-add-magia {
+                        background-color: rgb(72, 163, 72);
+                        cursor: pointer;
+                        width: 50px;
+                        height: 50px;
+                        img {
+                            padding-top: 4px;
+                            width: 24px;
+                            height: 24px;
+                            margin: auto;
+                        }
+                    }
+                    #gcsc-add-magia:hover {
+                        background-color: rgb(126, 206, 126);
+                    }
+                    #gcsc-delete-magia {
+                        background-color: rgb(160, 59, 59);
+                        cursor: pointer;
+                        width: 50px;
+                        height: 50px;
+                        img {
+                            padding-top: 4px;
+                            width: 24px;
+                            height: 24px;
+                            margin: auto;
+                        }
+                    }
+                    #gcsc-delete-magia:hover {
+                        background-color: rgb(204, 91, 91);
+                    }
+                }
+                .gcsm-magias-actuales {
+                    padding: 0;
+                    .content {
+                        margin: 0 auto;
+                        margin-top: 45px;
+                        padding: 10px;
+                        box-sizing: border-box;
+                        background-color: rgb(190, 190, 190);
+                        border: 1px solid gray;
+                        border-radius: 5px;
+                        width: 90%;
+                        min-height: 90px;
+                        max-height: 80%;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
+                        div {
+                            width: 100%;
+                            text-align: left;
+                            cursor: pointer;
+                            box-sizing: border-box;
+                            padding: 4px;
+                            margin-bottom: 8px;
+                            background-color: rgb(175, 175, 175);
+                            border: 1px solid gray;
+                        }
+                        div:hover,.selected:hover,.selected {
+                            background-color: rgb(209, 209, 209);
+                        }
+                    }
+                }
+            }
+        }
+        #game-card-sheet-raza {
+            height: auto;
+            h2 {
+                margin: 0;
+            }
+            .gcsc-raza-capacidades-descripcion-pasivas {
+                width: 100%;//height: 100%;
+                .gcsr-raza, .gcsr-capacidades, .gcsr-descripcion, .gcsr-pasivas {
+                    width: 100%;
+                }
+                .gcsr-raza-capacidades {
+                    float: left;
+                    width: 55%;
+                    .gcsr-raza {
+                        //background-color: rgba(183, 0, 255, 0.26);
+                        select {
+                            margin-top: 15px;
+                            height: 35px;
+                            border-radius: 2px;
+                            font-size: 1.3em;
+                            cursor: pointer;
+                        }
+                    }
+                    .gcsr-capacidades {
+                        //background-color: rgba(30, 255, 0, 0.26);
+                        padding-top: 35px;
+                        h2 {
+                            width: 50%;
+                            margin: 0 auto;
+                        }
+                        .content {
+                            margin: 0 auto;
+                            margin-top: 25px;
+                            padding: 10px;
+                            box-sizing: border-box;
+                            background-color: rgb(190, 190, 190);
+                            border: 1px solid gray;
+                            border-radius: 5px;
+                            width: 90%;
+                            min-height: 90px;
+                            max-height: 80%;
+                            overflow-y: scroll;
+                            overflow-x: hidden;
+                            div {
+                                div {
+                                    width: 100%;
+                                    text-align: left;
+                                    cursor: pointer;
+                                    box-sizing: border-box;
+                                    padding: 4px;
+                                    margin-bottom: 8px;
+                                    background-color: rgb(175, 175, 175);
+                                    border: 1px solid gray;
+                                    input {
+                                        transform: scale(1.5);
+                                        cursor: pointer;
+                                        margin: 0 10px 5px 5px;
+                                    }
+                                }
+                                div:hover,.selected:hover,.selected {
+                                    background-color: rgb(209, 209, 209);
+                                }
                             }
                         }
                     }
-                    .add-estadistica {
-                        margin-top: 10px;
-                        padding: 0;
-                        height: 36px;
-                        width: 36px;
+                }
+                
+                .gcsr-descripcion-pasivas {
+                    float: left;
+                    height: 100%;
+                    width: 45%;
+                    p {
+                        margin: 0;
+                        padding: 15px 0 0 0;
+                    }
+                    /*.gcsr-descripcion {
+                        //background-color: rgba(128, 128, 128, 0.26);
+                    }*/
+                    .gcsr-pasivas {
+                        //background-color: rgba(255, 0, 0, 0.26);
+                        padding-top: 20px;
+                    }
+                }
+            }
+        }
+        #game-card-sheet-icons {
+            h2, h3 {
+                margin: 0;
+            }
+            .gcsi-tipos {
+                height: 45%;
+                width: 100%;
+                border-bottom: 1px solid gray;
+                .gcsi-tipos-disponibles, .gcsi-botones, .gcsi-tipos-actuales {
+                    min-height: 80%;
+                    float: left;
+                    width: 33%;
+                }
+                .gcsi-tipos-disponibles {
+                    select {
+                        margin-top: 15px;
+                        height: 35px;
+                        border-radius: 2px;
+                        font-size: 1.3em;
                         cursor: pointer;
-                        background-color: rgb(107, 187, 107);
+                    }
+                    .content {
+                        img {
+                            width: 60px;
+                            height: 60px;
+                            margin-top: 15px;
+                        }
+                        p {
+                            font-weight: bold;
+                            margin: 10px 0 0 0;
+                        }
+                        #gcsi-add-tipo {
+                            margin-top: 25px;
+                            background-color: rgb(72, 163, 72);
+                            cursor: pointer;
+                            width: 50px;
+                            height: 50px;
+                            img {
+                                padding-top: 4px;
+                                width: 24px;
+                                height: 24px;
+                                margin: auto;
+                            }
+                        }
+                        #gcsi-add-tipo:hover {
+                            background-color: rgb(126, 206, 126);
+                        }
+                    }
+                }
+                .gcsi-tipos-actuales {
+                    .content {
+                        margin: 0 auto;
+                        margin-top: 25px;
+                        padding: 10px;
+                        box-sizing: border-box;
+                        background-color: rgb(190, 190, 190);
+                        border: 1px dashed gray;
+                        border-radius: 5px;
+                        width: 90%;
+                        height: 180px;
+                        div {
+                            width: 58px;
+                            height: 58px;
+                            cursor: pointer;
+                            box-sizing: border-box;
+                            padding: 4px;
+                            margin: 0 5px 8px 0;
+                            background-color: rgb(163, 163, 163);
+                            border-radius: 99px;
+                            float: left;//???
+                            img {
+                                width: 50px;
+                                height: 50px;
+                            }
+                        }
+                        div:hover,.selected:hover,.selected {
+                            background-color: rgb(224, 224, 224);
+                        }
+                    }
+                }
+            }
+            .gcsi-roles {
+                height: 45%;
+                width: 100%;
+                .gcsi-roles-disponibles, .gcsi-botones, .gcsi-roles-actuales {
+                    min-height: 80%;
+                    float: left;
+                    width: 33%;
+                }
+                .gcsi-roles-disponibles {
+                    select {
+                        margin-top: 15px;
+                        height: 35px;
+                        border-radius: 2px;
+                        font-size: 1.3em;
+                        cursor: pointer;
+                    }
+                    .content {
+                        img {
+                            width: 60px;
+                            height: 60px;
+                            margin-top: 15px;
+                        }
+                        p {
+                            font-weight: bold;
+                            margin: 10px 0 0 0;
+                        }
+                        #gcsi-add-role {
+                            margin-top: 25px;
+                            background-color: rgb(72, 163, 72);
+                            cursor: pointer;
+                            width: 50px;
+                            height: 50px;
+                            img {
+                                padding-top: 4px;
+                                width: 24px;
+                                height: 24px;
+                                margin: auto;
+                            }
+                        }
+                        #gcsi-add-role:hover {
+                            background-color: rgb(126, 206, 126);
+                        }
+                    }
+                }
+                .gcsi-roles-actuales {
+                    .content {
+                        margin: 0 auto;
+                        margin-top: 25px;
+                        padding: 10px;
+                        box-sizing: border-box;
+                        background-color: rgb(190, 190, 190);
+                        border: 1px dashed gray;
+                        border-radius: 5px;
+                        width: 90%;
+                        height: 180px;
+                        div {
+                            width: 58px;
+                            height: 58px;
+                            cursor: pointer;
+                            box-sizing: border-box;
+                            padding: 4px;
+                            margin: 0 5px 8px 0;
+                            background-color: rgb(163, 163, 163);
+                            border-radius: 99px;
+                            float: left;//???
+                            img {
+                                width: 50px;
+                                height: 50px;
+                            }
+                        }
+                        div:hover,.selected:hover,.selected {
+                            background-color: rgb(224, 224, 224);
+                        }
+                    }
+                }
+            }
+            .gcsi-botones {
+                p {
+                    margin-top: 50px;
+                    width: 100%;
+                    button {
+                        margin-left: 5px;
+                        background-color: rgb(216, 216, 216);
+                        cursor: pointer;
+                        width: 35px;
+                        height: 35px;
+                        padding: 0 6px;
                         img {
                             padding-top: 2px;
-                            padding-left: 1px;
-                            height: 22px;
-                            width: 22px;
+                            width: 18px;
+                            height: 18px;
+                            margin: auto;
                         }
-                        $this: &;
-                        &:hover {
-                            background-color: rgb(131, 218, 131);
+                    }
+                    button:hover {
+                        background-color: rgb(199, 199, 199);
+                    }
+                }
+            }
+        }
+        #game-card-sheet-specials {
+            h2 {
+                margin: 0;
+            }
+            .gcss-especializaciones {
+                height: 65%;
+                padding-bottom: 75px;
+                box-sizing: border-box;
+                .gcss-especializaciones-disponibles, .gcss-especializacion-seleccionada, .gcss-especializaciones-actuales {
+                    width: 33%;
+                    height: 100%;
+                    float: left;
+                }
+                .gcss-especializaciones-disponibles {
+                    padding-right: 0.5%;
+                    .search {
+                        margin: 0 auto;
+                        width: 80%;
+                        font-size: 1.1em;
+                        height: 30px;
+                    }
+                    .content {
+                        margin: 0 auto;
+                        margin-top: 15px;
+                        padding: 10px;
+                        box-sizing: border-box;
+                        background-color: rgb(190, 190, 190);
+                        border: 1px solid gray;
+                        border-radius: 5px;
+                        width: 90%;
+                        min-height: 90px;
+                        max-height: 80%;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
+                        div {
+                            width: 100%;
+                            text-align: left;
+                            cursor: pointer;
+                            box-sizing: border-box;
+                            padding: 4px;
+                            margin-bottom: 8px;
+                            background-color: rgb(175, 175, 175);
+                            border: 1px solid gray;
+                        }
+                        div:hover,.selected:hover,.selected {
+                            background-color: rgb(209, 209, 209);
+                        }
+                    }
+                }
+                .gcss-especializacion-seleccionada {
+                    h2 {
+                        text-decoration: underline;
+                    }
+                    padding-right: 0.5%;
+                    p {
+                        text-align: left;
+                        padding: 0 18px;
+                    }
+                    p.unmatched {
+                        color: rgb(85, 0, 0);
+                        text-decoration: underline;
+                    }
+                    p.unmatched::after {
+                        content: " !";
+                        color: rgb(85, 0, 0);
+                        font-weight: bold;
+                    }
+                    #gcss-add-especializacion {
+                        background-color: rgb(72, 163, 72);
+                        cursor: pointer;
+                        width: 50px;
+                        height: 50px;
+                        img {
+                            padding-top: 4px;
+                            width: 24px;
+                            height: 24px;
+                            margin: auto;
+                        }
+                    }
+                    #gcss-add-especializacion:hover {
+                        background-color: rgb(126, 206, 126);
+                    }
+                    #gcss-delete-especializacion {
+                        background-color: rgb(160, 59, 59);
+                        cursor: pointer;
+                        width: 50px;
+                        height: 50px;
+                        img {
+                            padding-top: 4px;
+                            width: 24px;
+                            height: 24px;
+                            margin: auto;
+                        }
+                    }
+                    #gcsc-delete-especializacion:hover {
+                        background-color: rgb(204, 91, 91);
+                    }
+                }
+                .gcss-especializaciones-actuales {
+                    padding: 0;
+                    .content {
+                        margin: 0 auto;
+                        margin-top: 45px;
+                        padding: 10px;
+                        box-sizing: border-box;
+                        background-color: rgb(190, 190, 190);
+                        border: 1px solid gray;
+                        border-radius: 5px;
+                        width: 90%;
+                        min-height: 90px;
+                        max-height: 80%;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
+                        div {
+                            width: 100%;
+                            text-align: left;
+                            cursor: pointer;
+                            box-sizing: border-box;
+                            padding: 4px;
+                            margin-bottom: 8px;
+                            background-color: rgb(175, 175, 175);
+                            border: 1px solid gray;
+                        }
+                        div:hover,.selected:hover,.selected {
+                            background-color: rgb(209, 209, 209);
                         }
                     }
                 }
             }
-            .descripcion-caracteristicas {
+        }
+        #game-card-sheet-objects {
+            h2 {
+                margin: 0;
+            }
+            .gcso-inventario-equipo {
+                min-height: 70%;
+                width: 50%;
                 float: left;
-                width: 100%;
-                margin-bottom: 40px;
-                p {
-                    height: fit-content;
-                    margin: 12px 0 0 0;
+                .gcso-inventario {
+                    .content {
+                        box-sizing: border-box;
+                        border: 2px solid rgb(187, 161, 11);
+                        border-radius: 6px;
+                        background-color: rgb(126, 112, 107);
+                        padding: 10px;
+                        margin: 20px auto 0 auto;
+                        height: 298px;
+                        width: 90%;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
+                        div {
+                            float: left;
+                            margin: 5px;
+                            height: 56px;
+                            width: 56px;
+                            border: 2px solid rgb(172, 153, 147);
+                            border-radius: 9px;
+                            background-color: rgb(197, 181, 175);
+                            cursor: pointer;
+                            img {
+                                height: 46px;
+                                width: 46px;
+                                margin: 5px;
+                            }
+                        }
+                        div:hover, div.selected:hover {
+                            border: 2px solid rgb(235, 235, 235);
+                            background-color: rgb(206, 206, 206);
+                        }
+                        div.selected {
+                            border: 2px solid rgb(218, 218, 218);
+                            background-color: rgb(173, 173, 173);
+                        }
+                        div:last-child {
+                            margin-bottom: 15px;
+                        }
+                    }
                 }
-                textarea {
-                    width: 95%;
-                    margin: 10px auto 0 auto;
-                    font-family: 'Fira Sans', sans-serif;
-                    resize: none;
+                .gcso-equipo {
+                    padding-top: 20px;
+                    .content {
+                        box-sizing: border-box;
+                        border: 2px solid rgb(187, 161, 11);
+                        border-radius: 6px;
+                        background-color: rgb(126, 112, 107);
+                        padding: 10px;
+                        margin: 20px auto 0 auto;
+                        height: 88px;
+                        width: 90%;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
+                        div {
+                            float: left;
+                            margin: 5px;
+                            height: 56px;
+                            width: 56px;
+                            border: 2px solid rgb(194, 194, 194);
+                            border-radius: 9px;
+                            background-color: rgb(153, 153, 153);
+                            cursor: pointer;
+                        }
+                        div:hover {
+                            background-color: rgb(179, 179, 179);
+                        }
+                        div.selected {
+                            border: 2px solid rgb(219, 219, 219);
+                        }
+                    }
+                }
+                .gcso-oro {
+                    padding-top: 15px;
+                    .money {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-around;
+                        width: 220px;
+                        height: 35px;
+                        box-sizing: border-box;
+                        padding: 3px 5px 2px 0;
+                        border: 3px solid rgb(187, 161, 11);
+                        border-radius: 12px;
+                        background-color: rgb(126, 112, 107);
+                        .gold {
+                            width: 80px;
+                        }
+                        .silver, .copper {
+                            width: 60px;
+                        }
+                        .gold, .silver, .copper {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: end;
+                            p {
+                                color: rgb(219, 219, 219);
+                                font-weight: bold;
+                                width: fit-content;
+                                margin: 0;
+                                font-size: 1.15em;
+                                font-family: 'Varela Round', sans-serif;
+                                height: 22px;
+                            }
+                            img {
+                                margin-left: 3px;
+                                height: 22px;
+                                width: 22px;
+                            }
+                        }
+                    }
                 }
             }
-            .add-object {
-                margin-top: 0;
-                padding: 0;
-                height: 40px;
-                width: 40px;
-                cursor: pointer;
-                background-color: rgb(107, 187, 107);
-                img {
-                    padding-top: 4px;
-                    padding-left: 2px;
-                    height: 24px;
-                    width: 24px;
+            .gcso-edicion {
+                position: relative;
+                width: 50%;
+                box-sizing: border-box;
+                border-left: 1px solid gray;
+                min-height: 80%;
+                float: left;
+                select, input {
+                    font-size: 1.2em;
+                    border-radius: 1px;
                 }
-                $this: &;
-                &:hover {
-                    background-color: rgb(131, 218, 131);
+                .lista-search {
+                    width: 50%;
+                    float: left;
+                    .search {
+                        margin-top: 20px;
+                        width: 75%;
+                    }
+                    .lista-objetos {
+                        width: 90%;
+                        height: 316px;
+                        box-sizing: border-box;
+                        padding: 8px;
+                        margin: 15px auto 0 auto;
+                        background-color: rgb(190, 190, 190);
+                        border: 1px solid gray;
+                        border-radius: 5px;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
+                        div {
+                            width: 100%;
+                            box-sizing: border-box;
+                            padding: 3px;
+                            margin: 6px 0;
+                            background-color: rgb(143, 143, 143);
+                            border: 1px solid rgb(110, 110, 110);
+                            border-radius: 2px;
+                            text-align: center;
+                        }
+                        div.t1, div.t2 {
+                            cursor: default;
+                        }
+                        div.t1 {
+                            border: none;
+                            font-size: 1.3em;
+                            font-weight: bold;
+                            text-decoration: underline;
+                            clip-path: polygon(8% 0, 92% 0, 100% 50%, 92% 100%, 8% 100%, 0% 50%);
+                            margin-top: 14px;
+                        }
+                        div.t1:first-child {
+                            margin-top: 0px;
+                        }
+                        div.t2 {
+                            width: 90%;
+                            margin: 9px auto;
+                            font-size: 1.1em;
+                            font-weight: bold;
+                            border-radius: 6px;
+                        }
+                        div.selectable {
+                            text-align: left;
+                            cursor: pointer;
+                            margin-bottom: 6px;
+                            background-color: rgb(175, 175, 175);
+                            border: 1px solid gray;
+                            border-radius: 10px;
+                        }
+                        div.selectable:hover,div.selected:hover,.selected {
+                            background-color: rgb(209, 209, 209);
+                        }
+                    }
                 }
-            }
-            .peso {
-                background-image: url("/assets/img/ico_peso.png");
-                background-size: 22px;
-                background-position: 2px 2px;
-                background-repeat: no-repeat;
-                padding-left:30px;
-                width: 50px;
-                position: absolute;
-                bottom: 8px;
-                right: 12px;
+                .nombre-tipo {
+                    width: 50%;
+                    box-sizing: border-box;
+                    height: 380px;
+                    float: left;
+                    .nombre-objeto {
+                        margin-top: 20px;
+                    }
+                    .caja-tipo {
+                        width: 100%;
+                        margin-top: 10px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        p {
+                            width: fit-content;
+                            margin: 0 8px 0 0;
+                            font-size: 1.2em;
+                        }
+                        .tipo {
+                            margin: 0;
+                            cursor: pointer;
+                        }
+                    }
+                    .estadisticas {
+                        margin-top: 15px;
+                        p {
+                            margin: 0;
+                        }
+                        .content {
+                            .estadistica {
+                                padding-top: 10px;
+                                select {
+                                    cursor: pointer;
+                                }
+                                .num {
+                                    margin-left: 8px;
+                                    width: 30px;
+                                    text-align: center;
+                                }
+                            }
+                        }
+                        .add-estadistica {
+                            margin-top: 10px;
+                            padding: 0;
+                            height: 36px;
+                            width: 36px;
+                            cursor: pointer;
+                            background-color: rgb(107, 187, 107);
+                            img {
+                                padding-top: 2px;
+                                padding-left: 1px;
+                                height: 22px;
+                                width: 22px;
+                            }
+                            $this: &;
+                            &:hover {
+                                background-color: rgb(131, 218, 131);
+                            }
+                        }
+                    }
+                }
+                .descripcion-caracteristicas {
+                    float: left;
+                    width: 100%;
+                    margin-bottom: 40px;
+                    p {
+                        height: fit-content;
+                        margin: 12px 0 0 0;
+                    }
+                    textarea {
+                        width: 95%;
+                        margin: 10px auto 0 auto;
+                        font-family: 'Fira Sans', sans-serif;
+                        resize: none;
+                    }
+                }
+                .add-object {
+                    margin-top: 0;
+                    padding: 0;
+                    height: 40px;
+                    width: 40px;
+                    cursor: pointer;
+                    background-color: rgb(107, 187, 107);
+                    img {
+                        padding-top: 4px;
+                        padding-left: 2px;
+                        height: 24px;
+                        width: 24px;
+                    }
+                    $this: &;
+                    &:hover {
+                        background-color: rgb(131, 218, 131);
+                    }
+                }
+                .peso {
+                    background-image: url("/assets/img/ico_peso.png");
+                    background-size: 22px;
+                    background-position: 2px 2px;
+                    background-repeat: no-repeat;
+                    padding-left:30px;
+                    width: 50px;
+                    position: absolute;
+                    bottom: 8px;
+                    right: 12px;
+                }
             }
         }
     }

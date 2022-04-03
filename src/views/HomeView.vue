@@ -1,13 +1,13 @@
 <template>
   <div id="home">
     <Header v-if="games[0]" :gameName="getGame(gameid)?getGame(gameid).name:'Default'" :gameVersion="gameVersion" @changeTab="changeTab"/>
-    
+
     <window-config  v-if="games[0]" v-show="selected=='conf'" />
     <window-players v-if="games[0]" v-show="selected=='play'" />
     <window-char    v-if="games[0]" v-show="selected=='char'" :game="game" @editChar="openCharEditWindow" />
     <window-comb    v-if="games[0]" v-show="selected=='comb'" />
 
-    <edit-char-window v-if="editingChar" :char="charToEdit" :charToEditId="charToEditId" :game="game"
+    <edit-char-window v-if="editingChar" :char="charToEdit" :charToEditId="charToEditId" :game="game" :info="info"
      @closeChar="closeCharWindow" @saveChar="saveCharToEdit" @deleteChar="deleteChar" />
 
     <div class="loading-screen" v-if="!games[0]">
@@ -98,10 +98,11 @@ export default {
   },
   computed: {
     ...mapState(['games']),
-    ...mapState(['users'])
+    ...mapState(['users']),
+    ...mapState(['info'])
   },
   mounted() {
-    this.loaded=this.getGames(),
+    this.loaded=this.getGames()
     this.gameid = this.$route.params.gameid
   }
 }

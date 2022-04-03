@@ -10,7 +10,8 @@ const database = getDatabase(app);
 export default createStore({
   state: {
     games: [],
-    users: []
+    users: [],
+    info: {}
   },
   mutations: {
     setGames(state, list) {
@@ -20,6 +21,10 @@ export default createStore({
     setUsers(state, list) {
       state.users = list;
       //console.log(state.users);
+    },
+    setInfo(state, info) {
+      state.info = info;
+      //console.log(state.info);
     }
   },
   actions: {
@@ -63,7 +68,15 @@ export default createStore({
   
           //cargamos lista de games a mutation
           commit('setGames', list);
-          return true;
+
+          onValue(ref(database,"info"), (snapshot) => {
+            var data = snapshot.val();
+    
+            //cargamos game info a mutation
+            commit('setInfo', data);
+
+            return true;
+          });
         });
       });
     }

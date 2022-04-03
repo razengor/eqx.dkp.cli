@@ -156,26 +156,54 @@
               <div class="gcsr-raza-capacidades">
                 <div class="gcsr-raza">
                   <h2>RAZA</h2>
-                  <select class="raza" name="raza">
+                  <select class="raza" name="raza" v-model="charToEdit.raza">
+                    <option value="DEFAULT">DEFAULT</option>
+
+                    <option v-for="(raza, razaName) in info.razas" :key="'op-'+razaName"
+                     :value="razaName.toUpperCase()">
+                      {{razaName.toUpperCase()}}
+                    </option>
                   </select>
                 </div>
                 <div class="gcsr-capacidades">
                   <h2>CAPACIDADES RACIALES</h2>
-                  <div class="content selectable-group-t">
-                    <div class="selectable">
-                      <input type="checkbox">
-                      <b><u>Título capacidad:</u></b>
-                      <br>
-                      Texto plano texto plano texto plano texto plano texto plano
+                  <div class="content">
+                    <div v-for="(raza, razaName) in info.razas" :key="'gr-'+razaName" v-show="razaName.toLowerCase()==charToEdit.raza.toLowerCase()">
+                      <div v-for="(cap, capName) in raza.capacidades" :key="'desc-'+capName" @click="checkCapacidad(capName)">
+                        <input type="checkbox" :checked="getCapacidades()[capName.toLowerCase()]" >
+                        <b><u>{{capName+':'}}</u></b>
+                        <br>
+                        {{cap}}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="gcsr-descripcion-pasivas">
+                <div class="gcsr-descripcion">
+                  <h2>{{charToEdit.raza.toUpperCase()}}</h2>
+                  <div class="content">
+                    <p>{{info.razas[charToEdit.raza.toLowerCase()].desc}}</p>
+                  </div>
+                </div>
 
+                <div class="gcsr-pasivas">
+                  <h2>PASIVA RACIAL</h2>
+                  <div class="content">
+                    <p v-for="(desc,pasiva) in info.razas[charToEdit.raza.toLowerCase()].pasivas" :key="pasiva">
+                      <b>{{pasiva.toUpperCase()+':'}}</b>
+                      {{desc}}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+
+          <!-- Botón de ir atrás -->
+          <button class="go-back" v-if="editWindow!=''" @click="editWindow=''">
+            ATRÁS
+          </button>
         </div>
       </div>
     </div>
@@ -184,7 +212,7 @@
 <script>
 export default {
   name: 'CharacterEditWindow',
-  props: ["char","game","charToEditId"],
+  props: ["char","game","charToEditId","info"],
   components: {},
   data () {
     return {
@@ -199,6 +227,7 @@ export default {
       temporal.charToEdit.capital = this.capitalToEdit;
       this.$emit('saveChar', temporal);
     },
+    // TODO: Revisar si sólo hace falta una función para abrir ventanas de edición
     openEditarRaza() {
       console.log("Abrimos ventana de edición de Raza...");
       this.editWindow = "raza";
@@ -214,6 +243,32 @@ export default {
     openEditarFicha() {
       console.log("Abrimos ventana de edición de Ficha...");
       this.editWindow = "ficha";
+    },
+    getCapacidades() {
+      var capacidades = {};
+      if(this.charToEdit.capacidades)
+      Object.keys(this.charToEdit.capacidades).forEach(obj => {
+        let name = this.charToEdit.capacidades[obj];
+        capacidades[name.toLowerCase()] = true;
+      });
+      return capacidades;
+    },
+    checkCapacidad(capName) {
+      if(!this.charToEdit.capacidades) {
+        this.charToEdit.capacidades = []
+      }
+      if(this.getCapacidades()[capName.toLowerCase()]) {
+        var temporal = [];
+        Object.keys(this.charToEdit.capacidades).forEach(obj => {
+          let name = this.charToEdit.capacidades[obj].toLowerCase();
+          if(name != capName.toLowerCase()) {
+            temporal.push(name);
+          }
+        });
+        this.charToEdit.capacidades = temporal;
+      } else {
+        this.charToEdit.capacidades.push(capName);
+      }
     }
   },
   created() {},
