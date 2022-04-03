@@ -8,9 +8,9 @@
             </div>
             <input class="nombre" type="text" name="nombre" v-model="charToEdit.nombre">
 
-            <input class="raza" type="text" name="raza" v-model="charToEdit.raza">
-
-            <button id="gcs-editar-raza" class="edit-button round-button" title="EDITAR RAZA"><img src="../assets/img/ico_edit.png" /></button>
+            <button id="gcs-editar-raza" class="raza edit-button-box" title="EDITAR RAZA" @click="openEditarRaza">
+              {{charToEdit.raza}}
+            </button>
           </div>
 
           <div class="gcs-sub-info">
@@ -30,18 +30,12 @@
             </div>
           </div>
 
-          <div class="gcs-clase-nivel">
-            <p>
+          <button id="gcs-editar-clase" class="gcs-clase-nivel edit-button-box" title="EDITAR CLASE">
               {{charToEdit.clase + ' NIVEL ' + charToEdit.nivel}}
-              <button id="gcs-editar-clase" class="edit-button round-button" title="EDITAR CLASE"><img src="../assets/img/ico_edit.png" /></button>
-            </p>
-          </div>
-          <div class="gcs-magias-conjuros">
-            <p>
+          </button>
+          <button id="gcs-editar-magias" class="gcs-magias-conjuros edit-button-box" title="EDITAR MAGIAS">
               {{"MAGIAS & CONJUROS"}}
-              <button id="gcs-editar-clase" class="edit-button round-button" title="EDITAR MAGIAS"><img src="../assets/img/ico_edit.png" /></button>
-            </p>
-          </div>
+          </button>
 
           <div class="gcs-stats">
             <div v-for="(value,stat) in charToEdit.stats" :key="charToEdit.nombre+'_'+stat" :class="'stat '+stat">
@@ -118,8 +112,6 @@
 </template>
 
 <script>
-//import CharacterGroupName from '@/components/CharacterGroupName'
-
 export default {
   name: 'CharacterEditWindow',
   props: ["char","game","charToEditId"],
@@ -135,6 +127,9 @@ export default {
       var temporal = {charToEdit:this.charToEdit, id:this.charToEditId};
       temporal.charToEdit.capital = this.capitalToEdit;
       this.$emit('saveChar', temporal);
+    },
+    openEditarRaza() {
+      console.log("Abrimos ventana de edición de Raza...");
     }
   },
   created() {},

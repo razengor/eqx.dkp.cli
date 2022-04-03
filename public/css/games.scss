@@ -346,6 +346,20 @@ body#body.editing-char {
                 background-color: rgb(195, 141, 102);
             }
         }
+        .edit-button-box {
+            border: 2px solid gray;
+            background-color: white;
+            border-radius: 3px;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-family: inherit;
+            color: inherit;
+
+            $this:&;
+            &:hover {
+                background-color: rgb(225, 225, 225);
+            }
+        }
         .save, .close, .delete {
             cursor: pointer;
             width: 55px;
@@ -410,7 +424,6 @@ body#body.editing-char {
                 font-weight: bold;
                 font-family: 'Indie Flower', cursive;
                 border: 2px solid gray;
-                background-color: white;
             }
             .nombre {
                 width: 340px;
@@ -420,11 +433,6 @@ body#body.editing-char {
             .raza {
                 width: 150px;
                 font-size: 1.5em;
-                cursor: pointer;
-                $this:&;
-                &:hover {
-                    background-color: rgb(225, 225, 225);
-                }
             }
             h2, input {
                 margin-right: 20px;
@@ -453,13 +461,10 @@ body#body.editing-char {
                     width: 70px;
                 }
                 .elemento {
-                    width: 120px;
-                    //font-weight: bold;
-                    //font-family: 'Indie Flower', cursive;
-                    //font-size: 1em;
+                    width: 145px;
                 }
                 .grupo {
-                    width: 130px;
+                    width: 125px;
                 }
                 h3 {
                     font-size: 1em;
@@ -470,26 +475,16 @@ body#body.editing-char {
                 }
             }
         }
-        .gcs-clase-nivel {
-            width: fit-content;
-            padding-top: 25px;
-            font-size: 1.1em;
+        .gcs-clase-nivel, .gcs-magias-conjuros {
+            margin-top: 25px;
+            padding: 16px 25px;
+            font-size: 1.2em;
             font-weight: bold;
             float: left;
-            p {
-                margin: 0;
-            }
         }
+        //.gcs-clase-nivel {}
         .gcs-magias-conjuros {
-            width: fit-content;
-            padding-top: 25px;
-            padding-left: 30px;
-            font-size: 1.1em;
-            font-weight: bold;
-            float: left;
-            p {
-                margin: 0;
-            }
+            margin-left: 40px;
         }
         .stat img, img.type, img.role {
             height: 45px;
