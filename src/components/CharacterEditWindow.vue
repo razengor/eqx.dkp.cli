@@ -38,11 +38,13 @@
           </button>
 
           <div class="gcs-stats">
-            <div v-for="(value,stat) in charToEdit.stats" :key="charToEdit.nombre+'_'+stat" :class="'stat '+stat">
-              <img :src="'../assets/img/ico_'+stat+'.png'" :title="stat" :alt="stat">
-              <p>{{value}}</p>
-            </div>
-            <button id="gcs-editar-ficha" class="edit-button round-button" title="EDITAR FICHA"><img src="../assets/img/ico_edit.png" /></button>
+            <button id="gcs-editar-ficha" class="edit-button-box" title="EDITAR FICHA">
+              <p>ESTADÍSTICAS Y FICHA</p>
+              <div v-for="(value,stat) in charToEdit.stats" :key="charToEdit.nombre+'_'+stat" :class="'stat '+stat">
+                <img :src="'../assets/img/ico_'+stat+'.png'" :title="stat" :alt="stat">
+                <p>{{value}}</p>
+              </div>
+            </button>
           </div>
 
           <div class="gcs-tipos-unidad">
@@ -52,6 +54,9 @@
               :key="charToEdit.nombre+'_'+unitType"
               :src="'../assets/img/ico_'+unitType.toLowerCase()+'.png'"
               :title="unitType.toUpperCase()" :alt="unitType.toUpperCase()" />
+            <img v-if="charToEdit.unitTypes=={}"
+              :src="'../assets/img/ico_.png'"
+              title="X" alt="X" />
 
             <button id="gcs-editar-tipos" class="edit-button round-button" title="EDITAR TIPOS"><img src="../assets/img/ico_edit.png" /></button>
           </div>
@@ -134,7 +139,11 @@ export default {
   },
   created() {},
   mounted() {
-    this.capitalToEdit = this.char.capital;
+    if(this.char.capital==null) {
+      this.capitalToEdit = {oro:0,plata:0,cobre:0};
+    } else {
+      this.capitalToEdit = this.char.capital;
+    }
     this.charToEdit = this.char;
   }
 }

@@ -291,7 +291,7 @@ body#body.editing-char {
         box-shadow: inset 0 0 18px 8px rgb(70, 70, 70);
         width: 100%;
         height: 100%;
-        padding: 15px 20px 15px 20px;
+        padding: 15px 20px 15px 25px;
         margin: auto;
         text-align: center;
         border: 4px solid rgb(72, 72, 72);
@@ -403,6 +403,7 @@ body#body.editing-char {
             align-items: center;
         }
         .gcs-nombre-raza {
+            margin-left: -5px;
             .profile-pic {
                 width: 105px;
                 height: 105px;
@@ -479,8 +480,9 @@ body#body.editing-char {
             margin-top: 25px;
             padding: 16px 25px;
             font-size: 1.2em;
-            font-weight: bold;
+            //font-weight: bold;
             float: left;
+            text-transform: uppercase;
         }
         //.gcs-clase-nivel {}
         .gcs-magias-conjuros {
@@ -492,20 +494,33 @@ body#body.editing-char {
         }
         .gcs-stats {
             justify-content: left;
-            padding: 25px 0 0 6px;
-            .stat {
-                margin: 0 20px 0 0;
-                width: 35px;
+            padding: 25px 0 0 0;
+            #gcs-editar-ficha {
                 display: flex;
+                flex-direction: row;
                 flex-wrap: wrap;
-                justify-content: center;
-                $this:&;
+                justify-content: space-around;
+                //padding: 10px 0 6px 15px;
+                padding: 5px;
+                max-width: 200px;
                 p {
-                    margin: 0 auto;
-                    padding: 0;
-                    color: rgb(31, 31, 31);
-                    font-family: 'Acme', sans-serif;
-                    font-size: 1.5em;
+                    //width: 200px;
+                    margin: 5px 0 10px 0;
+                    font-size: 1.3em;
+                }
+                .stat {
+                    width: 35px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    //$this:&;
+                    p {
+                        margin: 0 auto;
+                        padding: 0;
+                        color: rgb(31, 31, 31);
+                        font-family: 'Acme', sans-serif;
+                        font-size: 1.5em;
+                    }
                 }
             }
         }
@@ -545,13 +560,29 @@ body#body.editing-char {
             display: flex;
             flex-direction: column;
             text-align: left;
-            p:first-child {
-                margin: 0 0 13px 0;
-                font-size: 1.1em;
-            }
             p {
                 margin: 9px 0 9px 6px;
                 width: 100%;
+                $this:&;
+                &:first-child {
+                    margin: 0 0 13px 0;
+                    font-size: 1.1em;
+                }
+                &:nth-child(2) {
+                    b {
+                        color: rgb(209, 53, 53);
+                    }
+                }
+                &:nth-child(3) {
+                    b {
+                        color: rgb(53, 53, 209);
+                    }
+                }
+                &:nth-child(4) {
+                    b {
+                        color: rgb(49, 209, 67);
+                    }
+                }
             }
         }
         .gcs-dinero {
@@ -589,13 +620,14 @@ body#body.editing-char {
                     input {
                         width: 100%;
                         height: 100%;
-                        border: 1px solid rgb(170, 170, 170);
+                        border: none;
+                        //border: 1px solid rgb(170, 170, 170);
                         border-left: none;
                         outline: none;
                         background-size: 22px;
                         background-repeat: no-repeat;
                         background-position: 3px 0;
-                        background-color: transparent;
+                        background-color: rgb(156, 156, 156);
                         padding-left: 28px;
                         padding-bottom: 2px;
                         box-sizing: border-box;
@@ -609,16 +641,20 @@ body#body.editing-char {
         }
         .save, .close, .delete {
             position: absolute;
-            bottom: 10px;
+            top: 10px;
         }
         #gcs-save {
-            left: 10px;
+            right: 75px;
+            left: auto;
         }
         #gcs-close {
-            left: 75px;
+            right: 10px;
+            left: auto;
         }
         #gcs-delete {
             right: 10px;
+            top: auto;
+            bottom: 10px;
             background-color: rgb(90, 90, 90);
         }
         #gcs-delete:hover {
