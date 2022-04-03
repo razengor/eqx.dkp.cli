@@ -6,28 +6,28 @@
             <div class="profile-pic">
               <img :src="'../assets/img/profiles/profile_'+char.nombre.toLowerCase()+'.jpg'" />
             </div>
-            <!-- TODO: Eliminar todas las etiquetas "nombre" y cambiarlo por sólo el input -->
-            <h2>NOMBRE</h2>
             <input class="nombre" type="text" name="nombre" v-model="charToEdit.nombre">
 
-            <h2>RAZA</h2>
             <input class="raza" type="text" name="raza" v-model="charToEdit.raza">
 
             <button id="gcs-editar-raza" class="edit-button round-button" title="EDITAR RAZA"><img src="../assets/img/ico_edit.png" /></button>
           </div>
 
           <div class="gcs-sub-info">
-            <!-- TODO: Eliminar todas las etiquetas "nombre" y cambiarlo por sólo el input -->
-            <h3>EDAD</h3>
-            <input class="edad" type="text" name="edad" v-model="charToEdit.edad">
-            <h3>ALTURA</h3>
-            <input class="altura" type="text" name="altura" v-model="charToEdit.altura">
-            <h3>PESO</h3>
-            <input class="peso" type="text" name="peso" v-model="charToEdit.peso">
-            <h3>ELEMENTO</h3>
-            <input class="elemento" type="text" name="elemento" v-model="charToEdit.elemento">
-            <h3>GRUPO</h3>
-            <input class="grupo" type="text" name="grupo" v-model="charToEdit.grupo">
+            <div>
+              <h3 class="edad">EDAD</h3>
+              <h3 class="altura">ALTURA</h3>
+              <h3 class="peso">PESO</h3>
+              <h3 class="elemento">ELEMENTO</h3>
+              <h3 class="grupo">GRUPO</h3>
+            </div>
+            <div>
+              <input class="edad" type="text" name="edad" v-model="charToEdit.edad">
+              <input type="text" name="altura" v-model="charToEdit.altura">
+              <input class="peso" type="text" name="peso" v-model="charToEdit.peso">
+              <input class="elemento" type="text" name="elemento" v-model="charToEdit.elemento">
+              <input class="grupo" type="text" name="grupo" v-model="charToEdit.grupo">
+            </div>
           </div>
 
           <div class="gcs-clase-nivel">
@@ -75,7 +75,7 @@
 
           <div class="gcs-especializaciones">
             <p>
-              <b>ESPECIALIZACIONES</b>
+              ESPECIALIZACIONES
             </p>
             <p>
               <b>PRIMARIA:</b>
