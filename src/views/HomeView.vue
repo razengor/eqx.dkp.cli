@@ -7,7 +7,8 @@
     <window-char    v-if="games[0]" v-show="selected=='char'" :game="game" @editChar="openCharEditWindow" />
     <window-comb    v-if="games[0]" v-show="selected=='comb'" />
 
-    <edit-char-window v-if="editingChar" :char="charToEdit" :charToEditId="charToEditId" :game="game" @closeChar="closeCharWindow" @saveChar="saveCharToEdit" />
+    <edit-char-window v-if="editingChar" :char="charToEdit" :charToEditId="charToEditId" :game="game"
+     @closeChar="closeCharWindow" @saveChar="saveCharToEdit" @deleteChar="deleteChar" />
 
     <div class="loading-screen" v-if="!games[0]">
       <h1>LOADING</h1>
@@ -92,7 +93,10 @@ export default {
     saveCharToEdit(holder) {
       const db = getDatabase(app);
       set(ref(db, "games/"+this.game.id+"/characters/"+holder.id), holder.charToEdit);
-      this.closeCharWindow();
+      //this.closeCharWindow();
+    },
+    deleteChar() {
+      window.alert("La función de eliminado aun está en proceso. Si quiere eliminar información contacte con el administrador...");
     }
   },
   computed: {
