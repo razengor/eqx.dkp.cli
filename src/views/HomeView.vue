@@ -91,7 +91,8 @@ export default {
     },
     saveCharToEdit(holder) {
       const db = getDatabase(app);
-      set(ref(db, "games/"+this.game.id+"/characters/"+holder.id), holder.char);
+      set(ref(db, "games/"+this.game.id+"/characters/"+holder.id), holder.charToEdit);
+      this.closeCharWindow();
     }
   },
   computed: {
