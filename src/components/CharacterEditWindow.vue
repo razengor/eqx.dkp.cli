@@ -30,18 +30,18 @@
             </div>
           </div>
 
-          <button id="gcs-editar-clase" class="gcs-clase-nivel edit-button-box" title="EDITAR CLASE">
+          <button id="gcs-editar-clase" class="gcs-clase-nivel edit-button-box" title="EDITAR CLASE" @click="openEditarClase">
               {{charToEdit.clase + ' NIVEL ' + charToEdit.nivel}}
           </button>
-          <button id="gcs-editar-magias" class="gcs-magias-conjuros edit-button-box" title="EDITAR MAGIAS">
+          <button id="gcs-editar-magias" class="gcs-magias-conjuros edit-button-box" title="EDITAR MAGIAS" @click="openEditarMagias">
               {{"MAGIAS & CONJUROS"}}
           </button>
 
           <div class="gcs-stats">
-            <button id="gcs-editar-ficha" class="edit-button-box" title="EDITAR FICHA">
+            <button id="gcs-editar-ficha" class="edit-button-box" title="EDITAR FICHA" @click="openEditarFicha">
               <p>ESTADÍSTICAS Y FICHA</p>
               <div v-for="(value,stat) in charToEdit.stats" :key="charToEdit.nombre+'_'+stat" :class="'stat '+stat">
-                <img :src="'../assets/img/ico_'+stat+'.png'" :title="stat" :alt="stat">
+                <img :src="'../assets/img/ico_'+stat+'.png'" :title="stat" :alt="stat" />
                 <p>{{value}}</p>
               </div>
             </button>
@@ -115,6 +115,68 @@
             <img src="../assets/img/ico_delete.png" />
           </button>
         </div>
+
+        <div id="game-card-sheet-edit">
+          <!-- EDICIÓN DE FICHA -->
+          <div id="game-card-sheet-ficha" class="container" v-if="editWindow=='ficha'">
+            <h4>STATS</h4>
+            <div class="stats" v-if="charToEdit.stats!=null">
+              <div class="vida">
+                <p>VIDA</p>
+                <input name="vida" v-model="charToEdit.stats.vida">
+              </div>
+              <div class="mana">
+                <p>MANA</p>
+                <input name="mana" v-model="charToEdit.stats.mana">
+              </div>
+              <div class="energia">
+                <p>ENERGÍA</p>
+                <input name="energia" v-model="charToEdit.stats.energia">
+              </div>
+            </div>
+            <div class="stats">
+              <div class="movilidad">
+                <p>MOVILIDAD</p>
+                <input name="movilidad" v-model="charToEdit.movilidad">
+              </div>
+              <div class="iniciativa">
+                <p>INICIATIVA</p>
+                <input name="iniciativa" v-model="charToEdit.iniciativa">
+              </div>
+              <div class="vision">
+                <p>VISIÓN</p>
+                <input name="vision" v-model="charToEdit.vision">
+              </div>
+            </div>
+          </div>
+          
+          <!-- EDICIÓN DE RAZA -->
+          <div id="game-card-sheet-raza" class="edit-screen" v-if="editWindow=='raza'">
+            <div class="gcsc-raza-capacidades-descripcion-pasivas">
+              <div class="gcsr-raza-capacidades">
+                <div class="gcsr-raza">
+                  <h2>RAZA</h2>
+                  <select class="raza" name="raza">
+                  </select>
+                </div>
+                <div class="gcsr-capacidades">
+                  <h2>CAPACIDADES RACIALES</h2>
+                  <div class="content selectable-group-t">
+                    <div class="selectable">
+                      <input type="checkbox">
+                      <b><u>Título capacidad:</u></b>
+                      <br>
+                      Texto plano texto plano texto plano texto plano texto plano
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="gcsr-descripcion-pasivas">
+
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 </template>
@@ -127,7 +189,8 @@ export default {
   data () {
     return {
       charToEdit: {},
-      capitalToEdit: {}
+      capitalToEdit: {},
+      editWindow: ""
     }
   },
   methods: {
@@ -138,6 +201,19 @@ export default {
     },
     openEditarRaza() {
       console.log("Abrimos ventana de edición de Raza...");
+      this.editWindow = "raza";
+    },
+    openEditarClase() {
+      console.log("Abrimos ventana de edición de Clase...");
+      this.editWindow = "clase";
+    },
+    openEditarMagias() {
+      console.log("Abrimos ventana de edición de Magias...");
+      this.editWindow = "magias";
+    },
+    openEditarFicha() {
+      console.log("Abrimos ventana de edición de Ficha...");
+      this.editWindow = "ficha";
     }
   },
   created() {},
