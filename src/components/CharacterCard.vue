@@ -19,8 +19,8 @@
           </div>
         </div>
         <div class="info">
-          <p class="clase">{{char.clase}}</p>
-          <p class="nivel">{{char.nivel}}</p>
+          <p v-show="char.clase.toLowerCase()!='default'" class="clase">{{char.clase}}</p>
+          <p v-show="char.clase.toLowerCase()!='default'" class="nivel">{{char.nivel}}</p>
           <p class="nombre">{{char.nombre}}</p>
 
           <div class="role-list" v-if="char.unitRoles!=null">

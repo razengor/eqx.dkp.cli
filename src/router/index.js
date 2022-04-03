@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import IndexView from '../views/IndexView.vue'
 import HomeView from '../views/HomeView.vue'
+import TestingCssView from '../views/TestingCssView.vue'
 
 const routes = [
   {
@@ -12,7 +13,13 @@ const routes = [
     path: '/g/:gameid',
     name: 'HomeView',
     component: HomeView
+  },
+  {
+    path: '/maqueta',
+    name: 'TestingCssView',
+    component: TestingCssView
   }
+
 ]
 
 const router = createRouter({
