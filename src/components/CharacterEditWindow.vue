@@ -343,6 +343,26 @@
             </div>
           </div>
 
+          <!-- EDICIÓN DE MAGIAS -->
+          <div id="game-card-sheet-magics" class="edit-screen" v-if="editWindow=='magias'">
+            <div class="gcsm-magias">
+              <div class="gcsm-magias-disponibles">
+                <h2>MAGIAS DISPONIBLES</h2>
+                <input class="search" type="text" placeholder="Buscar por magia o conjuro">
+                <div class="content"></div>
+              </div>
+
+              <div class="gcsm-magias-actuales">
+                <h2>MAGIAS ACTUALES</h2>
+                <div class="content"></div>
+              </div>
+
+              <div class="gcsm-magia-seleccionada">
+                <h2>MAGIA SELECCIONADA</h2>
+              </div>
+            </div>
+          </div>
+
           <!-- Botón de ir atrás -->
           <button class="go-back" v-if="editWindow!=''" @click="editWindow=''">
             ATRÁS
@@ -375,6 +395,10 @@ export default {
       this.$emit('saveChar', temporal);
     },
     // TODO: Revisar si sólo hace falta una función para abrir ventanas de edición
+    openVentanaEdicion(ventana) {
+      console.log("Abrimos ventana de edición de "+ventana.toUpperCase()+"...");
+      this.editWindow = ventana;
+    },
     openEditarRaza() {
       console.log("Abrimos ventana de edición de Raza...");
       this.editWindow = "raza";
