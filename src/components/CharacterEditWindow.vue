@@ -248,6 +248,101 @@
             </div>
           </div>
 
+          <!-- EDICIÓN DE CLASE -->
+          <div id="game-card-sheet-class" class="edit-screen" v-if="editWindow=='clase'">
+            <div class="gcsc-clase-descripcion">
+              <div class="gcsc-clase">
+                <h2>CLASE</h2>
+                <div class="selects">
+                  <select class="clase" name="clase" v-model="charToEdit.clase" @click="busquedaClase = charToEdit.clase.toUpperCase()">
+                    <option value="DEFAULT">DEFAULT</option>
+                    <option v-for="(val,clase) in info.clases" :key="'op-'+clase"
+                     :value="clase.toUpperCase()">
+                     {{clase.toUpperCase()}}
+                    </option>
+                  </select>
+                  <select class="nivel" name="nivel" v-model="charToEdit.nivel">
+                    <option value="0">0</option>
+                    <option v-for="index in 10" :key="'op_'+index"
+                     :value="index">
+                     {{index}}
+                    </option>
+                  </select>
+                </div>
+                <div class="content" v-if="charToEdit.clase.toLowerCase()!='default'">
+                  <p><b>ESTADÍSTICAS</b></p>
+                  <span v-for="(value,name) in info.clases[charToEdit.clase.toLowerCase()].estadisticas" :key="'est-'+name">
+                    {{name.toUpperCase()+' '+value}}
+                  </span>
+                </div>
+              </div>
+              <div class="gcsc-descripcion">
+                <h2>{{charToEdit.clase.toUpperCase()}}</h2>
+                <div class="content">
+                  <p v-if="charToEdit.clase.toLowerCase()!='default'">
+                    {{info.clases[charToEdit.clase.toLowerCase()].desc}}
+                  </p>
+                  <p v-if="charToEdit.clase.toLowerCase()=='default'">
+                    Selecciona una clase para obtener más información.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="gcsc-talentos">
+              <div class="gcsc-talentos-disponibles">
+                <h2>TALENTOS DISPONIBLES</h2>
+                <input class="search" type="text" placeholder="Buscar por nombre o clase" v-model="busquedaClase">
+
+                <div class="content">
+                  <div v-for="(clase, cName) in info.clases" :key="'grt-'+cName">
+                    <div v-for="(talento, tName) in clase.talentos" :key="'tn-'+tName"
+                     :data-search="tName.toUpperCase()" :class="talentoActualName==tName?'selected':''"
+                     v-show="cName.toUpperCase().indexOf(busquedaClase.toUpperCase()) > -1 |
+                     tName.toUpperCase().indexOf(busquedaClase.toUpperCase()) > -1 |
+                     talento.desc.toUpperCase().indexOf(busquedaClase.toUpperCase()) > -1"
+                     @click="changeTalentoActual(tName,talento,cName)">
+                      <b><u>{{tName.toUpperCase() + ':'}}</u></b>
+                      <br>
+                      {{talento.desc}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="gcsc-talentos-actuales">
+                <h2>TALENTOS ACTUALES</h2>
+                Máx:<span>{{charToEdit.nivel}}</span>
+                <div class="content">
+                  <div v-for="(talento, tName) in getTalentos()" :key="'tna-'+tName"
+                   :class="talentoActualName==tName?'selected':''" @click="changeTalentoActual(tName,talento,talento.cName)">
+                    <b><u>{{tName.toUpperCase() + ':'}}</u></b>
+                    <br>
+                    {{talento.desc}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="gcsc-talento-seleccionado" v-show="talentoActualName != ''">
+                <h2>{{talentoActualName.toUpperCase()}}</h2>
+                <p :class="talentoActualClase.toUpperCase()!=charToEdit.clase.toUpperCase()?'unmatched':''">
+                  {{'-CLASE: '+talentoActualClase.toUpperCase()}}
+                </p>
+
+                <p>-REQUERIMIENTO DE NIVEL: CUALQUIERA</p>
+
+                <p>-VALORES: ···</p>
+
+                <p>{{talentoActual.desc}}</p>
+
+                <!-- botón de añadir/eliminar talento -->
+                <button id="gcsc-talento-button" :class="getTalentos()[talentoActualName]?'delete-talento':'add-talento'"
+                 @click="checkTalento(talentoActualName)">
+                  {{getTalentos()[talentoActualName]?'ELIMINAR':'AÑADIR' + ' TALENTO'}}
+                </button>
+              </div>
+            </div>
+          </div>
+
           <!-- Botón de ir atrás -->
           <button class="go-back" v-if="editWindow!=''" @click="editWindow=''">
             ATRÁS
@@ -266,7 +361,11 @@ export default {
     return {
       charToEdit: {},
       capitalToEdit: {},
-      editWindow: ""
+      editWindow: "",
+      busquedaClase: "",
+      talentoActual: {},
+      talentoActualName: "",
+      talentoActualClase: ""
     }
   },
   methods: {
@@ -317,6 +416,51 @@ export default {
       } else {
         this.charToEdit.capacidades.push(capName);
       }
+    },
+    changeTalentoActual(tName, talento, clase) {
+      if(this.talentoActualName == tName) {
+        this.talentoActualName = "";
+        this.talentoActual = {};
+        this.talentoActualClase = "";
+      } else {
+        this.talentoActualName = tName;
+        this.talentoActual = talento;
+        this.talentoActualClase = clase;
+      }
+    },
+    getTalentos() {
+      var talentos = {};
+      if(this.charToEdit.talentos)
+      Object.keys(this.charToEdit.talentos).forEach(obj => {
+        let name = this.charToEdit.talentos[obj];
+        //talentos[name.toLowerCase()] = true;
+        Object.keys(this.info.clases).forEach(clase => {
+          Object.keys(this.info.clases[clase].talentos).forEach(talento => {
+            if(name.toLowerCase() == talento.toLowerCase()) {
+              talentos[name.toLowerCase()] = this.info.clases[clase].talentos[talento];
+              talentos[name.toLowerCase()].cName = clase;
+            }
+          });
+        });
+      });
+      return talentos;
+    },
+    checkTalento(tName) {
+      if(!this.charToEdit.talentos) {
+        this.charToEdit.talentos = []
+      }
+      if(this.getTalentos()[this.talentoActualName]) {
+        var temporal = [];
+        Object.keys(this.charToEdit.talentos).forEach(obj => {
+          let name = this.charToEdit.talentos[obj].toLowerCase();
+          if(name != tName.toLowerCase()) {
+            temporal.push(name);
+          }
+        });
+        this.charToEdit.talentos = temporal;
+      } else {
+        this.charToEdit.talentos.push(tName.toLowerCase());
+      }
     }
   },
   created() {},
@@ -327,6 +471,8 @@ export default {
       this.capitalToEdit = this.char.capital;
     }
     this.charToEdit = this.char;
+    this.charToEdit.clase = this.charToEdit.clase.toUpperCase();
+    this.busquedaClase = this.char.clase.toUpperCase();
   }
 }
 </script>

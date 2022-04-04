@@ -669,12 +669,15 @@ body#body.editing-char {
                 margin: 0;
             }
             .gcsc-clase-descripcion {
-                height: 35%;
+                height: 20%;
+                min-height: 150px;
+                max-height: 180px;
+
                 width: 100%;
                 .gcsc-clase {
                     float: left;
                     height: 100%;
-                    width: 35%;
+                    width: 45%;
                     .selects {
                         width: 100%;
                         height: 40px;
@@ -685,30 +688,44 @@ body#body.editing-char {
                             font-size: 1.3em;
                             cursor: pointer;
                         }
+                        .nivel {
+                            margin-left: 5px;
+                        }
                     }
                     .content {
                         margin-top: 15px;
                         width: 100%;
                         max-height: 60%;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-around;
+                        flex-wrap: wrap;
+                        p {
+                            width: 100%;
+                            margin: 0 0 5px 0;
+                        }
                     }
                 }
                 .gcsc-descripcion {
                     float: left;
                     height: 100%;
-                    width: 65%;
+                    width: 55%;
                 }
             }
             .gcsc-talentos {
-                height: 65%;
+                height: 80%;
                 padding-bottom: 75px;
                 box-sizing: border-box;
                 .gcsc-talentos-disponibles, .gcsc-talento-seleccionado, .gcsc-talentos-actuales {
-                    width: 33%;
-                    height: 100%;
+                    width: 49%;
+                    height: 50%;
                     float: left;
                 }
                 .gcsc-talentos-disponibles {
-                    padding-right: 0.5%;
+                    padding-right: 2%;
+                    h2 {
+                        margin-bottom: 5px;
+                    }
                     .search {
                         margin: 0 auto;
                         width: 80%;
@@ -718,6 +735,38 @@ body#body.editing-char {
                     .content {
                         margin: 0 auto;
                         margin-top: 15px;
+                        padding: 10px;
+                        box-sizing: border-box;
+                        background-color: rgb(190, 190, 190);
+                        border: 1px solid gray;
+                        border-radius: 5px;
+                        width: 90%;
+                        min-height: 90px;
+                        max-height: 180px;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
+                        div {
+                            div {
+                                width: 100%;
+                                text-align: left;
+                                cursor: pointer;
+                                box-sizing: border-box;
+                                padding: 4px;
+                                margin-bottom: 8px;
+                                background-color: rgb(175, 175, 175);
+                                border: 1px solid gray;
+                            }
+                            div:hover,.selected:hover,.selected {
+                                background-color: rgb(209, 209, 209);
+                            }
+                        }
+                    }
+                }
+                .gcsc-talentos-actuales {
+                    padding: 0;
+                    .content {
+                        margin: 0 auto;
+                        margin-top: 35px;
                         padding: 10px;
                         box-sizing: border-box;
                         background-color: rgb(190, 190, 190);
@@ -744,6 +793,7 @@ body#body.editing-char {
                     }
                 }
                 .gcsc-talento-seleccionado {
+                    width: 100%;
                     h2 {
                         text-decoration: underline;
                     }
@@ -761,64 +811,29 @@ body#body.editing-char {
                         color: rgb(85, 0, 0);
                         font-weight: bold;
                     }
-                    #gcsc-add-talento {
-                        background-color: rgb(72, 163, 72);
-                        cursor: pointer;
-                        width: 50px;
-                        height: 50px;
-                        img {
-                            padding-top: 4px;
-                            width: 24px;
-                            height: 24px;
-                            margin: auto;
-                        }
-                    }
-                    #gcsc-add-talento:hover {
-                        background-color: rgb(126, 206, 126);
-                    }
-                    #gcsc-delete-talento {
-                        background-color: rgb(160, 59, 59);
-                        cursor: pointer;
-                        width: 50px;
-                        height: 50px;
-                        img {
-                            padding-top: 4px;
-                            width: 24px;
-                            height: 24px;
-                            margin: auto;
-                        }
-                    }
-                    #gcsc-delete-talento:hover {
-                        background-color: rgb(204, 91, 91);
-                    }
-                }
-                .gcsc-talentos-actuales {
-                    padding: 0;
-                    .content {
-                        margin: 0 auto;
-                        margin-top: 45px;
-                        padding: 10px;
+                    #gcsc-talento-button {
+                        border: 2px solid rgb(158, 158, 158);
+                        border-radius: 3px;
                         box-sizing: border-box;
-                        background-color: rgb(190, 190, 190);
-                        border: 1px solid gray;
-                        border-radius: 5px;
-                        width: 90%;
-                        min-height: 90px;
-                        max-height: 80%;
-                        overflow-y: scroll;
-                        overflow-x: hidden;
-                        div {
-                            width: 100%;
-                            text-align: left;
-                            cursor: pointer;
-                            box-sizing: border-box;
-                            padding: 4px;
-                            margin-bottom: 8px;
-                            background-color: rgb(175, 175, 175);
-                            border: 1px solid gray;
+                        cursor: pointer;
+                        font-family: inherit;
+                        color: inherit;
+
+                        padding: 4px 8px;
+                        font-size: 1.1em;
+
+                        $this:&;
+                        &.add-talento {
+                            background-color: rgb(93, 204, 91);
                         }
-                        div:hover,.selected:hover,.selected {
-                            background-color: rgb(209, 209, 209);
+                        &.add-talento:hover {
+                            background-color: rgb(93, 179, 80);
+                        }
+                        &.delete-talento {
+                            background-color: rgb(204, 91, 91);
+                        }
+                        &.delete-talento:hover {
+                            background-color: rgb(179, 80, 80);
                         }
                     }
                 }
@@ -1738,19 +1753,6 @@ body#body.editing-char {
                     font-family: 'Fira Sans', sans-serif;
                     font-weight: bold;
                     color: rgb(27, 27, 27);
-                    $this: &;
-                    /*&#vida {
-                        color: red;
-                    }
-                    &#sangre {
-                        color: fuchsia;
-                    }
-                    &#energia {
-                        color: orange;
-                    }
-                    &#mana {
-                        color: blue;
-                    }*/
                 }
             }
             .attr {
@@ -1800,50 +1802,6 @@ body#body.editing-char {
                         }
                     }
                 }
-            }
-            #menu {
-                min-width: 80%;
-                margin: 5px 10% 0 10%;
-                height: 80px;
-                box-sizing: border-box;
-                border-top: 1px solid black;
-                text-align: center;
-                button {
-                    cursor: pointer;
-                    margin: 20px auto 0 auto;
-                    width: 55px;
-                    height: 55px;
-                    img {
-                        padding-top: 4px;
-                        width: 28px;
-                        height: 28px;
-                        margin: auto;
-                    }
-                }
-                button.save {
-                    background-color: rgb(72, 163, 72);
-                    margin-right: 15px;
-                }
-                button.save:hover {
-                    background-color: rgb(126, 206, 126);
-                }
-                button.cancel {
-                    background-color: rgb(163, 72, 72);
-                    margin-left: 15px;
-                    margin-right: 15px;
-                }
-                button.cancel:hover {
-                    background-color: rgb(206, 126, 126);
-                }
-                /*button.cancel {
-                    border: 2px double rgb(212, 199, 126);
-                    background-color: rgb(197, 179, 73);
-                    margin-left: 15px;
-                }
-                button.cancel:hover {
-                    border: 2px double rgb(197, 179, 73);
-                    background-color: rgb(212, 199, 126);
-                }*/
             }
         }
     }
