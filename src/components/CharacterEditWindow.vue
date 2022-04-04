@@ -54,7 +54,7 @@
               :key="charToEdit.nombre+'_'+unitType"
               :src="'../assets/img/ico_'+unitType.toLowerCase()+'.png'"
               :title="unitType.toUpperCase()" :alt="unitType.toUpperCase()" />
-            <img v-if="charToEdit.unitTypes==null"
+            <img v-if="charToEdit.unitTypes==null || (charToEdit.unitTypes!=null && charToEdit.unitTypes.length==0)"
               class="type"
               :src="'../assets/img/ico_.png'"
               title="X" alt="X" />
@@ -67,7 +67,7 @@
               :key="charToEdit.nombre+'_'+unitRole"
               :src="'../assets/img/ico_'+unitRole.toLowerCase()+'.png'"
               :title="unitRole.toUpperCase()" :alt="unitRole.toUpperCase()" />
-            <img v-if="charToEdit.unitRoles==null"
+            <img v-if="charToEdit.unitRoles==null || (charToEdit.unitRoles!=null && charToEdit.unitRoles.length==0)"
               class="role"
               :src="'../assets/img/ico_.png'"
               title="X" alt="X" />
