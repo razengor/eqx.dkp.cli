@@ -8,7 +8,7 @@
             </div>
             <input class="nombre" type="text" name="nombre" v-model="charToEdit.nombre">
 
-            <button id="gcs-editar-raza" class="raza edit-button-box" title="EDITAR RAZA" @click="openEditarRaza">
+            <button id="gcs-editar-raza" class="raza edit-button-box" title="EDITAR RAZA" @click="openVentanaEdicion('raza')">
               {{charToEdit.raza}}
             </button>
           </div>
@@ -30,15 +30,15 @@
             </div>
           </div>
 
-          <button id="gcs-editar-clase" class="gcs-clase-nivel edit-button-box" title="EDITAR CLASE" @click="openEditarClase">
+          <button id="gcs-editar-clase" class="gcs-clase-nivel edit-button-box" title="EDITAR CLASE" @click="openVentanaEdicion('clase')">
               {{charToEdit.clase + ' NIVEL ' + charToEdit.nivel}}
           </button>
-          <button id="gcs-editar-magias" class="gcs-magias-conjuros edit-button-box" title="EDITAR MAGIAS" @click="openEditarMagias">
+          <button id="gcs-editar-magias" class="gcs-magias-conjuros edit-button-box" title="EDITAR MAGIAS" @click="openVentanaEdicion('magias')">
               {{"MAGIAS & CONJUROS"}}
           </button>
 
           <div class="gcs-stats">
-            <button id="gcs-editar-ficha" class="edit-button-box" title="EDITAR FICHA" @click="openEditarFicha">
+            <button id="gcs-editar-ficha" class="edit-button-box" title="EDITAR FICHA" @click="openVentanaEdicion('ficha')">
               <p>ESTADÍSTICAS Y FICHA</p>
               <div v-for="(value,stat) in charToEdit.stats" :key="charToEdit.nombre+'_'+stat" :class="'stat '+stat">
                 <img :src="'../assets/img/ico_'+stat+'.png'" :title="stat" :alt="stat" />
@@ -47,7 +47,7 @@
             </button>
           </div>
 
-          <button id="gcs-editar-tipos" class="gcs-tipos-unidad edit-button-box" title="EDITAR TIPOS">
+          <button id="gcs-editar-tipos" class="gcs-tipos-unidad edit-button-box" title="EDITAR TIPOS" @click="openVentanaEdicion('iconos')">
             <p>TIPOS DE UNIDAD</p>
 
             <img class="type" v-for="unitType in charToEdit.unitTypes"
@@ -60,7 +60,7 @@
               title="X" alt="X" />
           </button>
 
-          <button id="gcs-editar-roles" class="gcs-roles-unidad edit-button-box" title="EDITAR ROLES">
+          <button id="gcs-editar-roles" class="gcs-roles-unidad edit-button-box" title="EDITAR ROLES" @click="openVentanaEdicion('iconos')">
             <p>ROLES</p>
 
             <img class="role" v-for="unitRole in charToEdit.unitRoles"
@@ -98,7 +98,7 @@
               <div class="coin copper"><input v-model="capitalToEdit.cobre" type="text" name="cobre"></div>
             </div>
             
-            <button id="gcs-editar-inventario" class="edit-button-box" title="EDITAR INVENTARIO">
+            <button id="gcs-editar-inventario" class="edit-button-box" title="EDITAR INVENTARIO" @click="openVentanaEdicion('inventario')">
               INVENTARIO
             </button>
           </div>
@@ -363,6 +363,93 @@
             </div>
           </div>
 
+          <!-- EDICIÓN DE ROLES Y TIPOS -->
+          <div id="game-card-sheet-icons" class="edit-screen" v-if="editWindow=='iconos'">
+            <div class="gcsi-tipos">
+              <h2>TIPOS DE UNIDAD</h2>
+              <div class="gcsi-tipos-disponibles">
+                <h3>TIPOS DISPONIBLES</h3>
+
+                <select class="tipos-disponibles" v-model="tipoActual">
+                  <option value="">...</option>
+                  <option v-for="(tipo, tName) in info.tipos" :key="'opti-'+tipo"
+                   :value="tName">
+                    {{tipo}}
+                  </option>
+                </select>
+
+                <div class="content" v-if="tipoActual!=''">
+                  <img :src="'../assets/img/ico_'+tipoActual+'.png'"/>
+                  <p>{{info.tipos[tipoActual]}}</p>
+                  <button class="add-icon" @click="addTipo">
+                    AÑADIR
+                  </button>
+                </div>
+              </div>
+
+              <div class="gcsi-botones">
+                <p>
+                  Actualizar según mi clase
+                  <button class="round-button"><img src="../assets/img/ico_refresh.png"/></button>
+                </p>
+                <p>
+                  Actualizar según mi raza
+                  <button class="round-button"><img src="../assets/img/ico_refresh.png"/></button>
+                </p>
+              </div>
+
+              <div class="gcsi-tipos-actuales">
+                <h3>TIPOS ACTUALES</h3>
+                <div class="content">
+                  <div v-for="(tipo) in charToEdit.unitTypes" :key="'ta_'+tipo"
+                   @click="removeTipo(tipo)">
+                    <img :src="'../assets/img/ico_'+tipo+'.png'" :title="info.tipos[tipo]" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gcsi-roles">
+              <h2>ROLES DE UNIDAD</h2>
+              <div class="gcsi-roles-disponibles">
+                <h3>ROLES DISPONIBLES</h3>
+
+                <select class="roles-disponibles" v-model="rolActual">
+                  <option value="">...</option>
+                  <option v-for="(rol, rName) in info.roles" :key="'opri-'+rol"
+                   :value="rName">
+                    {{rol}}
+                  </option>
+                </select>
+
+                <div class="content" v-if="rolActual!=''">
+                  <img :src="'../assets/img/ico_'+rolActual+'.png'"/>
+                  <p>{{info.roles[rolActual]}}</p>
+                  <button class="add-icon" @click="addRol">
+                    AÑADIR
+                  </button>
+                </div>
+              </div>
+
+              <div class="gcsi-botones">
+                <p>
+                  Actualizar según mi clase
+                  <button class="round-button"><img src="../assets/img/ico_refresh.png"/></button>
+                </p>
+              </div>
+
+              <div class="gcsi-roles-actuales">
+                <h3>ROLES ACTUALES</h3>
+                <div class="content">
+                  <div v-for="(rol) in charToEdit.unitRoles" :key="'ra_'+rol"
+                   @click="removeRol(rol)">
+                    <img :src="'../assets/img/ico_'+rol+'.png'" :title="info.roles[rol]" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Botón de ir atrás -->
           <button class="go-back" v-if="editWindow!=''" @click="editWindow=''">
             ATRÁS
@@ -385,7 +472,9 @@ export default {
       busquedaClase: "",
       talentoActual: {},
       talentoActualName: "",
-      talentoActualClase: ""
+      talentoActualClase: "",
+      tipoActual: "",
+      rolActual: ""
     }
   },
   methods: {
@@ -394,26 +483,9 @@ export default {
       temporal.charToEdit.capital = this.capitalToEdit;
       this.$emit('saveChar', temporal);
     },
-    // TODO: Revisar si sólo hace falta una función para abrir ventanas de edición
     openVentanaEdicion(ventana) {
       console.log("Abrimos ventana de edición de "+ventana.toUpperCase()+"...");
       this.editWindow = ventana;
-    },
-    openEditarRaza() {
-      console.log("Abrimos ventana de edición de Raza...");
-      this.editWindow = "raza";
-    },
-    openEditarClase() {
-      console.log("Abrimos ventana de edición de Clase...");
-      this.editWindow = "clase";
-    },
-    openEditarMagias() {
-      console.log("Abrimos ventana de edición de Magias...");
-      this.editWindow = "magias";
-    },
-    openEditarFicha() {
-      console.log("Abrimos ventana de edición de Ficha...");
-      this.editWindow = "ficha";
     },
     getCapacidades() {
       var capacidades = {};
@@ -485,6 +557,55 @@ export default {
       } else {
         this.charToEdit.talentos.push(tName.toLowerCase());
       }
+    },
+    addTipo() {
+      if(!this.charToEdit.unitTypes)
+      this.charToEdit.unitTypes = []
+      var exists = false;
+      Object.keys(this.charToEdit.unitTypes).forEach(type => {
+        let tipo = this.charToEdit.unitTypes[type];
+        if(tipo==this.tipoActual) {
+          exists = true;
+        }
+      });
+      if(!exists) {
+        this.charToEdit.unitTypes.push(this.tipoActual);
+      }
+    },
+    addRol() {
+      if(!this.charToEdit.unitRoles)
+      this.charToEdit.unitRoles = []
+      var exists = false;
+      Object.keys(this.charToEdit.unitRoles).forEach(rol => {
+        let role = this.charToEdit.unitRoles[rol];
+        if(role==this.rolActual) {
+          exists = true;
+        }
+      });
+      if(!exists) {
+        this.charToEdit.unitRoles.push(this.rolActual);
+      }
+    },
+    removeTipo(tipo) {
+      var temporal = [];
+      Object.keys(this.charToEdit.unitTypes).forEach(obj => {
+        let name = this.charToEdit.unitTypes[obj];
+        console.log("roleando "+name+". para "+tipo);
+        if(name != tipo) {
+          temporal.push(name);
+        }
+      });
+      this.charToEdit.unitTypes = temporal;
+    },
+    removeRol(rol) {
+      var temporal = [];
+      Object.keys(this.charToEdit.unitRoles).forEach(obj => {
+        let name = this.charToEdit.unitRoles[obj];
+        if(name != rol) {
+          temporal.push(name);
+        }
+      });
+      this.charToEdit.unitRoles = temporal;
     }
   },
   created() {},
