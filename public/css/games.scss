@@ -1567,19 +1567,13 @@ body#body.editing-char {
             text-align: center;
             position: relative;
             height: 100%;
-            //width: 800px;
-            //margin: 10px auto;
             box-sizing: border-box;
-            //border: 2px solid rgb(78, 105, 27);
-            //border-radius: 9px;
-            //background-image: linear-gradient(rgb(170, 170, 170), rgb(180, 180, 180), rgb(190, 190, 190), rgb(210, 210, 210));
-            //background-image: url("/assets/img/bg-purple.jpg");
             h4 {
                 margin: 10px 0;
                 font-family: 'Acme', sans-serif;
                 color: rgb(98, 98, 98);
                 border-bottom: 1px solid rgb(98, 98, 98);
-                font-size: 1.1em;
+                font-size: 1.2em;
             }
             p {
                 width: fit-content;
@@ -1593,57 +1587,23 @@ body#body.editing-char {
                 font-weight: bold;
                 font-size: 1em;
             }
-            input.name {
-                width: 150px;
-                font-size: 1.5em;
-                margin-top: 5px;
-            }
-            #extra {
-                margin-top: 5px;
-                width: 100%;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                font-family: 'Fira Sans', sans-serif;
-                font-weight: bold;
-                color: rgb(27, 27, 27);
-                div {
-                    margin: 0 25px;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    p {
-                        font-size: 0.9em;
-                        margin: 5px 5px 0 8px;
-                    }
-                    p:nth-child(1) {
-                        font-size: 1em;
-                    }
-                    input {
-                        width: 50px;
-                        font-size: 0.9em;
-                        margin: 5px 0 0 0;
-                    }
-                    input[name='clase']{
-                        width: 150px;
-                    }
-                }
-            }
             .stats {
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
                 justify-content: space-around;
                 box-sizing: border-box;
-                padding: 0 100px;
-                font-size: 0.9em;
+                padding: 0 50px;
+                font-size: 1.1em;
+                $this:&;
+                input {
+                    width: 45px;
+                }
                 div {
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
-                    width: 25%;
+                    width: 30%;
                     box-sizing: border-box;
                     padding: 0 2%;
                     font-family: 'Fira Sans', sans-serif;
@@ -1655,10 +1615,11 @@ body#body.editing-char {
                 display: flex;
                 flex-direction: column;
                 flex-wrap: wrap;
-                height: 140px;
+                height: 135px;
                 box-sizing: border-box;
-                padding: 0 100px;
+                padding: 0 50px;
                 div {
+                    height: 45px;
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
@@ -1667,7 +1628,7 @@ body#body.editing-char {
                     padding: 0 1.66%;
                     font-family: 'Fira Sans', sans-serif;
                     font-weight: bold;
-                    font-size: 0.9em;
+                    font-size: 1em;
                     color: rgb(27, 27, 27);
                 }
             }
@@ -1677,8 +1638,8 @@ body#body.editing-char {
                 justify-content: center;
                 align-items: center;
                 box-sizing: border-box;
-                padding: 0 100px;
-                font-size: 0.9em;
+                padding: 0 50px;
+                font-size: 1em;
                 div {
                     width: 30%;
                     height: fit-content;
@@ -1693,7 +1654,7 @@ body#body.editing-char {
                         font-weight: bold;
                         color: rgb(27, 27, 27);
                         p {
-                            font-size: 0.8em;
+                            font-size: 0.9em;
                             margin: 7px 0;
                         }
                     }
