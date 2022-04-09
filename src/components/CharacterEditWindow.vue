@@ -481,7 +481,7 @@
             </div>
 
             <div class="gcso-edicion">
-              <h2>AÑADIR OBJETO</h2>
+              <h2>{{objectToEditId==null?'AÑADIR OBJETO':'EDITAR OBJETO'}}</h2>
               <div class="lista-search">
                 <input class="search" placeholder="Buscar por nombre o tipo" v-model="busquedaObjeto">
                 <div class="lista-objetos">

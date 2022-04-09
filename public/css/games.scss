@@ -1244,7 +1244,7 @@ body#body.editing-char {
             }
             .gcso-inventario-equipo {
                 min-height: 70%;
-                width: 50%;
+                width: 40%;
                 float: left;
                 .gcso-inventario {
                     .content {
@@ -1384,13 +1384,13 @@ body#body.editing-char {
             }
             .gcso-edicion {
                 position: relative;
-                width: 50%;
+                width: 60%;
                 box-sizing: border-box;
                 border-left: 1px solid gray;
                 min-height: 80%;
                 float: left;
                 select, input {
-                    font-size: 1.2em;
+                    font-size: 1.1em;
                     border-radius: 1px;
                 }
                 .lista-search {
@@ -1473,7 +1473,7 @@ body#body.editing-char {
                         p {
                             width: fit-content;
                             margin: 0 8px 0 0;
-                            font-size: 1.2em;
+                            font-size: 1.1em;
                         }
                         .tipo {
                             margin: 0;
