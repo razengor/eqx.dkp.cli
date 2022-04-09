@@ -1,7 +1,9 @@
 import { createStore } from 'vuex'
+import router from '../router/index'
 
 import app from '../firebase'
 import { getDatabase, ref, onValue } from "firebase/database";
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 // Get a reference to the database service
 const database = getDatabase(app);
@@ -11,7 +13,9 @@ export default createStore({
   state: {
     games: [],
     users: [],
-    info: {}
+    info: {},
+    user: "",
+    error: ""
   },
   mutations: {
     setGames(state, list) {
@@ -25,9 +29,41 @@ export default createStore({
     setInfo(state, info) {
       state.info = info;
       //console.log(state.info);
+    },
+    setUser(state, user) {
+      state.user = user;
+      //console.log(state.user);
+    },
+    setError(state, error) {
+      state.error = error;
+      //console.log(state.error);
     }
   },
   actions: {
+    iniciarSesion({commit}, user) {
+      const auth = getAuth(app);
+      if (user!=null) {
+        signInWithEmailAndPassword(auth, user.email, user.password)
+        .then((u) => {
+          //console.log(u.user);
+          commit("setUser", {email: u.user.email, uid: u.user.uid});
+          router.push({name: "Index"});
+        })
+        .catch((error) => {
+          console.log(error.message);
+          commit("setError",error.message);
+        });
+      } else {
+        signOut(auth)
+          .then(()=> {
+            console.log("Sesión cerrada satisfactoriamente");
+            router.push({name: "Login"});
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
+      }
+    },
     getGames({ commit }) {
       const list=[];
       const listUsers=[];
@@ -80,7 +116,6 @@ export default createStore({
         });
       });
     }
-
   },
   modules: {
   }

@@ -2,28 +2,41 @@ import { createRouter, createWebHistory } from 'vue-router'
 import IndexView from '../views/IndexView.vue'
 import LoginView from '../views/LoginView.vue'
 import HomeView from '../views/HomeView.vue'
+import DefaultView from '../views/DefaultView.vue'
 import TestingCssView from '../views/TestingCssView.vue'
+
+import app from '../firebase'
+
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const routes = [
   {
-    path: '/',
-    name: 'IndexView',
-    component: IndexView
+    path: '/index',
+    name: 'Index',
+    component: IndexView,
+    meta: {requiresAuth:true}
   },
   {
-    path: '/login',
-    name: 'LoginView',
+    path: '/',
+    name: 'Login',
     component: LoginView
   },
   {
     path: '/g/:gameid',
-    name: 'HomeView',
-    component: HomeView
+    name: 'Home',
+    component: HomeView,
+    meta: {requiresAuth:true}
   },
   {
     path: '/maqueta',
-    name: 'TestingCssView',
+    name: 'TestingCss',
     component: TestingCssView
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: DefaultView,
+    meta: {requiresAuth:false}
   }
 
 ]
@@ -33,4 +46,18 @@ const router = createRouter({
   routes
 })
 
-export default router
+router.beforeEach((to, from, next) => {
+  const rutaAuth = to.matched.some((record) => record.meta.requiresAuth);
+  const auth = getAuth(app);
+  var user = null;
+  onAuthStateChanged(auth, (u) => {
+    user = u;
+    if(rutaAuth && user==null) {
+      next({name:'Login'});
+    } else {
+      next();
+    }
+  });
+});
+
+export default router;

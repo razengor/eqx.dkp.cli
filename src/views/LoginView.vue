@@ -6,9 +6,9 @@
               <h1>Equinox</h1>
               <h2>Welcome</h2>
           </header>
-          <form method="POST" action="auth">
-              <input type="text" name="username" placeholder="E-mail..." required/>
-              <input type="password" name="password" placeholder="Password..." required/>
+          <form method="POST" action="auth" @submit.prevent="signIn">
+              <input type="text" name="username" placeholder="E-mail..." required v-model="email"/>
+              <input type="password" name="password" placeholder="Password..." required v-model="password"/>
               <input type="submit" name="submit" value="Log in" />
           </form>
           <footer>
@@ -27,22 +27,18 @@ export default {
   },
   data: function() {
     return {
-
+      email: "",
+      password: ""
     };
   },
   methods: {
-    ...mapActions(['getGames'])
+    ...mapActions(['iniciarSesion']),
+    async signIn() {
+      await this.iniciarSesion({email:this.email, password:this.password});
+    }
   },
   computed: {
-    ...mapState(['games']),
-    ...mapState(['users'])
-  },
-  mounted() {
-    this.getGames()
-    //console.log("mounted")
-  },
-  created() {
-    //console.log("created")
+    ...mapState(['user','error'])
   }
 }
 </script>

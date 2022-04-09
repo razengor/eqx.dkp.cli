@@ -5,6 +5,8 @@
       <section id="games">
         <partida v-for="partida in games" :key="partida.id" :game="partida" />
       </section>
+      <input type="text" v-model="newGameName" placholder="Nombre de la Partida nueva" v-show="isCreatingNewGame">
+      <button @click="createNewGame">Crear nueva Partida</button>
     </div>
     <Footer/>
   </div>
@@ -25,11 +27,20 @@ export default {
   },
   data: function() {
     return {
-
+      newGameName: "",
+      isCreatingNewGame: false
     };
   },
   methods: {
-    ...mapActions(['getGames'])
+    ...mapActions(['getGames']),
+    createNewGame() {
+      if(this.isCreatingNewGame) {
+        //TODO: Ejecuta función crear nueva partida de store/index.js
+      } else {
+        this.newGameName = "";
+        this.isCreatingNewGame = true;
+      }
+    }
   },
   computed: {
     ...mapState(['games']),
@@ -37,10 +48,6 @@ export default {
   },
   mounted() {
     this.getGames()
-    //console.log("mounted")
-  },
-  created() {
-    //console.log("created")
   }
 }
 </script>

@@ -4,16 +4,25 @@
             <img id="main-logo" src="../assets/logo.png">
             <h1>EQUINOX</h1>
         </div>
-    <h2>gestor de partidas</h2>
+        <h2>gestor de partidas</h2>
+        <button @click="closeSession">CERRAR SESIÓN</button>
     </div>
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
   name: 'HeaderComponent',
   data () {
     return {
 
+    }
+  },
+  methods: {
+    ...mapActions(['iniciarSesion']),
+    closeSession() {
+        this.iniciarSesion(null);
     }
   }
 }
