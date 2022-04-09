@@ -554,10 +554,20 @@
                     <div class="estadistica">
                       <select v-model="newEstadisticaName">
                         <option value="daño">daño</option>
-                        <option value="blindaje">blindaje</option>
+                        <option value="armadura">armadura</option>
                         <option value="vida">vida</option>
                         <option value="mana">mana</option>
                         <option value="energia">energia</option>
+                        <!-- atributos -->
+                        <option value="agilidad">agilidad</option>
+                        <option value="fuerza">fuerza</option>
+                        <option value="resistencia">resistencia</option>
+                        <option value="inteligencia">inteligencia</option>
+                        <option value="manipulacion">manipulacion</option>
+                        <option value="velo">velo</option>
+                        <option value="astucia">astucia</option>
+                        <option value="destreza">destreza</option>
+                        <option value="sensitividad">sensitividad</option>
                       </select>
                     </div>
                   </div>
