@@ -450,6 +450,138 @@
             </div>
           </div>
 
+          <!-- EDICIÓN DE INVENTARIO Y CAPITAL -->
+          <div id="game-card-sheet-objects" class="edit-screen" v-if="editWindow=='inventario'">
+            <div class="gcso-inventario-equipo">
+              <div class="gcso-inventario">
+                <h2>INVENTARIO</h2>
+                <div class="content">
+                  <div v-for="(item,itemId) in charToEdit.inventario" :key="'item-'+itemId" :title="item.nombre"
+                   @click="loadExistingItem(item,itemId)">
+                    <img :src="'../assets/img/ico_'+(item.icono==null?item.tipo:item.icono)+'.png'" />
+                  </div>
+                </div>
+              </div>
+              <div class="gcso-equipo">
+                <h2>EQUIPO</h2>
+                <div class="content">
+                  <div></div><div class="selected"></div>
+                  <div></div><div></div>
+                  <div></div><div></div>
+                </div>
+              </div>
+              <div class="gcso-oro">
+                <h2>CAPITAL</h2>
+                <div class="money">
+                  <div class="coin gold"><input v-model="capitalToEdit.oro" type="text" name="oro"></div>
+                  <div class="coin silver"><input v-model="capitalToEdit.plata" type="text" name="plata"></div>
+                  <div class="coin copper"><input v-model="capitalToEdit.cobre" type="text" name="cobre"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gcso-edicion">
+              <h2>AÑADIR OBJETO</h2>
+              <div class="lista-search">
+                <input class="search" placeholder="Buscar por nombre o tipo" v-model="busquedaObjeto">
+                <div class="lista-objetos">
+                  <!-- TODO: generar la lista de las plantillas de objetos para clicar -->
+                    <div class="t1">ARSENAL</div>
+                    <div v-for="(grupo,gName) in info.objetos.arsenal" :key="'go-'+gName">
+                      <div class="t2">{{gName.toUpperCase()}}</div>
+                      <div v-for="(item,iName) in grupo" :key="'io-'+iName" class="selectable"
+                       @click="loadObjectPlantilla(item,'equipable')">
+                        {{item.nombre.toUpperCase()}}
+                      </div>
+                    </div>
+                    
+                    <div class="t1">CONSUMIBLES</div>
+                    <div v-for="(item,iName) in info.objetos.consumibles" :key="'io-'+iName" class="selectable"
+                     @click="loadObjectPlantilla(item,'consumible')">
+                      {{item.nombre.toUpperCase()}}
+                    </div>
+                </div>
+              </div>
+
+              <div class="nombre-tipo">
+                <input type="text" class="nombre-objeto" v-model="objetoToEdit.nombre">
+                <div class="caja-tipo">
+                  <p>TIPO:</p>
+                  <select class="tipo" v-model="objetoToEdit.tipo">
+                    <option value="miscelanea">MISCELÁNEA</option>
+                    <option value="equipable">EQUIPABLE</option>
+                    <option value="consumible">CONSUMIBLE</option>
+                    <!-- TIPOS EXTRA -->
+                    <option value="sword">ESPADA</option>
+                    <option value="rapier">ESTOQUE</option>
+                    <option value="saber">SABLE</option>
+                    <option value="dagger">DAGA</option>
+                    <option value="axe">HACHA</option>
+                    <option value="fist">PUÑO</option>
+                    <option value="glove">GUANTE</option>
+                    <option value="mace">MAZA</option>
+                    <option value="spear">LANZA</option>
+                    <option value="katana">KATANA</option>
+                    <option value="kunai">KUNAI</option>
+                    <option value="boomerang">BUMERANG</option>
+
+                    <option value="sling">SLINGA</option>
+                    <option value="gun">PISTOLA</option>
+                    <option value="bow">ARCO</option>
+                    <option value="crossbow">BALLESTA</option>
+                    <option value="ammo">MUNICIÓN</option>
+
+                    <option value="helmet">YELMO</option>
+                    <option value="armor">ARMADURA</option>
+                    <option value="shield">ESCUDO</option>
+
+                    <option value="jewel">JOYA</option>
+                    <option value="food">COMIDA</option>
+                    <option value="mineral">MINERAL</option>
+                    <option value="clothes">ROPA</option>
+                    <option value="tool">HERRAMIENTA</option>
+
+                  </select>
+                </div>
+                <div class="estadisticas">
+                  <p>ESTADÍSTICAS</p>
+                  <div class="content">
+                    <div v-for="(stat, index) in estadisticasToEdit" :key="'s-'+stat.name+'-'+index" class="estadistica">
+                      <span>{{estadisticasToEdit[index].name}}</span>
+
+                      <input class="num" v-model="estadisticasToEdit[index].value">
+                    </div>
+                    <div class="estadistica">
+                      <select v-model="newEstadisticaName">
+                        <option value="daño">daño</option>
+                        <option value="blindaje">blindaje</option>
+                        <option value="vida">vida</option>
+                        <option value="mana">mana</option>
+                        <option value="energia">energia</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button class="add-estadistica round-button" @click="addNewEstadistica">
+                    <img src="../assets/img/ico_add.png" />
+                  </button>
+                </div>
+              </div>
+
+              <div class="descripcion-caracteristicas">
+                <p>{{'Descripción & Características'}}</p>
+                <textarea class="descripcion" v-model="objetoToEdit.desc" />
+                <p>Requerimientos</p>
+                <textarea class="requerimientos" v-model="objetoToEdit.requerimientos" />
+              </div>
+
+              <input class="peso" v-model="objetoToEdit.peso">
+
+              <button class="add-object" @click="addObject">
+                {{objectToEditId==null?'CREAR NUEVO OBJETO':'GUARDAR OBJETO EXISTENTE'}}
+              </button>
+            </div>
+          </div>
+
           <!-- Botón de ir atrás -->
           <button class="go-back" v-if="editWindow!=''" @click="editWindow=''">
             ATRÁS
@@ -466,27 +598,63 @@ export default {
   components: {},
   data () {
     return {
+      // información del personaje que está siendo editado
       charToEdit: {},
+      // array del dinero a editar de un personaje, separada de "charToEdit" por cuestiones a la hora de vaciar arrays
       capitalToEdit: {},
+      // Ventana de edición abierta en estos momentos. Un valor vacío equivale a ninguna
+      // - "ficha" = Ventana de edición de habilidades, atributos y stats
+      // - "raza" = Ventana de edición de raza y habilidades raciales
+      // - "iconos" = Ventana de edición de roles y tipos de unidad
+      // - "clase" = Ventana de edición de clase y talentos
+      // - "magias" = Ventana de edición de magias y conjuros. Esta ventana es un W.I.P.
+      // - "inventario" = Ventana de edición de inventario. Añadir, eliminar y editar objetos
       editWindow: "",
+      // valor de la "search bar" para buscar talentos
       busquedaClase: "",
+      // información del talento seleccionado para añadir o eliminar
       talentoActual: {},
+      // nombre del talento seleccionado
       talentoActualName: "",
+      // clase a la que pertenece el talento seleccionado
       talentoActualClase: "",
+      // tipo seleccionado en el select para añadir
       tipoActual: "",
-      rolActual: ""
+      // rol seleccionado en el select para añadir
+      rolActual: "",
+      // valor de la "search bar" para buscar plantillas de objetos
+      busquedaObjeto: "",
+      // id del objeto que está siendo editado, si va a ser un objeto nuevo este valor es null
+      objectToEditId: null,
+      // el objeto que está siendo editado, ya sea nuevo o no
+      objetoToEdit: {
+        nombre: "",
+        desc: "",
+        requerimientos: "",
+        peso: 0,
+        tipo: "miscelanea",
+        estadisticas: []
+      },
+      // array de las estadisticas a editar de un objeto, separada de "objetoToEdit" por cuestiones a la hora de vaciar arrays
+      estadisticasToEdit: [],
+      // valor del select para añadir/eliminar nueva estadistica de un objeto
+      newEstadisticaName: "daño"
     }
   },
   methods: {
+    // Mandamos al componente raiz la información del personaje a ser guardado
     saveChar() {
+      // mandamos la info en una array para mantener la ID del personaje
       var temporal = {charToEdit:this.charToEdit, id:this.charToEditId};
+      // actualizamos el capital
       temporal.charToEdit.capital = this.capitalToEdit;
       this.$emit('saveChar', temporal);
     },
+    // Abrimos o cerramos una ventana de edición según el valor pasado
     openVentanaEdicion(ventana) {
-      console.log("Abrimos ventana de edición de "+ventana.toUpperCase()+"...");
       this.editWindow = ventana;
     },
+    // Recogemos las capacidades raciales en una función para tratar con los valores null/undefined
     getCapacidades() {
       var capacidades = {};
       if(this.charToEdit.capacidades)
@@ -496,11 +664,15 @@ export default {
       });
       return capacidades;
     },
+    // Añadimos o eliminamos la capacidad racial clicada al array de capacidades
     checkCapacidad(capName) {
+      // comprobación de si es undefined
       if(!this.charToEdit.capacidades) {
         this.charToEdit.capacidades = []
       }
+      // si la capacidad clicada ya existe la borramos del array
       if(this.getCapacidades()[capName.toLowerCase()]) {
+        // para borrar del array creamos uno de 0 sin esa capacidad, porque javascript es precioso
         var temporal = [];
         Object.keys(this.charToEdit.capacidades).forEach(obj => {
           let name = this.charToEdit.capacidades[obj].toLowerCase();
@@ -513,23 +685,26 @@ export default {
         this.charToEdit.capacidades.push(capName);
       }
     },
+    // Cambiamos el talento mostrado como "Talento Actual"
     changeTalentoActual(tName, talento, clase) {
+      // si clicamos sobre el mismo, lo quitamos
       if(this.talentoActualName == tName) {
         this.talentoActualName = "";
         this.talentoActual = {};
         this.talentoActualClase = "";
+      // si clicamos sobre otro cargamos esa info
       } else {
         this.talentoActualName = tName;
         this.talentoActual = talento;
         this.talentoActualClase = clase;
       }
     },
+    // Recogemos los talentos en una función para tratar los valores null/undefined
     getTalentos() {
       var talentos = {};
       if(this.charToEdit.talentos)
       Object.keys(this.charToEdit.talentos).forEach(obj => {
         let name = this.charToEdit.talentos[obj];
-        //talentos[name.toLowerCase()] = true;
         Object.keys(this.info.clases).forEach(clase => {
           Object.keys(this.info.clases[clase].talentos).forEach(talento => {
             if(name.toLowerCase() == talento.toLowerCase()) {
@@ -541,7 +716,9 @@ export default {
       });
       return talentos;
     },
+    // Añadimos o eliminamos el talento clicado
     checkTalento(tName) {
+      // arreglamos el undefined
       if(!this.charToEdit.talentos) {
         this.charToEdit.talentos = []
       }
@@ -558,6 +735,7 @@ export default {
         this.charToEdit.talentos.push(tName.toLowerCase());
       }
     },
+    // Añadimos un tipo de unidad, sólo si no existía ya
     addTipo() {
       if(!this.charToEdit.unitTypes)
       this.charToEdit.unitTypes = []
@@ -572,6 +750,7 @@ export default {
         this.charToEdit.unitTypes.push(this.tipoActual);
       }
     },
+    // Añadimos un rol de unidad, sólo si no existía ya
     addRol() {
       if(!this.charToEdit.unitRoles)
       this.charToEdit.unitRoles = []
@@ -586,6 +765,7 @@ export default {
         this.charToEdit.unitRoles.push(this.rolActual);
       }
     },
+    // Eliminamos el tipo ya existente al clicarle encima
     removeTipo(tipo) {
       var temporal = [];
       Object.keys(this.charToEdit.unitTypes).forEach(obj => {
@@ -597,6 +777,7 @@ export default {
       });
       this.charToEdit.unitTypes = temporal;
     },
+    // Eliminamos el rol ya existente al clicarle encima
     removeRol(rol) {
       var temporal = [];
       Object.keys(this.charToEdit.unitRoles).forEach(obj => {
@@ -606,6 +787,123 @@ export default {
         }
       });
       this.charToEdit.unitRoles = temporal;
+    },
+    // Cargamos un objeto de la lista de plantillas
+    loadObjectPlantilla(item,tipo) {
+      this.objectToEditId = null;
+      this.objetoToEdit.nombre = item.nombre;
+      this.objetoToEdit.desc = item.desc;
+      this.objetoToEdit.requerimientos = item.requerimientos;
+      this.objetoToEdit.peso = item.peso;
+      this.objetoToEdit.tipo = tipo;
+      this.objetoToEdit.estadisticas = item.estadisticas;
+      this.estadisticasToEdit = [];
+      Object.keys(item.estadisticas).forEach(stat => {
+        this.estadisticasToEdit.push({name:stat,value:item.estadisticas[stat]});
+      });
+    },
+    // Añadimos o eliminamos una estadística nueva al objeto en edición
+    addNewEstadistica() {
+      if(null==this.getEstadisticaFromEdit(this.newEstadisticaName)) {
+        this.estadisticasToEdit.push({
+          name: this.newEstadisticaName,
+          value: 1
+        });
+      } else {
+        // si el stat que queremos añadir ya existe, entonces lo borramos de la lista
+        var newStats = [];
+        Object.keys(this.estadisticasToEdit).forEach(num => {
+          var stat = {name: this.estadisticasToEdit[num].name, value: this.estadisticasToEdit[num].value};
+          if(stat.name != this.newEstadisticaName) {
+            newStats.push(stat);
+          }
+        });
+        this.estadisticasToEdit = newStats;
+      }
+      // actualizamos las stats del objeto editado
+      this.updateObjectToEditEstadisticas();
+    },
+    // Recogemos el valor de una sola estadistica (name)
+    getEstadisticaFromEdit(name) {
+      var result = null;
+      Object.keys(this.estadisticasToEdit).forEach(num => {
+        if(this.estadisticasToEdit[num].name == name) {
+          result = this.estadisticasToEdit[num];
+        }
+      });
+      return result;
+    },
+    // Actualizamos las estadísticas de "objectToEdit.estadisticas" con "estadistiasToEdit"
+    updateObjectToEditEstadisticas() {
+      var temporal = [];
+      Object.keys(this.estadisticasToEdit).forEach(num => {
+        temporal[this.estadisticasToEdit[num].name] = this.estadisticasToEdit[num].value;
+      });
+      this.objetoToEdit.estadisticas = temporal;
+    },
+    // Guardamos la info del objeto en edición, si es nuevo se crea uno nuevo
+    addObject() {
+      // si no tenemos nombre de objeto ni lo creamos
+      if(this.objetoToEdit.nombre && this.objetoToEdit.nombre!="") {
+        var num
+        if(this.objectToEditId == null) {
+          this.charToEdit.inventario.push({});
+          num = this.charToEdit.inventario.length -1;
+          
+        } else {
+          num = this.objectToEditId;
+        }
+        this.charToEdit.inventario[num] = {
+          nombre: this.objetoToEdit.nombre,
+          desc: this.objetoToEdit.desc?this.objetoToEdit.desc:"",
+          requerimientos: this.objetoToEdit.requerimientos?this.objetoToEdit.requerimientos:"",
+          peso: this.objetoToEdit.peso?this.objetoToEdit.peso:0,
+          tipo: this.objetoToEdit.tipo?this.objetoToEdit.tipo:"miscelanea",
+          estadisticas: this.transformEstadisticas(this.estadisticasToEdit)
+        };
+        this.emptyEditingObject();
+      } else {
+        console.error("EL OBJETO A CREAR/EDITAR REQUIERE DE UN NOMBRE CON UN MÍNIMO DE UN CARACTER");
+      }
+    },
+    loadExistingItem(item, itemId) {
+      if(this.objectToEditId != itemId) {
+        this.objectToEditId = itemId;
+        this.objetoToEdit = {
+          nombre: item.nombre,
+          desc: item.desc,
+          requerimientos: item.requerimientos,
+          peso: item.peso,
+          tipo: item.tipo,
+          estadisticas: item.estadisticas
+        }
+        this.estadisticasToEdit = [];
+        Object.keys(item.estadisticas).forEach(stat => {
+          this.estadisticasToEdit.push({name:stat,value:item.estadisticas[stat]});
+        });
+      // si el id es el mismo "deseleccionamos" el objeto, cargamos info vacía para un objeto nuevo
+      } else {
+        this.emptyEditingObject();
+      }
+    },
+    emptyEditingObject() {
+      this.objectToEditId = null;
+      this.objetoToEdit.nombre = "";
+      this.objetoToEdit.desc = "";
+      this.objetoToEdit.requerimientos = "";
+      this.objetoToEdit.peso = 0;
+      this.objetoToEdit.tipo = "";
+      this.objetoToEdit.estadisticas = [];
+      this.estadisticasToEdit = [];
+      // también reseteamos la info del select de nueva estadistica
+      this.newEstadisticaName = "daño";
+    },
+    transformEstadisticas(stats) {
+      var result = [];
+      Object.keys(stats).forEach(num => {
+        result[stats[num].name] = stats[num].value;
+      });
+      return result;
     }
   },
   created() {},
@@ -618,6 +916,8 @@ export default {
     this.charToEdit = this.char;
     this.charToEdit.clase = this.charToEdit.clase.toUpperCase();
     this.busquedaClase = this.char.clase.toUpperCase();
+    if(this.charToEdit.inventario==null)
+      this.charToEdit.inventario=[];
   }
 }
 </script>

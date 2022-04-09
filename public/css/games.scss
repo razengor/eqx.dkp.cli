@@ -1238,136 +1238,6 @@ body#body.editing-char {
                 }
             }
         }
-        #game-card-sheet-specials {
-            h2 {
-                margin: 0;
-            }
-            .gcss-especializaciones {
-                height: 65%;
-                padding-bottom: 75px;
-                box-sizing: border-box;
-                .gcss-especializaciones-disponibles, .gcss-especializacion-seleccionada, .gcss-especializaciones-actuales {
-                    width: 33%;
-                    height: 100%;
-                    float: left;
-                }
-                .gcss-especializaciones-disponibles {
-                    padding-right: 0.5%;
-                    .search {
-                        margin: 0 auto;
-                        width: 80%;
-                        font-size: 1.1em;
-                        height: 30px;
-                    }
-                    .content {
-                        margin: 0 auto;
-                        margin-top: 15px;
-                        padding: 10px;
-                        box-sizing: border-box;
-                        background-color: rgb(190, 190, 190);
-                        border: 1px solid gray;
-                        border-radius: 5px;
-                        width: 90%;
-                        min-height: 90px;
-                        max-height: 80%;
-                        overflow-y: scroll;
-                        overflow-x: hidden;
-                        div {
-                            width: 100%;
-                            text-align: left;
-                            cursor: pointer;
-                            box-sizing: border-box;
-                            padding: 4px;
-                            margin-bottom: 8px;
-                            background-color: rgb(175, 175, 175);
-                            border: 1px solid gray;
-                        }
-                        div:hover,.selected:hover,.selected {
-                            background-color: rgb(209, 209, 209);
-                        }
-                    }
-                }
-                .gcss-especializacion-seleccionada {
-                    h2 {
-                        text-decoration: underline;
-                    }
-                    padding-right: 0.5%;
-                    p {
-                        text-align: left;
-                        padding: 0 18px;
-                    }
-                    p.unmatched {
-                        color: rgb(85, 0, 0);
-                        text-decoration: underline;
-                    }
-                    p.unmatched::after {
-                        content: " !";
-                        color: rgb(85, 0, 0);
-                        font-weight: bold;
-                    }
-                    #gcss-add-especializacion {
-                        background-color: rgb(72, 163, 72);
-                        cursor: pointer;
-                        width: 50px;
-                        height: 50px;
-                        img {
-                            padding-top: 4px;
-                            width: 24px;
-                            height: 24px;
-                            margin: auto;
-                        }
-                    }
-                    #gcss-add-especializacion:hover {
-                        background-color: rgb(126, 206, 126);
-                    }
-                    #gcss-delete-especializacion {
-                        background-color: rgb(160, 59, 59);
-                        cursor: pointer;
-                        width: 50px;
-                        height: 50px;
-                        img {
-                            padding-top: 4px;
-                            width: 24px;
-                            height: 24px;
-                            margin: auto;
-                        }
-                    }
-                    #gcsc-delete-especializacion:hover {
-                        background-color: rgb(204, 91, 91);
-                    }
-                }
-                .gcss-especializaciones-actuales {
-                    padding: 0;
-                    .content {
-                        margin: 0 auto;
-                        margin-top: 45px;
-                        padding: 10px;
-                        box-sizing: border-box;
-                        background-color: rgb(190, 190, 190);
-                        border: 1px solid gray;
-                        border-radius: 5px;
-                        width: 90%;
-                        min-height: 90px;
-                        max-height: 80%;
-                        overflow-y: scroll;
-                        overflow-x: hidden;
-                        div {
-                            width: 100%;
-                            text-align: left;
-                            cursor: pointer;
-                            box-sizing: border-box;
-                            padding: 4px;
-                            margin-bottom: 8px;
-                            background-color: rgb(175, 175, 175);
-                            border: 1px solid gray;
-                        }
-                        div:hover,.selected:hover,.selected {
-                            background-color: rgb(209, 209, 209);
-                        }
-                    }
-                }
-            }
-        }
         #game-card-sheet-objects {
             h2 {
                 margin: 0;
@@ -1379,13 +1249,14 @@ body#body.editing-char {
                 .gcso-inventario {
                     .content {
                         box-sizing: border-box;
-                        border: 2px solid rgb(187, 161, 11);
+                        border: 2px solid rgb(130, 35, 35);
                         border-radius: 6px;
-                        background-color: rgb(126, 112, 107);
+                        background-color: rgb(211, 211, 211);
+                        background-image: url("/assets/img/bg-brown-2.jpg");
                         padding: 10px;
                         margin: 20px auto 0 auto;
                         height: 298px;
-                        width: 90%;
+                        width: 95%;
                         overflow-y: scroll;
                         overflow-x: hidden;
                         div {
@@ -1393,9 +1264,10 @@ body#body.editing-char {
                             margin: 5px;
                             height: 56px;
                             width: 56px;
-                            border: 2px solid rgb(172, 153, 147);
+                            border: 2px solid rgb(143, 35, 35);
                             border-radius: 9px;
-                            background-color: rgb(197, 181, 175);
+                            background-color: rgb(183, 183, 183);
+                            background-image: url("/assets/img/bg-light-brown.jpg");
                             cursor: pointer;
                             img {
                                 height: 46px;
@@ -1404,12 +1276,12 @@ body#body.editing-char {
                             }
                         }
                         div:hover, div.selected:hover {
-                            border: 2px solid rgb(235, 235, 235);
+                            border: 2px solid rgb(77, 77, 77);
                             background-color: rgb(206, 206, 206);
                         }
                         div.selected {
-                            border: 2px solid rgb(218, 218, 218);
-                            background-color: rgb(173, 173, 173);
+                            border: 2px solid rgb(110, 27, 27);
+                            background-color: rgb(183, 183, 183);
                         }
                         div:last-child {
                             margin-bottom: 15px;
@@ -1420,13 +1292,14 @@ body#body.editing-char {
                     padding-top: 20px;
                     .content {
                         box-sizing: border-box;
-                        border: 2px solid rgb(187, 161, 11);
+                        border: 2px solid rgb(130, 35, 35);
                         border-radius: 6px;
-                        background-color: rgb(126, 112, 107);
+                        background-color: rgb(211, 211, 211);
+                        background-image: url("/assets/img/bg-brown-2.jpg");
                         padding: 10px;
                         margin: 20px auto 0 auto;
-                        height: 88px;
-                        width: 90%;
+                        height: 168px;
+                        width: 95%;
                         overflow-y: scroll;
                         overflow-x: hidden;
                         div {
@@ -1434,21 +1307,27 @@ body#body.editing-char {
                             margin: 5px;
                             height: 56px;
                             width: 56px;
-                            border: 2px solid rgb(194, 194, 194);
+                            border: 2px solid rgb(143, 35, 35);
                             border-radius: 9px;
-                            background-color: rgb(153, 153, 153);
+                            background-color: rgb(183, 183, 183);
+                            background-image: url("/assets/img/bg-light-brown.jpg");
                             cursor: pointer;
                         }
-                        div:hover {
-                            background-color: rgb(179, 179, 179);
+                        div:hover, div.selected:hover {
+                            border: 2px solid rgb(77, 77, 77);
+                            background-color: rgb(206, 206, 206);
                         }
                         div.selected {
-                            border: 2px solid rgb(219, 219, 219);
+                            border: 2px solid rgb(110, 27, 27);
+                            background-color: rgb(183, 183, 183);
                         }
                     }
                 }
                 .gcso-oro {
                     padding-top: 15px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
                     .money {
                         display: flex;
                         flex-direction: row;
@@ -1457,32 +1336,47 @@ body#body.editing-char {
                         height: 35px;
                         box-sizing: border-box;
                         padding: 3px 5px 2px 0;
-                        border: 3px solid rgb(187, 161, 11);
-                        border-radius: 12px;
-                        background-color: rgb(126, 112, 107);
+                        margin-top: 10px;
+                        border: 3px solid rgb(141, 141, 141);
+                        border-radius: 4px;
+                        background-color: rgb(141, 141, 141);
                         .gold {
                             width: 80px;
+                            input {
+                                background-image: url("/assets/img/ico_gold.png");
+                            }
                         }
-                        .silver, .copper {
+                        .silver {
                             width: 60px;
+                            input {
+                                background-image: url("/assets/img/ico_silver.png");
+                            }
+                        }
+                        .copper {
+                            width: 60px;
+                            input {
+                                background-image: url("/assets/img/ico_copper.png");
+                            }
                         }
                         .gold, .silver, .copper {
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: end;
-                            p {
-                                color: rgb(219, 219, 219);
+                            input {
+                                width: 100%;
+                                height: 100%;
+                                border: none;
+                                //border: 1px solid rgb(170, 170, 170);
+                                border-left: none;
+                                outline: none;
+                                background-size: 22px;
+                                background-repeat: no-repeat;
+                                background-position: 3px 0;
+                                background-color: rgb(156, 156, 156);
+                                padding-left: 28px;
+                                padding-bottom: 2px;
+                                box-sizing: border-box;
+                                color: rgb(221, 221, 221);
                                 font-weight: bold;
-                                width: fit-content;
-                                margin: 0;
                                 font-size: 1.15em;
                                 font-family: 'Varela Round', sans-serif;
-                                height: 22px;
-                            }
-                            img {
-                                margin-left: 3px;
-                                height: 22px;
-                                width: 22px;
                             }
                         }
                     }
@@ -1517,7 +1411,7 @@ body#body.editing-char {
                         border-radius: 5px;
                         overflow-y: scroll;
                         overflow-x: hidden;
-                        div {
+                        div.t1, div.t2, div.selectable {
                             width: 100%;
                             box-sizing: border-box;
                             padding: 3px;
@@ -1532,7 +1426,7 @@ body#body.editing-char {
                         }
                         div.t1 {
                             border: none;
-                            font-size: 1.3em;
+                            font-size: 1.2em;
                             font-weight: bold;
                             text-decoration: underline;
                             clip-path: polygon(8% 0, 92% 0, 100% 50%, 92% 100%, 8% 100%, 0% 50%);
@@ -1544,7 +1438,7 @@ body#body.editing-char {
                         div.t2 {
                             width: 90%;
                             margin: 9px auto;
-                            font-size: 1.1em;
+                            font-size: 1em;
                             font-weight: bold;
                             border-radius: 6px;
                         }
@@ -1555,6 +1449,7 @@ body#body.editing-char {
                             background-color: rgb(175, 175, 175);
                             border: 1px solid gray;
                             border-radius: 10px;
+                            font-size: 0.9em;
                         }
                         div.selectable:hover,div.selected:hover,.selected {
                             background-color: rgb(209, 209, 209);
@@ -1640,9 +1535,7 @@ body#body.editing-char {
                 }
                 .add-object {
                     margin-top: 0;
-                    padding: 0;
-                    height: 40px;
-                    width: 40px;
+                    padding: 4px 8px;
                     cursor: pointer;
                     background-color: rgb(107, 187, 107);
                     img {
