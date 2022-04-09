@@ -458,11 +458,11 @@
                 <div class="content">
                   <div v-for="(item,itemId) in charToEdit.inventario" :key="'item-'+itemId" :title="item.nombre"
                    @click="loadExistingItem(item,itemId)">
-                    <img :src="'../assets/img/ico_'+(item.icono==null?item.tipo:item.icono)+'.png'" />
+                    <img :src="'../assets/img/ico_'+item.tipo+'.png'" />
                   </div>
                 </div>
               </div>
-              <div class="gcso-equipo">
+              <div class="gcso-equipo" v-if="false">
                 <h2>EQUIPO</h2>
                 <div class="content">
                   <div></div><div class="selected"></div>
