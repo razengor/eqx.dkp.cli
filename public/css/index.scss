@@ -27,20 +27,22 @@ body #app #index {
         top: 0;
         width: 100%;
         display: flex;
+
+        h1 {
+            margin: 2% auto 0 2%;
+            font-size: 4em;
+            font-weight: 300;
+            font-family: 'Acme', sans-serif;
+        }
+        a {
+            margin: 2% 2% auto auto;
+            text-decoration: none;
+            color: rgb(200, 200, 200);
+            border-bottom: 1px solid rgb(200, 200, 200);
+            cursor: pointer;
+        }
     }
-    header h1 {
-        margin: 2% auto 0 2%;
-        font-size: 4em;
-        font-weight: 300;
-        font-family: 'Acme', sans-serif;
-    }
-    header a {
-        margin: 2% 2% auto auto;
-        text-decoration: none;
-        color: rgb(200, 200, 200);
-        border-bottom: 1px solid rgb(200, 200, 200);
-        //font-family: 'Indie Flower', cursive;
-    }
+    
     @media(max-width: 900px) {
         header {
             flex-direction: column;

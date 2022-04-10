@@ -1,5 +1,6 @@
 <template>
   <div id="index">
+    <img id="background-dice" src="../assets/logo.png">
     <Header/>
     <div id="index-body">
       <section id="games">
@@ -35,7 +36,7 @@ export default {
     ...mapActions(['getGames']),
     createNewGame() {
       if(this.isCreatingNewGame) {
-        //TODO: Ejecuta función crear nueva partida de store/index.js
+        //TODO: Ejecuta función crear nueva partida de store/index.js y vuelve a cargar getGames para remontar los componentes
       } else {
         this.newGameName = "";
         this.isCreatingNewGame = true;
@@ -43,8 +44,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['games']),
-    ...mapState(['users'])
+    ...mapState(['games','users']),
   },
   mounted() {
     this.getGames()

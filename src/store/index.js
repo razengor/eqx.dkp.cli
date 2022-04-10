@@ -3,7 +3,8 @@ import router from '../router/index'
 
 import app from '../firebase'
 import { getDatabase, ref, onValue } from "firebase/database";
-import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+
 
 // Get a reference to the database service
 const database = getDatabase(app);
@@ -40,7 +41,7 @@ export default createStore({
     }
   },
   actions: {
-    iniciarSesion({commit}, user) {
+    iniciarSesion({ commit }, user) {
       const auth = getAuth(app);
       if (user!=null) {
         signInWithEmailAndPassword(auth, user.email, user.password)
@@ -62,6 +63,16 @@ export default createStore({
           .catch((error) => {
             console.log(error.message);
           });
+      }
+    },
+    getUserSesion({ commit }) {
+      if(this.state.user == "") {
+        const auth = getAuth(app);
+        onAuthStateChanged(auth, (u) => {
+          if (u) {
+            commit("setUser", {email: u.email, uid: u.uid});
+          }
+        });
       }
     },
     getGames({ commit }) {

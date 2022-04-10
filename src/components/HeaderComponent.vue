@@ -1,29 +1,30 @@
 <template>
-    <div id="main-header">
-        <div>
-            <img id="main-logo" src="../assets/logo.png">
-            <h1>EQUINOX</h1>
-        </div>
-        <h2>gestor de partidas</h2>
-        <button @click="closeSession">CERRAR SESIÓN</button>
-    </div>
+    <header>
+        <h1>EQUINOX</h1>
+        <a @click="closeSession">Sesión iniciada como {{user.email}}</a>
+    </header>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapState} from 'vuex'
 
 export default {
   name: 'HeaderComponent',
   data () {
     return {
-
     }
   },
   methods: {
-    ...mapActions(['iniciarSesion']),
+    ...mapActions(['iniciarSesion','getUserSesion']),
     closeSession() {
         this.iniciarSesion(null);
     }
+  },
+  computed: {
+    ...mapState(['user','error'])
+  },
+  mounted() {
+      this.getUserSesion();
   }
 }
 </script>
