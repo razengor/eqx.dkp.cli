@@ -1,14 +1,20 @@
 <template>
   <div id="index">
     <img id="background-dice" src="../assets/logo.png">
+
     <Header/>
-    <div id="index-body">
-      <section id="games">
-        <partida v-for="partida in games" :key="partida.id" :game="partida" />
-      </section>
-      <input type="text" v-model="newGameName" placholder="Nombre de la Partida nueva" v-show="isCreatingNewGame">
-      <button @click="createNewGame">Crear nueva Partida</button>
-    </div>
+
+    <main>
+      <span>- PARTIDAS -</span>
+      <button v-for="partida in games" :key="partida.id" :game="partida"
+       @click="goTo(partida.id)">
+        {{partida.name}}
+      </button>
+      <!-- Add new game button -->
+      <input class="add-new-game" type="text" v-model="newGameName" placeholder="Nombre de la Partida nueva" v-show="isCreatingNewGame">
+      <button class="add-new-game" @click="createNewGame">Crear nueva Partida</button>
+    </main>
+  
     <Footer/>
   </div>
 </template>
@@ -16,15 +22,16 @@
 <script>
 import Header from '@/components/HeaderComponent'
 import Footer from '@/components/FooterComponent'
-import Partida from '@/components/Partida'
+
 import {mapActions, mapState} from 'vuex'
+import router from '../router/index'
 
 export default {
   name: 'IndexView',
   components: {
     "Header": Header,
     "Footer": Footer,
-    "partida": Partida
+    //"partida": Partida
   },
   data: function() {
     return {
@@ -41,6 +48,9 @@ export default {
         this.newGameName = "";
         this.isCreatingNewGame = true;
       }
+    },
+    goTo(gameId) {
+      router.push('/g/'+gameId);
     }
   },
   computed: {
@@ -53,7 +63,7 @@ export default {
 </script>
 
 <style scoped>
-#index {
+/*#index {
   height: 100%;
   width: 100%;
   display: grid;
@@ -88,5 +98,5 @@ export default {
   font-weight: bold;
 
   cursor: pointer;
-}
+}*/
 </style>

@@ -21,10 +21,14 @@ export default {
   img {
     height: 30px;
     width: 30px;
-    margin: 10px;
+    padding: 10px;
+    padding-left: 0;
   }
   #main-footer {
-    width: 100vw;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
 
     display: flex;
     align-items: center;
