@@ -4,7 +4,7 @@
         <div id="game-card-sheet-config" class="edit-screen">
           <div class="gcs-nombre-raza">
             <div class="profile-pic">
-              <img :src="'../assets/img/profiles/profile_'+char.nombre.toLowerCase()+'.jpg'" />
+              <img :src="getBaseUrl()+'/assets/img/profiles/profile_'+char.nombre.toLowerCase()+'.jpg'" />
             </div>
             <input class="nombre" type="text" name="nombre" v-model="charToEdit.nombre">
 
@@ -41,7 +41,7 @@
             <button id="gcs-editar-ficha" class="edit-button-box" title="EDITAR FICHA" @click="openVentanaEdicion('ficha')">
               <p>ESTADÍSTICAS Y FICHA</p>
               <div v-for="(value,stat) in charToEdit.stats" :key="charToEdit.nombre+'_'+stat" :class="'stat '+stat">
-                <img :src="'../assets/img/ico_'+stat+'.png'" :title="stat" :alt="stat" />
+                <img :src="getBaseUrl()+'/assets/img/ico_'+stat+'.png'" :title="stat" :alt="stat" />
                 <p>{{value}}</p>
               </div>
             </button>
@@ -52,11 +52,11 @@
 
             <img class="type" v-for="unitType in charToEdit.unitTypes"
               :key="charToEdit.nombre+'_'+unitType"
-              :src="'../assets/img/ico_'+unitType.toLowerCase()+'.png'"
+              :src="getBaseUrl()+'/assets/img/ico_'+unitType.toLowerCase()+'.png'"
               :title="unitType.toUpperCase()" :alt="unitType.toUpperCase()" />
             <img v-if="charToEdit.unitTypes==null || (charToEdit.unitTypes!=null && charToEdit.unitTypes.length==0)"
               class="type"
-              :src="'../assets/img/ico_.png'"
+              src="../assets/img/ico_.png"
               title="X" alt="X" />
           </button>
 
@@ -65,11 +65,11 @@
 
             <img class="role" v-for="unitRole in charToEdit.unitRoles"
               :key="charToEdit.nombre+'_'+unitRole"
-              :src="'../assets/img/ico_'+unitRole.toLowerCase()+'.png'"
+              :src="getBaseUrl()+'/assets/img/ico_'+unitRole.toLowerCase()+'.png'"
               :title="unitRole.toUpperCase()" :alt="unitRole.toUpperCase()" />
             <img v-if="charToEdit.unitRoles==null || (charToEdit.unitRoles!=null && charToEdit.unitRoles.length==0)"
               class="role"
-              :src="'../assets/img/ico_.png'"
+              src="../assets/img/ico_.png"
               title="X" alt="X" />
           </button>
 
@@ -379,7 +379,7 @@
                 </select>
 
                 <div class="content" v-if="tipoActual!=''">
-                  <img :src="'../assets/img/ico_'+tipoActual+'.png'"/>
+                  <img :src="getBaseUrl()+'/assets/img/ico_'+tipoActual+'.png'"/>
                   <p>{{info.tipos[tipoActual]}}</p>
                   <button class="add-icon" @click="addTipo">
                     AÑADIR
@@ -403,7 +403,7 @@
                 <div class="content">
                   <div v-for="(tipo) in charToEdit.unitTypes" :key="'ta_'+tipo"
                    @click="removeTipo(tipo)">
-                    <img :src="'../assets/img/ico_'+tipo+'.png'" :title="info.tipos[tipo]" />
+                    <img :src="getBaseUrl()+'/assets/img/ico_'+tipo+'.png'" :title="info.tipos[tipo]" />
                   </div>
                 </div>
               </div>
@@ -423,7 +423,7 @@
                 </select>
 
                 <div class="content" v-if="rolActual!=''">
-                  <img :src="'../assets/img/ico_'+rolActual+'.png'"/>
+                  <img :src="getBaseUrl()+'/assets/img/ico_'+rolActual+'.png'"/>
                   <p>{{info.roles[rolActual]}}</p>
                   <button class="add-icon" @click="addRol">
                     AÑADIR
@@ -443,7 +443,7 @@
                 <div class="content">
                   <div v-for="(rol) in charToEdit.unitRoles" :key="'ra_'+rol"
                    @click="removeRol(rol)">
-                    <img :src="'../assets/img/ico_'+rol+'.png'" :title="info.roles[rol]" />
+                    <img :src="getBaseUrl()+'/assets/img/ico_'+rol+'.png'" :title="info.roles[rol]" />
                   </div>
                 </div>
               </div>
@@ -458,7 +458,7 @@
                 <div class="content">
                   <div v-for="(item,itemId) in charToEdit.inventario" :key="'item-'+itemId" :title="item.nombre"
                    @click="loadExistingItem(item,itemId)">
-                    <img :src="'../assets/img/ico_'+item.tipo+'.png'" />
+                    <img :src="getBaseUrl()+'/assets/img/ico_'+item.tipo+'.png'" />
                   </div>
                 </div>
               </div>
@@ -604,7 +604,7 @@
 <script>
 export default {
   name: 'CharacterEditWindow',
-  props: ["char","game","charToEditId","info"],
+  props: ["char","charToEditId","info"],
   components: {},
   data () {
     return {
@@ -652,6 +652,9 @@ export default {
     }
   },
   methods: {
+    getBaseUrl() {
+      return window.location.origin;
+    },
     // Mandamos al componente raiz la información del personaje a ser guardado
     saveChar() {
       // mandamos la info en una array para mantener la ID del personaje
@@ -780,7 +783,6 @@ export default {
       var temporal = [];
       Object.keys(this.charToEdit.unitTypes).forEach(obj => {
         let name = this.charToEdit.unitTypes[obj];
-        console.log("roleando "+name+". para "+tipo);
         if(name != tipo) {
           temporal.push(name);
         }
@@ -928,6 +930,10 @@ export default {
     this.busquedaClase = this.char.clase.toUpperCase();
     if(this.charToEdit.inventario==null)
       this.charToEdit.inventario=[];
+    if(this.charToEdit.talentos==null)
+      this.charToEdit.talentos=[];
+    if(this.charToEdit.capacidades==null)
+      this.charToEdit.capacidades=[];
   }
 }
 </script>

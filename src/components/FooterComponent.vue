@@ -22,7 +22,6 @@ export default {
     height: 30px;
     width: 30px;
     padding: 10px;
-    padding-left: 0;
   }
   #main-footer {
     position: absolute;

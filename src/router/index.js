@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import IndexView from '../views/IndexView.vue'
 import LoginView from '../views/LoginView.vue'
 import HomeView from '../views/HomeView.vue'
+import CharacterView from '../views/CharacterView.vue'
 import DefaultView from '../views/DefaultView.vue'
 import TestingCssView from '../views/TestingCssView.vue'
 
@@ -25,6 +26,12 @@ const routes = [
     path: '/g/:gameid',
     name: 'Home',
     component: HomeView,
+    meta: {requiresAuth:true}
+  },
+  {
+    path: '/g/:gameid/c/:characterid',
+    name: 'Character',
+    component: CharacterView,
     meta: {requiresAuth:true}
   },
   {

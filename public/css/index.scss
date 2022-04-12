@@ -7,6 +7,7 @@ body #app #index {
     align-items: center;
     font-family: 'Acme', sans-serif;
     position: relative;
+    min-height: 100vh;
 
     @media(max-width: 900px) {
         img#background-dice {
@@ -94,12 +95,12 @@ body #app #index {
     }
     main button {
         width: 65%;
-        margin: 30px auto 30px auto;
+        margin: 15px auto 15px auto;
         background: rgb(78, 78, 78);
         border-radius: 4px;
         color: rgb(32, 32, 32);
-        line-height: 3em;
-        font-size: 1.8em;
+        line-height: 2.5em;
+        font-size: 1.7em;
         font-weight: bold;
     }
     main button:hover, main button:focus {

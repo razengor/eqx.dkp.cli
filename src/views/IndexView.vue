@@ -6,15 +6,21 @@
 
     <main>
       <span>- PARTIDAS -</span>
-      <button v-for="partida in games" :key="partida.id" :game="partida"
+      <button v-for="partida in games" :key="partida.id"
        @click="goTo(partida.id)">
         {{partida.name}}
       </button>
+
+      <button v-for="character in characters" :key="character.id"
+       @click="goToCharacter(character.gameId,character.cId)">
+        {{character.gameName + ' / ' + character.nombre}}
+      </button>
+      
       <!-- Add new game button -->
       <input class="add-new-game" type="text" v-model="newGameName" placeholder="Nombre de la Partida nueva" v-show="isCreatingNewGame">
       <button class="add-new-game" @click="createNewGame">Crear nueva Partida</button>
     </main>
-  
+
     <Footer/>
   </div>
 </template>
@@ -30,8 +36,7 @@ export default {
   name: 'IndexView',
   components: {
     "Header": Header,
-    "Footer": Footer,
-    //"partida": Partida
+    "Footer": Footer
   },
   data: function() {
     return {
@@ -40,10 +45,11 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['getGames']),
+    ...mapActions(['getGames','getUserSesion']),
     createNewGame() {
       if(this.isCreatingNewGame) {
         //TODO: Ejecuta función crear nueva partida de store/index.js y vuelve a cargar getGames para remontar los componentes
+        this.getGames();
       } else {
         this.newGameName = "";
         this.isCreatingNewGame = true;
@@ -51,52 +57,21 @@ export default {
     },
     goTo(gameId) {
       router.push('/g/'+gameId);
+    },
+    goToCharacter(gameId, cId) {
+      router.push('/g/'+gameId+'/c/'+cId);
     }
   },
   computed: {
-    ...mapState(['games','users']),
+    ...mapState(['games','user','users','characters']),
+    
   },
   mounted() {
-    this.getGames()
+    if(this.user=="")
+    this.getUserSesion();
   }
 }
 </script>
 
 <style scoped>
-/*#index {
-  height: 100%;
-  width: 100%;
-  display: grid;
-}
-#index-body {
-  padding-top: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#games {
-  width: 45%;
-  max-width: 800px;
-  background-color: rgb(88, 88, 88);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  padding: 15px 0;
-}
-.partida {
-  width: 80%;
-  background-color: rgb(53, 53, 53);
-  border-radius: 5px;
-
-  color: rgb(228, 228, 228);
-  padding: 15px;
-  margin: 10px 0;
-
-  font-size: 1.5em;
-  font-weight: bold;
-
-  cursor: pointer;
-}*/
 </style>

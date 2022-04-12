@@ -7,7 +7,7 @@
     <window-char    v-if="games[0]" v-show="selected=='char'" :game="game" @editChar="openCharEditWindow" />
     <window-comb    v-if="games[0]" v-show="selected=='comb'" />
 
-    <edit-char-window v-if="editingChar" :char="charToEdit" :charToEditId="charToEditId" :game="game" :info="info"
+    <edit-char-window v-if="editingChar" :char="charToEdit" :charToEditId="charToEditId" :info="info"
      @closeChar="closeCharWindow" @saveChar="saveCharToEdit" @deleteChar="deleteChar" />
 
     <div class="loading-screen" v-if="!games[0]">
@@ -54,7 +54,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['getGames']),
+    ...mapActions(['getGames','getUserSesion']),
     getGame(gameId) {
       //console.log("getGame");
       var result;
@@ -97,12 +97,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(['games']),
-    ...mapState(['users']),
-    ...mapState(['info'])
+    ...mapState(['games','users','info','user'])
   },
   mounted() {
-    this.loaded=this.getGames()
+    
+    this.loaded = this.getUserSesion().uid!=null ? true : false;
     this.gameid = this.$route.params.gameid
   }
 }
