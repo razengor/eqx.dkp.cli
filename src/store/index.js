@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 import router from '../router/index'
 
 import app from '../firebase'
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, push, set, child } from "firebase/database";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 
 
@@ -183,6 +183,114 @@ export default createStore({
         });
       } else {
         console.error("NO TENEMOS USUARIO AL CARGAR PARTIDAS");
+      }
+    },
+    createGame({ dispatch },gameName) {
+      if(this.state.user!="") {
+        const newGameKey = push(child(ref(database), 'games')).key;
+        var newGame = {
+          name: gameName,
+          characters: [],
+          date: '01/01/2022',
+          lastDate: '01/01/2022',
+          owner: this.state.user.uid,
+          invitedPlayers: [],
+          players: [],
+          version: "1.0"
+        };
+        set(ref(database, "games/"+newGameKey), newGame);
+        dispatch('getGames');
+      }
+    },
+    createChar({ dispatch },gameId) {
+      if(this.state.user!="" && gameId) {
+        const newCharKey = push(child(ref(database), 'games/'+gameId+'/characters')).key;
+        var newChar = {
+          nombre: "DEFAULT",
+          advanced: false,
+          altura: "0",
+          edad: "0",
+          elemento: "0",
+          grupo: "General",
+          clase: "default",
+          iniciativa: "0",
+          movilidad: "0",
+          nivel: "1",
+          peso: "0",
+          player: "",
+          raza: "HUMANO",
+          vision: "0",
+          stats: {
+            "vida": 0,
+            "mana": 0,
+            "energia": 0
+          },
+          currentStats: {
+            "vida": 0,
+            "mana": 0,
+            "energia": 0
+          },
+          atributos: {
+            "agilidad": 0,
+            "astucia": 0,
+            "destreza": 0,
+            "fuerza": 0,
+            "inteliencia": 0,
+            "manipulacion": 0,
+            "resistencia": 0,
+            "sensitividad": 0,
+            "velo": 0
+          },
+          habilidades : {
+            c1 : {
+              "actuar" : "0",
+              "atletismo" : "0",
+              "burocracia" : "0",
+              "equitacion" : "0",
+              "instinto" : "0",
+              "instruir" : "0",
+              "inventiva" : "0",
+              "mineria" : "0",
+              "natacion" : "0",
+              "persuasion" : "0",
+              "pilotar" : "0",
+              "seguridad" : "0",
+              "sociologia" : "0"
+            },
+            c2 : {
+              "arcano" : "0",
+              "armas distancia" : "0",
+              "armas ligeras" : "0",
+              "armas pesadas" : "0",
+              "artes marciales" : "0",
+              "determinacion" : "0",
+              "esquivar" : "0",
+              "lanzamiento" : "0",
+              "presencia" : "0",
+              "prestidigitacion" : "0",
+              "ritual" : "0",
+              "sigilo" : "0",
+              "voluntad" : "0"
+            },
+            c3 : {
+              "alquimia" : "0",
+              "artesania" : "0",
+              "biologia" : "0",
+              "botanica" : "0",
+              "cocina" : "0",
+              "costura" : "0",
+              "entomologia" : "0",
+              "forja" : "0",
+              "ingenieria" : "0",
+              "medicina" : "0",
+              "misticismo" : "0",
+              "pesca" : "0",
+              "quimica" : "0"
+            }
+          }
+        };
+        set(ref(database, 'games/'+gameId+"/characters/"+newCharKey), newChar);
+        dispatch('getGames');
       }
     }
   },

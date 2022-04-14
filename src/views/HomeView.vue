@@ -4,7 +4,7 @@
 
     <window-config  v-if="games[0]" v-show="selected=='conf'" />
     <window-players v-if="games[0]" v-show="selected=='play'" />
-    <window-char    v-if="games[0]" v-show="selected=='char'" :game="game" @editChar="openCharEditWindow" />
+    <window-char    v-if="games[0]" v-show="selected=='char'" :game="game" :gameId="gameid" @editChar="openCharEditWindow" />
     <window-comb    v-if="games[0]" v-show="selected=='comb'" />
 
     <edit-char-window v-if="editingChar" :char="charToEdit" :charToEditId="charToEditId" :info="info"

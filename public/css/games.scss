@@ -418,6 +418,7 @@ body#body.editing-char {
             .raza {
                 width: 150px;
                 font-size: 1.5em;
+                text-transform: uppercase;
             }
             h2, input {
                 margin-right: 20px;
@@ -714,7 +715,7 @@ body#body.editing-char {
             }
             .gcsc-talentos {
                 height: 80%;
-                padding-bottom: 75px;
+                padding-bottom: 0;
                 box-sizing: border-box;
                 .gcsc-talentos-disponibles, .gcsc-talento-seleccionado, .gcsc-talentos-actuales {
                     width: 49%;
