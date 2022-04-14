@@ -91,6 +91,7 @@ export default {
       const db = getDatabase(app);
       set(ref(db, "games/"+this.game.id+"/characters/"+holder.id), holder.charToEdit);
       //this.closeCharWindow();
+      window.alert("¡Se han guardado los datos!");
     },
     deleteChar() {
       window.alert("La función de eliminado aun está en proceso. Si quiere eliminar información contacte con el administrador...");
