@@ -16,16 +16,22 @@
           <div class="gcs-sub-info">
             <div>
               <h3 class="edad">EDAD</h3>
-              <h3 class="altura">ALTURA</h3>
-              <h3 class="peso">PESO</h3>
-              <h3 class="elemento">ELEMENTO</h3>
-              <h3 class="grupo">GRUPO</h3>
+              <input class="edad" type="text" name="edad" v-model="charToEdit.edad">
             </div>
             <div>
-              <input class="edad" type="text" name="edad" v-model="charToEdit.edad">
-              <input type="text" name="altura" v-model="charToEdit.altura">
+              <h3 class="altura">ALTURA</h3>
+              <input class="altura" type="text" name="altura" v-model="charToEdit.altura">
+            </div>
+            <div>
+              <h3 class="peso">PESO</h3>
               <input class="peso" type="text" name="peso" v-model="charToEdit.peso">
+            </div>
+            <div>
+              <h3 class="elemento">ELEMENTO</h3>
               <input class="elemento" type="text" name="elemento" v-model="charToEdit.elemento">
+            </div>
+            <div>
+              <h3 class="grupo">GRUPO</h3>
               <input class="grupo" type="text" name="grupo" v-model="charToEdit.grupo">
             </div>
           </div>
@@ -495,7 +501,7 @@
                       </div>
                     </div>
                     
-                    <div class="t1">CONSUMIBLES</div>
+                    <div class="t1">CONSUMIBLE</div>
                     <div v-for="(item,iName) in info.objetos.consumibles" :key="'io-'+iName" class="selectable"
                      @click="loadObjectPlantilla(item,'consumible')">
                       {{item.nombre.toUpperCase()}}
@@ -504,7 +510,7 @@
               </div>
 
               <div class="nombre-tipo">
-                <input type="text" class="nombre-objeto" v-model="objetoToEdit.nombre">
+                <input type="text" class="nombre-objeto" placeholder="Nombre del objeto" v-model="objetoToEdit.nombre">
                 <div class="caja-tipo">
                   <p>TIPO:</p>
                   <select class="tipo" v-model="objetoToEdit.tipo">
@@ -551,7 +557,7 @@
 
                       <input class="num" v-model="estadisticasToEdit[index].value">
                     </div>
-                    <div class="estadistica">
+                    <div class="estadistica estadistica-select">
                       <select v-model="newEstadisticaName">
                         <option value="daño">daño</option>
                         <option value="armadura">armadura</option>

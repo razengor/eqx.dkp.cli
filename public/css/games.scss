@@ -385,12 +385,14 @@ body#body.editing-char {
     #game-card-sheet-config {
         //padding-right: 20px;
         $this:&;
-        & > div{
+        & > div {
             width: 100%;
             display: flex;
             align-items: center;
         }
         .gcs-nombre-raza {
+            flex-direction: row;
+            flex-wrap: wrap;
             margin-left: -5px;
             .profile-pic {
                 width: 105px;
@@ -429,18 +431,17 @@ body#body.editing-char {
             }
         }
         .gcs-sub-info {
-            padding-top: 20px;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: flex-start;
-            div > * {
-                width: 70px;
-                box-sizing: border-box;
-            }
+            flex-wrap: wrap;
             div {
                 display: flex;
-                flex-direction: row;
-
+                flex-direction: column;
+                width: fit-content;
+                box-sizing: border-box;
+                padding-top: 20px;
+                padding-right: 10px;
                 input {
                     border-radius: 3px;
                     font-size: 1.1em;
@@ -458,10 +459,7 @@ body#body.editing-char {
                 }
                 h3 {
                     font-size: 1em;
-                    margin: 0;
-                }
-                h3, input {
-                    margin-right: 10px;
+                    margin: 0 auto;
                 }
             }
         }
@@ -1643,7 +1641,7 @@ body#body.editing-char {
                 justify-content: center;
                 align-items: center;
                 box-sizing: border-box;
-                padding: 0 50px;
+                padding: 0 20px;
                 font-size: 1em;
                 div {
                     width: 30%;
@@ -1672,14 +1670,16 @@ body#body.editing-char {
         }
     }
 }
+
 // esto se ve bien entre 950px y 1560px de anchura
 @media (max-width: 1560px) {
     #game-card-sheet {
         overflow: auto;
         #gcs-capa {
-            display: grid;
-            grid-template-columns: auto;
-            grid-template-rows: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
+            //grid-template-columns: auto;
+            //grid-template-rows: 1fr 1fr;
             height: fit-content;
             #game-card-sheet-config {
                 padding-bottom: 20px;
@@ -1691,15 +1691,6 @@ body#body.editing-char {
                 border-left: none;
                 border-top: 1px solid rgb(145, 145, 145);
                 padding-top: 20px;
-                /*#game-card-sheet-ficha {
-                    .abil {
-                        div {
-                            div:nth-child(odd) {
-                                border-bottom: 1px dashed rgb(19, 19, 19);
-                            }
-                        }
-                    }
-                }*/
             }
         }
     }
@@ -1716,22 +1707,8 @@ body#body.editing-char {
 
 @media (max-width: 950px) {
     #game-card-sheet {
-        //overflow: auto;
         #gcs-capa {
-            /*display: grid;
-            grid-template-columns: auto;
-            grid-template-rows: 1fr 1fr;
-            height: fit-content;*/
-            #game-card-sheet-config {
-                //padding-bottom: 20px;
-                #gcs-delete {
-                    //bottom: 30px;
-                }
-            }
             #game-card-sheet-edit {
-                /*border-left: none;
-                border-top: 1px solid rgb(145, 145, 145);
-                padding-top: 20px;*/
                 #game-card-sheet-ficha {
                     .abil {
                         padding: 0;
@@ -1752,6 +1729,7 @@ body#body.editing-char {
     }
 }
 // Movemos los botones de guardar y cerrar para que no pisen nombre y raza
+// y retocamos la estructura de los campos de la ficha
 @media (max-width: 835px) {
     #game-card-sheet {
         #gcs-capa {
@@ -1765,6 +1743,370 @@ body#body.editing-char {
                     top: auto;
                     bottom: 30px;
                     right: 75px;
+                }
+            }
+            #game-card-sheet-edit {
+                #game-card-sheet-ficha {
+                    .stats {
+                        padding: 0;
+                        div {
+                            width: 33%;
+                            padding-top: 5px;
+                            padding-bottom: 5px;
+                            p {
+                                margin: auto 0;
+                            }
+                        }
+                    }
+                    .attr {
+                        padding: 0;
+                        height: 105px;
+                        div {
+                            width: 33%;
+                            padding: 5px 5px;
+                            height: auto;
+                            p {
+                                margin: auto 0;
+                            }
+                        }
+                    }
+                }
+                #game-card-sheet-objects {
+                    padding-top: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    .gcso-inventario-equipo, .gcso-edicion {
+                        width: 100%;
+                    }
+                    .gcso-inventario-equipo {
+                        padding-bottom: 20px;
+                    }
+                    .gcso-edicion {
+                        padding-top: 8px;
+                        border-left: none;
+                        border-top: 1px solid gray;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Reestructuramos los elementos de la mayoría de ventanas para que sea todo vertical
+@media (max-width: 710px) {
+    body div#app div#home .info-header {
+        padding-left: 0;
+        padding-right: 0;
+        .header-tabs {
+            margin-left: 6px;
+        }
+    }
+    #game-card-sheet {
+        #gcs-capa {
+            #game-card-sheet-config {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                padding-bottom: 105px;
+                font-size: 0.9em;
+
+                .gcs-nombre-raza {
+                    display: flex;
+                    flex-direction: column;
+                    margin-left: 0;
+                    //box-sizing: border-box;
+                    .profile-pic, .nombre, #gcs-editar-raza {
+                        margin: 0 auto;
+                    }
+                    .nombre, #gcs-editar-raza {
+                        margin-top: 8px;
+                    }
+                    .nombre {
+                        max-width: 370px;
+                        width: 100%;
+                    }
+                }
+                .gcs-sub-info {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+                #gcs-editar-clase, #gcs-editar-magias, #gcs-editar-tipos, #gcs-editar-roles, .gcs-especializaciones {
+                    margin: 10px auto 0 auto;
+                    width: fit-content;
+                }
+                .gcs-stats {
+                    margin-top: 10px;
+                    padding-top: 0;
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+            #game-card-sheet-edit {
+                font-size: 0.9em;
+                #game-card-sheet-ficha {
+                    .stats {
+                        div {
+                            font-size: 0.9em;
+                        }
+                    }
+                    .attr {
+                        div {
+                            font-size: 0.9em;
+                        }
+                    }
+                    .abil {
+                        flex-wrap: wrap;
+                        .c1, .c2, .c3 {
+                            font-size: 1em;
+                            min-width: 180px;
+                        }
+                    }
+                }
+                #game-card-sheet-class {
+                    height: fit-content;
+                    $this: &;
+                    & > div {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+
+                        $this: &;
+                        & > div {
+                            width: 100%;
+                        }
+                    }
+                    .gcsc-talentos, .gcsc-clase-descripcion {
+                        height: fit-content;
+                    }
+                    .gcsc-clase-descripcion {
+                        max-height: none;
+                        .gcsc-clase, .gcsc-descripcion {
+                            margin-top: 15px;
+                            height: fit-content;
+                        }
+                        .gcsc-descripcion {
+                            margin: 0;
+                            padding-top: 15px;
+                            /*.content {
+                                p {
+                                    margin: 0;
+                                }
+                            }*/
+                        }
+                    }
+                    .gcsc-talentos {
+                        margin-top: 10px;
+                        .gcsc-talento-seleccionado, .gcsc-talentos-actuales {
+                            margin-top: 15px;
+                        }
+                        .gcsc-talentos-disponibles {
+                            padding: 0;
+                            .content {
+                                min-height: 180px;
+                            }
+                        }
+                        .gcsc-talentos-actuales {
+                            .content {
+                                margin-top: 15px;
+                                max-height: 180px;
+                            }
+                        }
+                    }
+                }
+                #game-card-sheet-icons {
+                    .gcsi-tipos, .gcsi-roles {
+                        height: fit-content;
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        margin-top: 10px;
+                        h2 {
+                            width: 100%;
+                            margin-bottom: 15px;
+                        }
+                    }
+                    .gcsi-tipos > div, .gcsi-roles > div {
+                        float: none;
+                        min-height: none;
+                        width: 50%;
+                    }
+                    .gcsi-tipos {
+
+                        padding-bottom: 10px;
+                        .gcsi-tipos-disponibles {
+                            .tipos-disponibles {
+                                font-size: 1em;
+                            }
+                        }
+                    }
+                    .gcsi-botones {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 630px) {
+    #game-card-sheet {
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 0;
+        #gcs-capa {
+            padding: 15px 5px 15px 5px;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+            #game-card-sheet-edit {
+                padding-bottom: 8px;
+
+                #game-card-sheet-raza {
+                    .gcsc-raza-capacidades-descripcion-pasivas {
+                        .gcsr-raza-capacidades, .gcsr-descripcion-pasivas {
+                            width: 100%;
+                        }
+                        .gcsr-raza-capacidades {
+                            .gcsr-capacidades {
+                                margin-top: 15px;
+                                padding-top: 0;
+                                .content {
+                                    margin-top: 10px;
+                                    max-height: 180px;
+                                }
+                            }
+                        }
+                        .gcsr-descripcion-pasivas {
+                            margin-top: 10px;
+                        }
+                    }
+                }
+                #game-card-sheet-ficha {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    $this:&;
+                    & > * {
+                        width: 100%;
+                    }
+                    .stats {
+                        flex-direction: column;
+                        justify-content: center;
+                        width: 50%;
+                        min-width: 150px;
+                        max-width: 180px;
+                        div {
+                            width: 100%;
+                            justify-content: space-around;
+                        }
+                    }
+                    .stats:nth-child(3) {
+                        margin-left: 10px;
+                    }
+                    .attr {
+                        height: fit-content;
+                        flex-direction: row;
+                        justify-content: center;
+                        div {
+                            width: 51%;
+                            margin: 0 auto;
+                        }
+                    }
+                    .abil {
+                        flex-direction: column;
+                        .c1, .c2, .c3 {
+                            width: 100%;
+                            max-width: 400px;
+                            margin: 0 auto;
+                        }
+                        .c2, .c3 {
+                            margin-top: 20px;
+                            border-top: 1px solid grey;
+                        }
+                    }
+                }
+                #game-card-sheet-objects {
+                    font-size: 0.9em;
+                    .gcso-edicion {
+                        display: flex;
+                        flex-direction: column;
+                        //justify-content: center;
+                        .lista-search {
+                            display: none;
+                            .search {
+                                width: 95%;
+                            }
+                            .lista-objetos {
+                                .t1 {
+                                    font-size: 1em;
+                                }
+                            }
+                        }
+                        .nombre-tipo {
+                            width: 100%;
+                            min-height: 280px;
+                            height: fit-content;
+                            .nombre-objeto {
+                                width: 95%;
+                                max-width: 220px;
+                                box-sizing: border-box;
+                            }
+                            .caja-tipo {
+                                display: flex;
+                                flex-direction: column;
+                            }
+                            .estadisticas {
+                                .content {
+                                    display: flex;
+                                    flex-direction: row;
+                                    flex-wrap: wrap;
+                                    justify-content: center;
+                                    .estadistica {
+                                        width: 50%;
+                                    }
+                                    .estadistica-select {
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                        }
+                        .descripcion-caracteristicas {
+                            margin-bottom: 10px;
+                        }
+                        .peso {
+                            position: relative;
+                            margin: 0 auto;
+                            right: 0;
+                            bottom: 0;
+                            font-size: 1.2em;
+                        }
+                        .add-object {
+                            margin: 10px auto 0 auto;
+                            width: fit-content;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    #game-card-sheet {
+        #gcs-capa {
+            #game-card-sheet-edit {
+                #game-card-sheet-ficha {
+                    .stats:nth-child(3) {
+                        margin-left: 0px;
+                    }
+                    .attr {
+                        div {
+                            width: 60%;
+                        }
+                    }
                 }
             }
         }
