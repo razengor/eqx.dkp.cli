@@ -5,7 +5,6 @@ body div#app {
         display: grid;
         grid-template-rows: 166px 1fr;
         background-image: url("/assets/img/bg-white.jpg");
-        //background: rgba(223, 223, 223, 0.164);
     }
     @media (max-height: 500px) {
         div#home {
@@ -15,7 +14,6 @@ body div#app {
 }
 body div#app div#home {
     flex-wrap: wrap;
-    //display: flex;
 
     .info-header {
         display: flex;
@@ -24,7 +22,6 @@ body div#app div#home {
         width: 100%;
         box-sizing: border-box;
         max-height: 166px;
-        //height: 205px;
         padding: 10px 14px 0 14px;
         h1 {
             padding: 10px 0 0 0;
@@ -43,7 +40,6 @@ body div#app div#home {
             margin-left: 15px;
             display: flex;
             flex-direction: row;
-            //justify-content: bottom;
             align-items: flex-end;
             .tab {
                 padding: 11px 26px 5px 26px;
@@ -75,23 +71,18 @@ body div#app div#home {
             }
             #tab-conf {
                 z-index: 4;
-                //background-color: rgb(131, 131, 131);
                 background-image: url("/assets/img/bg-gray.jpg");
-                //background-position: center;
             }
             #tab-play {
                 z-index: 3;
-                //background-color: rgb(31, 176, 233);
                 background-image: url("/assets/img/bg-blue.jpg");
             }
             #tab-char {
                 z-index: 2;
-                //background-color: rgb(31, 176, 233);
                 background-image: url("/assets/img/bg-green.jpg");
             }
             #tab-comb {
                 z-index: 1;
-                //background-color: rgb(255, 39, 39);
                 background-image: url("/assets/img/bg-red.jpg");
             }
         }
@@ -107,13 +98,10 @@ body div#app div#home {
         display: grid;
     }
     .window {
-        //height: 100%;
         border-top: 1px solid rgb(231, 231, 231);
         width: 100%;
         padding: 0 20px;
         box-sizing: border-box;
-        //display: grid;
-        //grid-template-rows: 80px 1fr 80px;
         
         h3 {
             text-align: center;
@@ -136,16 +124,7 @@ body div#app div#home {
             }
         }
     }
-    /*.window-char {
-        border-top: 1px solid rgb(231, 231, 231);
-        width: 100%;
-        padding: 0 20px 40px 20px;
-        box-sizing: border-box;
-        //display: grid;
-        grid-template-rows: 80px 1fr 80px;
-    }*/
     #window-conf {
-        //background-color: rgb(131, 131, 131);
         background-image: url("/assets/img/bg-gray.jpg");
         div {
             width: min-content;
@@ -155,11 +134,9 @@ body div#app div#home {
         background-image: url("/assets/img/bg-blue.jpg");
     }
     #window-char {
-        //background-color: rgb(31, 176, 233);
         background-image: url("/assets/img/bg-green.jpg");
     }
     #window-comb {
-        //background-color: rgb(255, 39, 39);
         background-image: url("/assets/img/bg-red.jpg");
     }
     .window-box {
@@ -223,9 +200,6 @@ body div#app div#home {
                 font-family: 'Fira Sans', sans-serif;
             }
         }
-        /*#players-active {
-            
-        }*/
     }
     .char-box {
         display: flex;
@@ -312,7 +286,7 @@ body#body.editing-char {
     justify-content: center;
     letter-spacing: 1px;
     width: 100vw;
-    padding: 7vh 4vw 5.5vh 4vw;
+    padding: 7vh 10px 10px 10px;
     box-sizing: border-box;
     #gcs-capa {
         background-image: linear-gradient(rgb(169, 169, 169), rgb(179, 179, 179), rgb(191, 191, 191), rgb(227, 227, 227));
@@ -320,6 +294,7 @@ body#body.editing-char {
         box-shadow: inset 0 0 18px 8px rgb(70, 70, 70);
         width: 100%;
         height: 100%;
+        box-sizing: border-box;
         padding: 15px 20px 15px 25px;
         margin: auto;
         text-align: center;
@@ -408,7 +383,7 @@ body#body.editing-char {
         }
     }
     #game-card-sheet-config {
-        padding-right: 20px;
+        //padding-right: 20px;
         $this:&;
         & > div{
             width: 100%;
@@ -421,7 +396,7 @@ body#body.editing-char {
                 width: 105px;
                 height: 105px;
                 clip-path: circle(50% at 50% 50%);
-                margin-right: 30px;
+                margin-right: 12px;
                 background-color: rgb(140, 140, 140);
                 img {
                     width: 95px;
@@ -450,7 +425,7 @@ body#body.editing-char {
                 text-transform: uppercase;
             }
             h2, input {
-                margin-right: 20px;
+                margin-right: 10px;
             }
         }
         .gcs-sub-info {
@@ -1683,11 +1658,113 @@ body#body.editing-char {
                         font-family: 'Fira Sans', sans-serif;
                         font-weight: bold;
                         color: rgb(27, 27, 27);
+                        border-bottom: 1px dotted rgb(19, 19, 19);
                         p {
                             font-size: 0.9em;
                             margin: 7px 0;
                         }
                     }
+                    div:nth-child(odd) {
+                        border-bottom: 1px dashed rgb(19, 19, 19);
+                    }
+                }
+            }
+        }
+    }
+}
+// esto se ve bien entre 950px y 1560px de anchura
+@media (max-width: 1560px) {
+    #game-card-sheet {
+        overflow: auto;
+        #gcs-capa {
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: 1fr 1fr;
+            height: fit-content;
+            #game-card-sheet-config {
+                padding-bottom: 20px;
+                #gcs-delete {
+                    bottom: 30px;
+                }
+            }
+            #game-card-sheet-edit {
+                border-left: none;
+                border-top: 1px solid rgb(145, 145, 145);
+                padding-top: 20px;
+                /*#game-card-sheet-ficha {
+                    .abil {
+                        div {
+                            div:nth-child(odd) {
+                                border-bottom: 1px dashed rgb(19, 19, 19);
+                            }
+                        }
+                    }
+                }*/
+            }
+        }
+    }
+    #game-card-sheet.empty-edit {
+        #gcs-capa {
+            grid-template-columns: auto;
+            grid-template-rows: auto;
+            #game-card-sheet-edit {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (max-width: 950px) {
+    #game-card-sheet {
+        //overflow: auto;
+        #gcs-capa {
+            /*display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: 1fr 1fr;
+            height: fit-content;*/
+            #game-card-sheet-config {
+                //padding-bottom: 20px;
+                #gcs-delete {
+                    //bottom: 30px;
+                }
+            }
+            #game-card-sheet-edit {
+                /*border-left: none;
+                border-top: 1px solid rgb(145, 145, 145);
+                padding-top: 20px;*/
+                #game-card-sheet-ficha {
+                    .abil {
+                        padding: 0;
+                        .c1, .c2, .c3 {
+                            width: 33%;
+                            //padding: 0 5px;
+                            font-size: 0.9em;
+                            div {
+                                p {
+                                    font-size: 0.8em;;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+// Movemos los botones de guardar y cerrar para que no pisen nombre y raza
+@media (max-width: 835px) {
+    #game-card-sheet {
+        #gcs-capa {
+            #game-card-sheet-config {
+                #gcs-save {
+                    top: auto;
+                    bottom: 30px;
+                    right: 140px;
+                }
+                #gcs-close {
+                    top: auto;
+                    bottom: 30px;
+                    right: 75px;
                 }
             }
         }

@@ -1,5 +1,5 @@
 <template>
-    <div id="game-card-sheet" class="">
+    <div id="game-card-sheet" :class="editWindow==''?'empty-edit':''">
       <div id="gcs-capa">
         <div id="game-card-sheet-config" class="edit-screen">
           <div class="gcs-nombre-raza">
@@ -665,7 +665,11 @@ export default {
     },
     // Abrimos o cerramos una ventana de edición según el valor pasado
     openVentanaEdicion(ventana) {
-      this.editWindow = ventana;
+      if(this.editWindow == ventana) {
+        this.editWindow = '';
+      } else {
+        this.editWindow = ventana;
+      }
     },
     // Recogemos las capacidades raciales en una función para tratar con los valores null/undefined
     getCapacidades() {
