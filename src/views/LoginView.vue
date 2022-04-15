@@ -7,7 +7,7 @@
               <h2>Welcome</h2>
           </header>
           <form method="POST" action="auth" @submit.prevent="signIn">
-              <input type="text" name="username" placeholder="E-mail..." required v-model="email"/>
+              <input type="email" name="email" placeholder="E-mail..." required v-model="email"/>
               <input type="password" name="password" placeholder="Password..." required v-model="password"/>
               <input type="submit" name="submit" value="Log in" />
           </form>

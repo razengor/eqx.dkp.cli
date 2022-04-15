@@ -1,5 +1,5 @@
 .char-card {
-    padding: 25px 25px;
+    padding: 25px 15px;
     filter: drop-shadow(-1px 6px 9px rgb(0, 0, 0));
     $this:&;
     &:nth-child(even) {
@@ -15,7 +15,7 @@
     .card-shape {
         clip-path: polygon(50% 0%, 100% 16%, 100% 84%, 50% 100%, 0 84%, 0 16%);
         height: 430px;
-        width: 150px;
+        width: 145px;
         //background-image: url("../img/bg-white.jpg");
         background-size: cover;
         background-position: center;
@@ -178,6 +178,30 @@
                 &.iniciativa::before {
                     color: rgb(36, 36, 36);
                     content: "INI: ";
+                }
+            }
+        }
+    }
+}
+@media (max-width: 900px) {
+    .char-card {
+        padding: 15px 10px;
+        .card-shape {
+            height: 380px;
+            width: 130px;
+            .card-body {
+                .stat-list {
+                    .stat {
+                        margin: 0 5%;
+                    }
+                }
+                .info {
+                    .clase {
+                        font-size: 0.9em;
+                    }
+                    p.nombre {
+                        font-size: 1.1em;
+                    }
                 }
             }
         }

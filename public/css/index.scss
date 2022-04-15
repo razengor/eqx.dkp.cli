@@ -8,13 +8,8 @@ body #app #index {
     font-family: 'Acme', sans-serif;
     position: relative;
     min-height: 100vh;
-
-    @media(max-width: 900px) {
-        img#background-dice {
-            width: 90%;
-            padding-bottom: 15%;
-        }
-    }
+    box-sizing: border-box;
+    padding: 105px 0 50px 0;
     
     button { /*remove default button styling*/
         border: none;
@@ -70,10 +65,28 @@ body #app #index {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-
+        span {
+            margin: 30px auto 10px auto;
+            font-size: 2em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+        button {
+            width: 65%;
+            margin: 15px auto 15px auto;
+            background: rgb(78, 78, 78);
+            border-radius: 4px;
+            color: rgb(32, 32, 32);
+            line-height: 2.5em;
+            font-size: 1.7em;
+            font-weight: bold;
+        }
+        button:hover, main button:focus {
+            background: rgb(44, 44, 44);
+            color: rgb(65, 65, 65);
+        }
         input.add-new-game {
             font-size: 1.2em;
-            margin: 10px auto;
+            margin: 10px auto -20px auto;
             width: 65%;
             text-align: center;
         }
@@ -82,50 +95,25 @@ body #app #index {
             background-color: rgb(191, 191, 191);
             //color: black;
             border-radius: 2px;
-            margin: 50px auto 50px auto;
-            line-height: 2em;
+            margin: 50px auto 40px auto;
+            box-sizing: border-box;
+            padding: 10px 5px;
+            line-height: auto;
         }
-    }
-    @media(max-width: 900px) {
-        main {
-            margin-top: 10%;
-            width: 60%;
-            height: 70%;
-        }
-    }
-    main button {
-        width: 65%;
-        margin: 15px auto 15px auto;
-        background: rgb(78, 78, 78);
-        border-radius: 4px;
-        color: rgb(32, 32, 32);
-        line-height: 2.5em;
-        font-size: 1.7em;
-        font-weight: bold;
-    }
-    main button:hover, main button:focus {
-        background: rgb(44, 44, 44);
-        color: rgb(65, 65, 65);
-    }
-    main span {
-        margin: 30px auto 10px auto;
-        font-size: 2em;
-        color: rgba(255, 255, 255, 0.3);
     }
     @media(max-width: 900px) {
         main {
             width: 75%;
             height: 60%;
-        }
-        main button {
-            width: 70%;
-            margin: 5% auto 5% auto;
-            line-height: 320%;
-            font-size: 120%;
-        }
-        main span {
-            margin: 5% auto 2% auto;
-            font-size: 125%;
+            span {
+                margin: 5% auto 2% auto;
+                font-size: 125%;
+            }
+            button {
+                width: 80%;
+                margin: 5% auto 5% auto;
+                font-size: 105%;
+            }
         }
     }
 }

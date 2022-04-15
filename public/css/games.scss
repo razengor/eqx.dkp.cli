@@ -7,6 +7,11 @@ body div#app {
         background-image: url("/assets/img/bg-white.jpg");
         //background: rgba(223, 223, 223, 0.164);
     }
+    @media (max-height: 500px) {
+        div#home {
+            grid-template-rows: 138px 1fr;
+        }
+    }
 }
 body div#app div#home {
     flex-wrap: wrap;
@@ -91,6 +96,13 @@ body div#app div#home {
             }
         }
     }
+    @media (max-height: 500px) {
+        .info-header {
+            .header-tabs {
+                padding: 15px 0 0 0;
+            }
+        }
+    }
     .shown {
         display: grid;
     }
@@ -98,10 +110,10 @@ body div#app div#home {
         //height: 100%;
         border-top: 1px solid rgb(231, 231, 231);
         width: 100%;
-        padding: 0 20px 40px 20px;
+        padding: 0 20px;
         box-sizing: border-box;
         //display: grid;
-        grid-template-rows: 80px 1fr 80px;
+        //grid-template-rows: 80px 1fr 80px;
         
         h3 {
             text-align: center;
@@ -112,6 +124,16 @@ body div#app div#home {
             font-family: 'Fira Sans', sans-serif;
             border-bottom: 1px solid black;
             font-size: 1.5em;
+        }
+    }
+    @media(max-width: 900px) {
+        .window {
+            padding: 0 0 20px 0;
+            h3 {
+                width: auto;
+                margin: 0 auto;
+                padding: 15px 0 1px 0;
+            }
         }
     }
     /*.window-char {
@@ -214,8 +236,10 @@ body div#app div#home {
             width: 100%;
             margin-top: 15px;
             padding-bottom: 2px;
+            padding-left: 5px;
             border-bottom: 1px solid black;
             font-size: 1.3em;
+            box-sizing: border-box;
             img {
                 margin-left: 4px;
                 width: 18px;
@@ -225,6 +249,11 @@ body div#app div#home {
         .char-group {
             display: flex;
             flex-wrap: wrap;
+        }
+        @media (max-width: 900px) {
+            span {
+                padding-left: 10px;
+            }
         }
     }
     .window-footer {
