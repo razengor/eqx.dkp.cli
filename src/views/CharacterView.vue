@@ -40,6 +40,7 @@ export default {
       set(ref(db, "games/"+this.gameid+"/characters/"+holder.id), holder.charToEdit);
     },
     closeCharWindow() {
+      document.getElementById("body").classList.remove('editing-char');
       router.push('/index');
     },
     deleteChar() {

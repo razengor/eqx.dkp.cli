@@ -145,8 +145,8 @@ export default createStore({
                   x.user = user
                 }
               });*/
-              // Comprobamos si el usuario es jugador, entonces buscamos su personaje en esta partida
-              if(usuarioActual.tipo == "jugador") {
+              // Comprobamos si el usuario tiene algún personaje en esta partida
+              //if(usuarioActual.tipo == "jugador") {
                 Object.keys(x.characters).forEach(cid => {
                   if(x.characters[cid].player == usuarioActual.uid) {
                     //añadimos ese personaje a la lista
@@ -157,7 +157,7 @@ export default createStore({
                     playerCharacter[playerCharacter.length -1].cId = cid;
                   }
                 });
-              }
+              //}
               // SI el usuario es ADMIN, o MASTER/JUGADOR de esta partida, la añadimos a la lista
               if(usuarioActual.tipo == "admin" || (usuarioActual.tipo=="master" && usuarioActual.uid == x.owner)) {
                 list.push(x);
