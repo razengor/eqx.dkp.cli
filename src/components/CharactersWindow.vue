@@ -61,6 +61,11 @@ export default {
       //Esperamos a que se haya generado el temario para clasificar las fichas de personaje por grupo
       this.loadGroups();
     });
+  },
+  watch: {
+    game() {
+      this.loadGroups();
+    }
   }
 }
 </script>

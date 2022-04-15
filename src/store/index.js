@@ -139,25 +139,17 @@ export default createStore({
             Object.keys(data).forEach(gameId => {
               let x = data[gameId];
               x.id = gameId;
-              //find user info and add it to the game
-              /*listUsers.forEach(user => {
-                if(user.id == x.owner) {
-                  x.user = user
-                }
-              });*/
               // Comprobamos si el usuario tiene algún personaje en esta partida
-              //if(usuarioActual.tipo == "jugador") {
-                Object.keys(x.characters).forEach(cid => {
-                  if(x.characters[cid].player == usuarioActual.uid) {
-                    //añadimos ese personaje a la lista
-                    playerCharacter.push(x.characters[cid])
-                    //y le añadimos gameId y gameName a ese character, y el propio id del character
-                    playerCharacter[playerCharacter.length -1].gameId = gameId;
-                    playerCharacter[playerCharacter.length -1].gameName = x.name;
-                    playerCharacter[playerCharacter.length -1].cId = cid;
-                  }
-                });
-              //}
+              Object.keys(x.characters).forEach(cid => {
+                if(x.characters[cid].player == usuarioActual.uid) {
+                  //añadimos ese personaje a la lista
+                  playerCharacter.push(x.characters[cid])
+                  //y le añadimos gameId y gameName a ese character, y el propio id del character
+                  playerCharacter[playerCharacter.length -1].gameId = gameId;
+                  playerCharacter[playerCharacter.length -1].gameName = x.name;
+                  playerCharacter[playerCharacter.length -1].cId = cid;
+                }
+              });
               // SI el usuario es ADMIN, o MASTER/JUGADOR de esta partida, la añadimos a la lista
               if(usuarioActual.tipo == "admin" || (usuarioActual.tipo=="master" && usuarioActual.uid == x.owner)) {
                 list.push(x);

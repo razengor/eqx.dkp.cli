@@ -101,7 +101,6 @@ export default {
     ...mapState(['games','users','info','user'])
   },
   mounted() {
-    
     this.loaded = this.getUserSesion().uid!=null ? true : false;
     this.gameid = this.$route.params.gameid
   }
