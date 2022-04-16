@@ -43,6 +43,34 @@
               {{"MAGIAS & CONJUROS"}}
           </button>
 
+          <div class="gcs-container">
+            <button id="gcs-editar-tipos" class="gcs-tipos-unidad edit-button-box" title="EDITAR TIPOS" @click="openVentanaEdicion('iconos')">
+              <p>TIPOS DE UNIDAD</p>
+
+              <img class="type" v-for="unitType in charToEdit.unitTypes"
+                :key="charToEdit.nombre+'_'+unitType"
+                :src="getBaseUrl()+'/assets/img/ico_'+unitType.toLowerCase()+'.png'"
+                :title="unitType.toUpperCase()" :alt="unitType.toUpperCase()" />
+              <img v-if="charToEdit.unitTypes==null || (charToEdit.unitTypes!=null && charToEdit.unitTypes.length==0)"
+                class="type"
+                src="../assets/img/ico_.png"
+                title="X" alt="X" />
+            </button>
+
+            <button id="gcs-editar-roles" class="gcs-roles-unidad edit-button-box" title="EDITAR ROLES" @click="openVentanaEdicion('iconos')">
+              <p>ROLES</p>
+
+              <img class="role" v-for="unitRole in charToEdit.unitRoles"
+                :key="charToEdit.nombre+'_'+unitRole"
+                :src="getBaseUrl()+'/assets/img/ico_'+unitRole.toLowerCase()+'.png'"
+                :title="unitRole.toUpperCase()" :alt="unitRole.toUpperCase()" />
+              <img v-if="charToEdit.unitRoles==null || (charToEdit.unitRoles!=null && charToEdit.unitRoles.length==0)"
+                class="role"
+                src="../assets/img/ico_.png"
+                title="X" alt="X" />
+            </button>
+          </div>
+
           <div class="gcs-stats">
             <button id="gcs-editar-ficha" class="edit-button-box" title="EDITAR FICHA" @click="openVentanaEdicion('ficha')">
               <p>ESTADÍSTICAS Y FICHA</p>
@@ -52,32 +80,6 @@
               </div>
             </button>
           </div>
-
-          <button id="gcs-editar-tipos" class="gcs-tipos-unidad edit-button-box" title="EDITAR TIPOS" @click="openVentanaEdicion('iconos')">
-            <p>TIPOS DE UNIDAD</p>
-
-            <img class="type" v-for="unitType in charToEdit.unitTypes"
-              :key="charToEdit.nombre+'_'+unitType"
-              :src="getBaseUrl()+'/assets/img/ico_'+unitType.toLowerCase()+'.png'"
-              :title="unitType.toUpperCase()" :alt="unitType.toUpperCase()" />
-            <img v-if="charToEdit.unitTypes==null || (charToEdit.unitTypes!=null && charToEdit.unitTypes.length==0)"
-              class="type"
-              src="../assets/img/ico_.png"
-              title="X" alt="X" />
-          </button>
-
-          <button id="gcs-editar-roles" class="gcs-roles-unidad edit-button-box" title="EDITAR ROLES" @click="openVentanaEdicion('iconos')">
-            <p>ROLES</p>
-
-            <img class="role" v-for="unitRole in charToEdit.unitRoles"
-              :key="charToEdit.nombre+'_'+unitRole"
-              :src="getBaseUrl()+'/assets/img/ico_'+unitRole.toLowerCase()+'.png'"
-              :title="unitRole.toUpperCase()" :alt="unitRole.toUpperCase()" />
-            <img v-if="charToEdit.unitRoles==null || (charToEdit.unitRoles!=null && charToEdit.unitRoles.length==0)"
-              class="role"
-              src="../assets/img/ico_.png"
-              title="X" alt="X" />
-          </button>
 
           <div class="gcs-especializaciones">
             <p>
@@ -125,35 +127,6 @@
         <div id="game-card-sheet-edit">
           <!-- EDICIÓN DE FICHA -->
           <div id="game-card-sheet-ficha" class="container" v-if="editWindow=='ficha'">
-            <h4>STATS</h4>
-            <div class="stats" v-if="charToEdit.stats!=null">
-              <div class="vida">
-                <p>VIDA</p>
-                <input name="vida" v-model="charToEdit.stats.vida">
-              </div>
-              <div class="mana">
-                <p>MANA</p>
-                <input name="mana" v-model="charToEdit.stats.mana">
-              </div>
-              <div class="energia">
-                <p>ENERGÍA</p>
-                <input name="energia" v-model="charToEdit.stats.energia">
-              </div>
-            </div>
-            <div class="stats">
-              <div class="movilidad">
-                <p>MOVILIDAD</p>
-                <input name="movilidad" v-model="charToEdit.movilidad">
-              </div>
-              <div class="iniciativa">
-                <p>INICIATIVA</p>
-                <input name="iniciativa" v-model="charToEdit.iniciativa">
-              </div>
-              <div class="vision">
-                <p>VISIÓN</p>
-                <input name="vision" v-model="charToEdit.vision">
-              </div>
-            </div>
             <h4>ATRIBUTOS</h4>
             <div class="attr">
               <div>
@@ -200,6 +173,35 @@
                   <p>{{ability.toUpperCase()}}</p>
                   <input v-model="charToEdit.habilidades[name][ability]">
                 </div>
+              </div>
+            </div>
+            <h4>ESTADÍSTICAS</h4>
+            <div class="stats" v-if="charToEdit.stats!=null">
+              <div class="vida">
+                <p>VIDA</p>
+                <input name="vida" v-model="charToEdit.stats.vida">
+              </div>
+              <div class="mana">
+                <p>MANA</p>
+                <input name="mana" v-model="charToEdit.stats.mana">
+              </div>
+              <div class="energia">
+                <p>ENERGÍA</p>
+                <input name="energia" v-model="charToEdit.stats.energia">
+              </div>
+            </div>
+            <div class="stats">
+              <div class="movilidad">
+                <p>MOVILIDAD</p>
+                <input name="movilidad" v-model="charToEdit.movilidad">
+              </div>
+              <div class="iniciativa">
+                <p>INICIATIVA</p>
+                <input name="iniciativa" v-model="charToEdit.iniciativa">
+              </div>
+              <div class="vision">
+                <p>VISIÓN</p>
+                <input name="vision" v-model="charToEdit.vision">
               </div>
             </div>
           </div>
@@ -594,10 +596,14 @@
               </div>
 
               <input class="peso" v-model="objetoToEdit.peso">
-
-              <button class="add-object" @click="addObject">
-                {{objectToEditId==null?'CREAR NUEVO OBJETO':'GUARDAR OBJETO EXISTENTE'}}
-              </button>
+              <div class="button-container">
+                <button class="add-object" @click="addObject">
+                  {{objectToEditId==null?'CREAR NUEVO OBJETO':'GUARDAR OBJETO EXISTENTE'}}
+                </button>
+                <button class="remove-object" @click="removeObject" v-if="objectToEditId!=null">
+                  ELIMINAR OBJETO
+                </button>
+              </div>
             </div>
           </div>
 
@@ -899,6 +905,32 @@ export default {
         this.emptyEditingObject();
       } else {
         console.error("EL OBJETO A CREAR/EDITAR REQUIERE DE UN NOMBRE CON UN MÍNIMO DE UN CARACTER");
+      }
+    },
+    // Eliminamos el objeto en edición
+    removeObject() {
+      if(this.objectToEditId != null) {
+        if(confirm("¿Estás seguro de que quieres eliminar el objeto '"+this.objetoToEdit.nombre+"'?")) {
+          var invTemporal = [];
+          Object.keys(this.charToEdit.inventario).forEach(oId => {
+            if(oId != this.objectToEditId) {
+              let o = this.charToEdit.inventario[oId];
+              invTemporal.push({
+                nombre: o.nombre,
+                desc: o.desc?o.desc:"",
+                requerimientos: o.requerimientos?o.requerimientos:"",
+                peso: o.peso?o.peso:0,
+                tipo: o.tipo?o.tipo:"miscelanea",
+                estadisticas: o.estadisticas?o.estadisticas:[]
+              });
+            }
+          });
+          this.charToEdit.inventario = invTemporal;
+          // vaciamos el objeto en edición al final
+          this.emptyEditingObject();
+        }
+      } else {
+        console.error("INTENTANDO ELIMINAR OBJETO SIN ID");
       }
     },
     loadExistingItem(item, itemId) {
