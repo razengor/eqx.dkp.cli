@@ -523,10 +523,11 @@
                     <option value="saber">SABLE</option>
                     <option value="dagger">DAGA</option>
                     <option value="axe">HACHA</option>
+                    <option value="spear">LANZA</option>
+                    <option value="mace">MAZA</option>
+                    <option value="hammer">MARTILLO</option>
                     <option value="fist">PUÑO</option>
                     <option value="glove">GUANTE</option>
-                    <option value="mace">MAZA</option>
-                    <option value="spear">LANZA</option>
                     <option value="katana">KATANA</option>
                     <option value="kunai">KUNAI</option>
                     <option value="boomerang">BUMERANG</option>
@@ -546,6 +547,8 @@
                     <option value="mineral">MINERAL</option>
                     <option value="clothes">ROPA</option>
                     <option value="tool">HERRAMIENTA</option>
+                    <option value="book">LIBRO</option>
+                    <option value="scroll">PERGAMINO</option>
 
                   </select>
                 </div>
@@ -667,6 +670,16 @@ export default {
       var temporal = {charToEdit:this.charToEdit, id:this.charToEditId};
       // actualizamos el capital
       temporal.charToEdit.capital = this.capitalToEdit;
+      //nos aseguramos de que los arrays no estén vacíos
+      if(!temporal.charToEdit.unitRoles)
+        temporal.charToEdit.unitRoles = []
+      if(!temporal.charToEdit.unitTypes)
+        temporal.charToEdit.unitTypes = []
+      if(!temporal.charToEdit.talentos)
+        temporal.charToEdit.talentos = []
+      if(!temporal.charToEdit.capacidades)
+        temporal.charToEdit.capacidades = []
+      
       this.$emit('saveChar', temporal);
     },
     // Abrimos o cerramos una ventana de edición según el valor pasado
@@ -900,6 +913,7 @@ export default {
           estadisticas: item.estadisticas
         }
         this.estadisticasToEdit = [];
+        if(item.estadisticas)
         Object.keys(item.estadisticas).forEach(stat => {
           this.estadisticasToEdit.push({name:stat,value:item.estadisticas[stat]});
         });

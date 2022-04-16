@@ -135,13 +135,15 @@
                         border-bottom: 1px solid rgb(150, 150, 150);
                         border-radius: 4px;
                         font-family: 'Baloo Chettan 2', cursive;
+                        text-align: center;
+                        text-transform: uppercase;
                     }
-                    &.nombre::before {
+                    /*&.nombre::before {
                         content: "- "
                     }
                     &.nombre::after {
                         content: " -"
-                    }
+                    }*/
                 }
                 .role-list {
                     min-height: 30px;
