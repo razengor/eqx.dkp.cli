@@ -30,7 +30,7 @@
               <h3 class="elemento">ELEMENTO</h3>
               <input class="elemento" type="text" name="elemento" v-model="charToEdit.elemento">
             </div>
-            <div>
+            <div v-if="!isPlayer">
               <h3 class="grupo">GRUPO</h3>
               <input class="grupo" type="text" name="grupo" v-model="charToEdit.grupo">
             </div>
@@ -619,7 +619,7 @@
 <script>
 export default {
   name: 'CharacterEditWindow',
-  props: ["char","charToEditId","info"],
+  props: ["char","charToEditId","info","isPlayer"],
   components: {},
   data () {
     return {
