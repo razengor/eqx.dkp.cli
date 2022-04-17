@@ -3,6 +3,9 @@ $button-red: rgb(160, 59, 59);
 $button-red-light: rgb(204, 91, 91);
 $button-green: rgb(64, 160, 64);
 $button-green-light: rgb(104, 195, 101);
+$button-green-2: rgb(107, 187, 107);
+$button-green-light-2: rgb(131, 218, 131);
+
 
 /******** DISEÑO DE WEB-CONTENT *********/
 body div#app {
@@ -1255,10 +1258,17 @@ body#body.editing-char {
                 margin: 0;
             }
             .gcso-inventario-equipo {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                float: left;
                 min-height: 70%;
                 width: 100%;
-                float: left;
-                .gcso-inventario {
+
+                .gcso-inventario, .gcso-equipo, .gcso-transportado {
+                    width: 33%;
+                    //padding: 0 1%;
+                    box-sizing: border-box;
                     .content {
                         box-sizing: border-box;
                         border: 2px solid rgb(130, 35, 35);
@@ -1300,39 +1310,21 @@ body#body.editing-char {
                         }
                     }
                 }
-                .gcso-equipo {
-                    padding-top: 20px;
-                    .content {
-                        box-sizing: border-box;
-                        border: 2px solid rgb(130, 35, 35);
-                        border-radius: 6px;
-                        background-color: rgb(211, 211, 211);
-                        background-image: url("/assets/img/bg-brown-2.jpg");
-                        padding: 10px;
-                        margin: 20px auto 0 auto;
-                        height: 168px;
-                        width: 95%;
-                        overflow-y: scroll;
-                        overflow-x: hidden;
-                        div {
-                            float: left;
-                            margin: 5px;
-                            height: 56px;
-                            width: 56px;
-                            border: 2px solid rgb(143, 35, 35);
-                            border-radius: 9px;
-                            background-color: rgb(183, 183, 183);
-                            background-image: url("/assets/img/bg-light-brown.jpg");
-                            cursor: pointer;
-                        }
-                        div:hover, div.selected:hover {
-                            border: 2px solid rgb(77, 77, 77);
-                            background-color: rgb(206, 206, 206);
-                        }
-                        div.selected {
-                            border: 2px solid rgb(110, 27, 27);
-                            background-color: rgb(183, 183, 183);
-                        }
+                .container {
+                    padding: 15px 0 5px 0;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    .add-new-object {
+                        cursor: pointer;
+                        padding: 4px 8px;
+                        background-color: $button-green-2;
+                        font-family: inherit;
+                        font-size: 1.2em;
+                    }
+                    .add-new-object:hover {
+                        background-color: $button-green-light-2;
                     }
                 }
                 .gcso-oro {
@@ -1340,6 +1332,7 @@ body#body.editing-char {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
+                    width: 100%;
                     .money {
                         display: flex;
                         flex-direction: row;
@@ -1398,15 +1391,16 @@ body#body.editing-char {
                 position: relative;
                 width: 100%;
                 box-sizing: border-box;
-                border-left: 1px solid gray;
                 min-height: 80%;
                 float: left;
                 select, input {
                     font-size: 1.1em;
                     border-radius: 1px;
+                    font-family: inherit;
                 }
                 .lista-search {
                     width: 50%;
+                    max-width: 375px;
                     float: left;
                     .search {
                         margin-top: 20px;
@@ -1476,7 +1470,12 @@ body#body.editing-char {
                     .nombre-objeto {
                         margin-top: 20px;
                     }
-                    .caja-tipo {
+                    .cantidad-objeto {
+                        margin-left: 8px;
+                        width: 40px;
+                        text-align: center;
+                    }
+                    .caja-tipo, .caja-inventory-type {
                         width: 100%;
                         margin-top: 10px;
                         display: flex;
@@ -1487,7 +1486,7 @@ body#body.editing-char {
                             margin: 0 8px 0 0;
                             font-size: 1.1em;
                         }
-                        .tipo {
+                        .tipo, .inventory-type {
                             margin: 0;
                             cursor: pointer;
                         }
@@ -1549,6 +1548,7 @@ body#body.editing-char {
                         margin: 12px 0 0 0;
                     }
                     textarea {
+                        height: 120px;
                         width: 95%;
                         margin: 10px auto 0 auto;
                         font-family: 'Fira Sans', sans-serif;
@@ -1561,6 +1561,7 @@ body#body.editing-char {
                     flex-direction: column;
                     justify-content: center;
                     .add-object, .remove-object {
+                        font-family: inherit;
                         margin: 0 auto;
                         padding: 4px 8px;
                         cursor: pointer;
@@ -2090,7 +2091,7 @@ body#body.editing-char {
                                 max-width: 220px;
                                 box-sizing: border-box;
                             }
-                            .caja-tipo {
+                            .caja-tipo, .caja-inventory-type {
                                 display: flex;
                                 flex-direction: column;
                             }
@@ -2141,6 +2142,20 @@ body#body.editing-char {
                     .attr {
                         div {
                             width: 60%;
+                        }
+                    }
+                }
+                #game-card-sheet-objects {
+                    .gcso-inventario-equipo {
+                        flex-direction: column;
+                        .gcso-inventario, .gcso-transportado, .gcso-equipo {
+                            width: 100%;
+                            min-height: 398px;
+                            height: fit-content;
+                            margin-top: 15px;
+                            .content {
+                                margin-top: 10px;
+                            }
                         }
                     }
                 }

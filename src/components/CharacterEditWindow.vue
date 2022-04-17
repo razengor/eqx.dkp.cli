@@ -464,19 +464,32 @@
               <div class="gcso-inventario">
                 <h2>INVENTARIO</h2>
                 <div class="content">
-                  <div v-for="(item,itemId) in charToEdit.inventario" :key="'item-'+itemId" :title="item.nombre"
-                   :class="itemId == this.objectToEditId ? 'selected':''" @click="loadExistingItem(item,itemId)">
-                    <img :src="getBaseUrl()+'/assets/img/ico_'+item.tipo+'.png'" />
+                  <div v-for="(itemId) in getInventario('inventario')" :key="'item-i-'+itemId" :title="this.charToEdit.inventario[itemId].nombre"
+                   :class="itemId == this.objectToEditId ? 'selected':''" @click="loadExistingItem(this.charToEdit.inventario[itemId],itemId)">
+                    <img :src="getBaseUrl()+'/assets/img/ico_'+this.charToEdit.inventario[itemId].tipo+'.png'" />
                   </div>
                 </div>
               </div>
-              <div class="gcso-equipo" v-if="false">
-                <h2>EQUIPO</h2>
+              <div class="gcso-transportado">
+                <h2>TRANSPORTADO</h2>
                 <div class="content">
-                  <div></div><div class="selected"></div>
-                  <div></div><div></div>
-                  <div></div><div></div>
+                  <div v-for="(itemId) in getInventario('transportado')" :key="'item-i-'+itemId" :title="this.charToEdit.inventario[itemId].nombre"
+                   :class="itemId == this.objectToEditId ? 'selected':''" @click="loadExistingItem(this.charToEdit.inventario[itemId],itemId)">
+                    <img :src="getBaseUrl()+'/assets/img/ico_'+this.charToEdit.inventario[itemId].tipo+'.png'" />
+                  </div>
                 </div>
+              </div>
+              <div class="gcso-equipo">
+                <h2>EQUIPADO</h2>
+                <div class="content">
+                  <div v-for="(itemId) in getInventario('equipado')" :key="'item-i-'+itemId" :title="this.charToEdit.inventario[itemId].nombre"
+                   :class="itemId == this.objectToEditId ? 'selected':''" @click="loadExistingItem(this.charToEdit.inventario[itemId],itemId)">
+                    <img :src="getBaseUrl()+'/assets/img/ico_'+this.charToEdit.inventario[itemId].tipo+'.png'" />
+                  </div>
+                </div>
+              </div>
+              <div class="container">
+                <button class="add-new-object" @click="isEditingObject = true;">AÑADIR OBJETO</button>
               </div>
               <div class="gcso-oro">
                 <h2>CAPITAL</h2>
@@ -490,29 +503,32 @@
 
             <div class="gcso-edicion" v-show="isEditingObject">
               <h2>{{objectToEditId==null?'AÑADIR OBJETO':'EDITAR OBJETO'}}</h2>
-              <div class="lista-search">
+              <div class="lista-search" v-show="objectToEditId==null">
                 <input class="search" placeholder="Buscar por nombre o tipo" v-model="busquedaObjeto">
                 <div class="lista-objetos">
-                  <!-- TODO: generar la lista de las plantillas de objetos para clicar -->
                     <div class="t1">ARSENAL</div>
                     <div v-for="(grupo,gName) in info.objetos.arsenal" :key="'go-'+gName">
                       <div class="t2">{{gName.toUpperCase()}}</div>
                       <div v-for="(item,iName) in grupo" :key="'io-'+iName" class="selectable"
-                       @click="loadObjectPlantilla(item,'equipable')">
+                       @click="loadObjectPlantilla(item,'equipable')"
+                       v-show="(iName.toUpperCase().indexOf(busquedaObjeto.toUpperCase())>-1) ||
+                       (item.nombre.toUpperCase().indexOf(busquedaObjeto.toUpperCase())>-1)">
                         {{item.nombre.toUpperCase()}}
                       </div>
                     </div>
                     
                     <div class="t1">CONSUMIBLE</div>
                     <div v-for="(item,iName) in info.objetos.consumibles" :key="'io-'+iName" class="selectable"
-                     @click="loadObjectPlantilla(item,'consumible')">
+                     @click="loadObjectPlantilla(item,'consumible')"
+                     v-show="(iName.toUpperCase().indexOf(busquedaObjeto.toUpperCase())>-1)">
                       {{item.nombre.toUpperCase()}}
                     </div>
                 </div>
               </div>
 
-              <div class="nombre-tipo">
+              <div class="nombre-tipo" :style="objectToEditId!=null?'width: 100%':''">
                 <input type="text" class="nombre-objeto" placeholder="Nombre del objeto" v-model="objetoToEdit.nombre">
+                <input class="cantidad-objeto" placeholder="Cant." v-model="objetoToEdit.cantidad">
                 <div class="caja-tipo">
                   <p>TIPO:</p>
                   <select class="tipo" v-model="objetoToEdit.tipo">
@@ -554,6 +570,15 @@
 
                   </select>
                 </div>
+                <div class="caja-inventory-type">
+                  <p>UBICACIÓN:</p>
+                  <select class="inventory-type" v-model="objetoToEdit.inventorySide">
+                    <option value="inventario">INVENTARIO</option>
+                    <option value="transportado">TRANSPORTADO</option>
+                    <option value="equipado">EQUIPADO</option>
+
+                  </select>
+                </div>
                 <div class="estadisticas">
                   <p>ESTADÍSTICAS</p>
                   <div class="content">
@@ -591,8 +616,10 @@
               <div class="descripcion-caracteristicas">
                 <p>{{'Descripción & Características'}}</p>
                 <textarea class="descripcion" v-model="objetoToEdit.desc" />
+                <!--
                 <p>Requerimientos</p>
                 <textarea class="requerimientos" v-model="objetoToEdit.requerimientos" />
+                -->
               </div>
 
               <input class="peso" v-model="objetoToEdit.peso">
@@ -609,7 +636,7 @@
           </div>
 
           <!-- Botón de ir atrás -->
-          <button class="go-back" v-if="editWindow!=''" @click="editWindow=''">
+          <button class="go-back" v-if="editWindow!=''" @click="goBack">
             ATRÁS
           </button>
         </div>
@@ -655,10 +682,12 @@ export default {
       // el objeto que está siendo editado, ya sea nuevo o no
       objetoToEdit: {
         nombre: "",
+        cantidad: "0",
         desc: "",
         requerimientos: "",
-        peso: 0,
+        peso: "0",
         tipo: "miscelanea",
+        inventorySide: "inventario",
         estadisticas: []
       },
       // array de las estadisticas a editar de un objeto, separada de "objetoToEdit" por cuestiones a la hora de vaciar arrays
@@ -836,10 +865,12 @@ export default {
     loadObjectPlantilla(item,tipo) {
       this.objectToEditId = null;
       this.objetoToEdit.nombre = item.nombre;
+      this.objetoToEdit.cantidad = 1;
       this.objetoToEdit.desc = item.desc;
       this.objetoToEdit.requerimientos = item.requerimientos;
       this.objetoToEdit.peso = item.peso;
       this.objetoToEdit.tipo = tipo;
+      this.objetoToEdit.inventorySide = "inventario";
       this.objetoToEdit.estadisticas = item.estadisticas;
       this.estadisticasToEdit = [];
       Object.keys(item.estadisticas).forEach(stat => {
@@ -900,10 +931,12 @@ export default {
         }
         this.charToEdit.inventario[num] = {
           nombre: this.objetoToEdit.nombre,
+          cantidad: this.objetoToEdit.cantidad<1?1:this.objetoToEdit.cantidad,
           desc: this.objetoToEdit.desc?this.objetoToEdit.desc:"",
           requerimientos: this.objetoToEdit.requerimientos?this.objetoToEdit.requerimientos:"",
           peso: this.objetoToEdit.peso?this.objetoToEdit.peso:0,
           tipo: this.objetoToEdit.tipo?this.objetoToEdit.tipo:"miscelanea",
+          inventorySide: this.objetoToEdit.inventorySide?this.objetoToEdit.inventorySide:'inventario',
           estadisticas: this.transformEstadisticas(this.estadisticasToEdit)
         };
         this.emptyEditingObject();
@@ -921,10 +954,12 @@ export default {
               let o = this.charToEdit.inventario[oId];
               invTemporal.push({
                 nombre: o.nombre,
+                cantidad: o.cantidad,
                 desc: o.desc?o.desc:"",
                 requerimientos: o.requerimientos?o.requerimientos:"",
                 peso: o.peso?o.peso:0,
                 tipo: o.tipo?o.tipo:"miscelanea",
+                inventorySide: o.inventorySide?o.inventorySide:"inventario",
                 estadisticas: o.estadisticas?o.estadisticas:[]
               });
             }
@@ -943,10 +978,12 @@ export default {
         this.objectToEditId = itemId;
         this.objetoToEdit = {
           nombre: item.nombre,
+          cantidad: item.cantidad?item.cantidad:1,
           desc: item.desc,
           requerimientos: item.requerimientos,
           peso: item.peso,
           tipo: item.tipo,
+          inventorySide: item.inventorySide,
           estadisticas: item.estadisticas
         }
         this.estadisticasToEdit = [];
@@ -963,6 +1000,7 @@ export default {
       this.isEditingObject = false;
       this.objectToEditId = null;
       this.objetoToEdit.nombre = "";
+      this.objetoToEdit.cantidad = 1;
       this.objetoToEdit.desc = "";
       this.objetoToEdit.requerimientos = "";
       this.objetoToEdit.peso = 0;
@@ -1044,6 +1082,26 @@ export default {
             });
         }
       });
+    },
+    getInventario(invSide) {
+      if(!this.charToEdit.inventario)
+        this.charToEdit.inventario = [];
+      var inventoryResult = [];
+      Object.keys(this.charToEdit.inventario).forEach(itemId => {
+        if(!this.charToEdit.inventario[itemId].inventorySide)
+          this.charToEdit.inventario[itemId].inventorySide = "inventario";
+        
+        if(this.charToEdit.inventario[itemId].inventorySide == invSide)
+          inventoryResult.push(itemId);
+      });
+      return inventoryResult;
+    },
+    goBack() {
+      if(this.isEditingObject) {
+        this.emptyEditingObject();
+      } else {
+        this.editWindow = '';
+      }
     }
   },
   created() {},
