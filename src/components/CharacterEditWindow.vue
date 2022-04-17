@@ -398,11 +398,11 @@
               <div class="gcsi-botones">
                 <p>
                   Actualizar según mi clase
-                  <button class="round-button"><img src="../assets/img/ico_refresh.png"/></button>
+                  <button class="round-button" @click="updateTypeByClase"><img src="../assets/img/ico_refresh.png"/></button>
                 </p>
                 <p>
                   Actualizar según mi raza
-                  <button class="round-button"><img src="../assets/img/ico_refresh.png"/></button>
+                  <button class="round-button" @click="updateTypeByRaza"><img src="../assets/img/ico_refresh.png"/></button>
                 </p>
               </div>
 
@@ -442,7 +442,7 @@
               <div class="gcsi-botones">
                 <p>
                   Actualizar según mi clase
-                  <button class="round-button"><img src="../assets/img/ico_refresh.png"/></button>
+                  <button class="round-button" @click="updateRoleByClase"><img src="../assets/img/ico_refresh.png"/></button>
                 </p>
               </div>
 
@@ -972,6 +972,72 @@ export default {
         result[stats[num].name] = stats[num].value;
       });
       return result;
+    },
+    updateTypeByClase() {
+      if(!this.charToEdit.unitTypes)
+        this.charToEdit.unitTypes = []
+      Object.keys(this.info.clases).forEach(claseName => {
+        if(claseName.toLowerCase() == this.charToEdit.clase.toLowerCase()) {
+          if(this.info.clases[claseName].tipos)
+            Object.keys(this.info.clases[claseName].tipos).forEach(tipoName => {
+              var tipoInfo = this.info.clases[claseName].tipos[tipoName];
+              var exists = false;
+              Object.keys(this.charToEdit.unitTypes).forEach(type => {
+                let tipo = this.charToEdit.unitTypes[type];
+                if(tipo.toLowerCase()==tipoInfo.toLowerCase()) {
+                  exists = true;
+                }
+              });
+              if(!exists) {
+                this.charToEdit.unitTypes.push(tipoInfo);
+              }
+            });
+        }
+      });
+    },
+    updateTypeByRaza() {
+      if(!this.charToEdit.unitTypes)
+        this.charToEdit.unitTypes = []
+      Object.keys(this.info.razas).forEach(razaName => {
+        if(razaName.toLowerCase() == this.charToEdit.raza.toLowerCase()) {
+          if(this.info.razas[razaName].tipos)
+            Object.keys(this.info.razas[razaName].tipos).forEach(tipoName => {
+              var tipoInfo = this.info.razas[razaName].tipos[tipoName];
+              var exists = false;
+              Object.keys(this.charToEdit.unitTypes).forEach(type => {
+                let tipo = this.charToEdit.unitTypes[type];
+                if(tipo.toLowerCase()==tipoInfo.toLowerCase()) {
+                  exists = true;
+                }
+              });
+              if(!exists) {
+                this.charToEdit.unitTypes.push(tipoInfo);
+              }
+            });
+        }
+      });
+    },
+    updateRoleByClase() {
+      if(!this.charToEdit.unitRoles)
+        this.charToEdit.unitRoles = []
+      Object.keys(this.info.clases).forEach(claseName => {
+        if(claseName.toLowerCase() == this.charToEdit.clase.toLowerCase()) {
+          if(this.info.clases[claseName].roles)
+            Object.keys(this.info.clases[claseName].roles).forEach(rolName => {
+              var rolInfo = this.info.clases[claseName].roles[rolName];
+              var exists = false;
+              Object.keys(this.charToEdit.unitRoles).forEach(role => {
+                let rol = this.charToEdit.unitRoles[role];
+                if(rol.toLowerCase()==rolInfo.toLowerCase()) {
+                  exists = true;
+                }
+              });
+              if(!exists) {
+                this.charToEdit.unitRoles.push(rolInfo);
+              }
+            });
+        }
+      });
     }
   },
   created() {},
