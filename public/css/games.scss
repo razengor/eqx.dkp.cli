@@ -1,3 +1,9 @@
+// COLOR VARIABLES
+$button-red: rgb(160, 59, 59);
+$button-red-light: rgb(204, 91, 91);
+$button-green: rgb(64, 160, 64);
+$button-green-light: rgb(104, 195, 101);
+
 /******** DISEÑO DE WEB-CONTENT *********/
 body div#app {
     //display: flex;
@@ -1250,7 +1256,7 @@ body#body.editing-char {
             }
             .gcso-inventario-equipo {
                 min-height: 70%;
-                width: 40%;
+                width: 100%;
                 float: left;
                 .gcso-inventario {
                     .content {
@@ -1282,11 +1288,11 @@ body#body.editing-char {
                             }
                         }
                         div:hover, div.selected:hover {
-                            border: 2px solid rgb(77, 77, 77);
+                            border: 2px solid rgb(91, 91, 91);
                             background-color: rgb(206, 206, 206);
                         }
                         div.selected {
-                            border: 2px solid rgb(110, 27, 27);
+                            border: 2px solid rgb(131, 131, 131);
                             background-color: rgb(183, 183, 183);
                         }
                         div:last-child {
@@ -1390,7 +1396,7 @@ body#body.editing-char {
             }
             .gcso-edicion {
                 position: relative;
-                width: 60%;
+                width: 100%;
                 box-sizing: border-box;
                 border-left: 1px solid gray;
                 min-height: 80%;
@@ -1494,6 +1500,16 @@ body#body.editing-char {
                         .content {
                             .estadistica {
                                 padding-top: 10px;
+                                .remove-estadistica {
+                                    cursor: pointer;
+                                    font-weight: bold;
+                                    padding: 0 5px;
+                                    margin-right: 5px;
+                                    background-color: $button-red;
+                                }
+                                .remove-estadistica:hover {
+                                    background-color: $button-red-light;
+                                }
                                 select {
                                     cursor: pointer;
                                 }
@@ -1504,7 +1520,7 @@ body#body.editing-char {
                                 }
                             }
                         }
-                        .add-estadistica {
+                        /*.add-estadistica {
                             margin-top: 10px;
                             padding: 0;
                             height: 36px;
@@ -1521,7 +1537,7 @@ body#body.editing-char {
                             &:hover {
                                 background-color: rgb(131, 218, 131);
                             }
-                        }
+                        }*/
                     }
                 }
                 .descripcion-caracteristicas {

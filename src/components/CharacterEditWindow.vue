@@ -460,12 +460,12 @@
 
           <!-- EDICIÓN DE INVENTARIO Y CAPITAL -->
           <div id="game-card-sheet-objects" class="edit-screen" v-if="editWindow=='inventario'">
-            <div class="gcso-inventario-equipo">
+            <div class="gcso-inventario-equipo" v-show="!isEditingObject">
               <div class="gcso-inventario">
                 <h2>INVENTARIO</h2>
                 <div class="content">
                   <div v-for="(item,itemId) in charToEdit.inventario" :key="'item-'+itemId" :title="item.nombre"
-                   @click="loadExistingItem(item,itemId)">
+                   :class="itemId == this.objectToEditId ? 'selected':''" @click="loadExistingItem(item,itemId)">
                     <img :src="getBaseUrl()+'/assets/img/ico_'+item.tipo+'.png'" />
                   </div>
                 </div>
@@ -488,7 +488,7 @@
               </div>
             </div>
 
-            <div class="gcso-edicion">
+            <div class="gcso-edicion" v-show="isEditingObject">
               <h2>{{objectToEditId==null?'AÑADIR OBJETO':'EDITAR OBJETO'}}</h2>
               <div class="lista-search">
                 <input class="search" placeholder="Buscar por nombre o tipo" v-model="busquedaObjeto">
@@ -558,12 +558,15 @@
                   <p>ESTADÍSTICAS</p>
                   <div class="content">
                     <div v-for="(stat, index) in estadisticasToEdit" :key="'s-'+stat.name+'-'+index" class="estadistica">
+                      <button class="round-button remove-estadistica" @click="newEstadisticaName=stat.name;addNewEstadistica()">-</button>
+
                       <span>{{estadisticasToEdit[index].name}}</span>
 
                       <input class="num" v-model="estadisticasToEdit[index].value">
                     </div>
                     <div class="estadistica estadistica-select">
                       <select v-model="newEstadisticaName">
+                        <option value="">seleccionar estadística</option>
                         <option value="daño">daño</option>
                         <option value="armadura">armadura</option>
                         <option value="vida">vida</option>
@@ -582,9 +585,6 @@
                       </select>
                     </div>
                   </div>
-                  <button class="add-estadistica round-button" @click="addNewEstadistica">
-                    <img src="../assets/img/ico_add.png" />
-                  </button>
                 </div>
               </div>
 
@@ -596,6 +596,7 @@
               </div>
 
               <input class="peso" v-model="objetoToEdit.peso">
+
               <div class="button-container">
                 <button class="add-object" @click="addObject">
                   {{objectToEditId==null?'CREAR NUEVO OBJETO':'GUARDAR OBJETO EXISTENTE'}}
@@ -663,7 +664,9 @@ export default {
       // array de las estadisticas a editar de un objeto, separada de "objetoToEdit" por cuestiones a la hora de vaciar arrays
       estadisticasToEdit: [],
       // valor del select para añadir/eliminar nueva estadistica de un objeto
-      newEstadisticaName: "daño"
+      newEstadisticaName: "",
+      // variable para controlar la visibilidad del modal de edición (o creación) de objeto
+      isEditingObject: false
     }
   },
   methods: {
@@ -845,7 +848,7 @@ export default {
     },
     // Añadimos o eliminamos una estadística nueva al objeto en edición
     addNewEstadistica() {
-      if(null==this.getEstadisticaFromEdit(this.newEstadisticaName)) {
+      if( ( null==this.getEstadisticaFromEdit(this.newEstadisticaName) ) && ( this.newEstadisticaName != "" ) ) {
         this.estadisticasToEdit.push({
           name: this.newEstadisticaName,
           value: 1
@@ -861,6 +864,7 @@ export default {
         });
         this.estadisticasToEdit = newStats;
       }
+      this.newEstadisticaName = "";
       // actualizamos las stats del objeto editado
       this.updateObjectToEditEstadisticas();
     },
@@ -935,6 +939,7 @@ export default {
     },
     loadExistingItem(item, itemId) {
       if(this.objectToEditId != itemId) {
+        this.isEditingObject = true;
         this.objectToEditId = itemId;
         this.objetoToEdit = {
           nombre: item.nombre,
@@ -955,6 +960,7 @@ export default {
       }
     },
     emptyEditingObject() {
+      this.isEditingObject = false;
       this.objectToEditId = null;
       this.objetoToEdit.nombre = "";
       this.objetoToEdit.desc = "";
@@ -1056,6 +1062,11 @@ export default {
       this.charToEdit.talentos=[];
     if(this.charToEdit.capacidades==null)
       this.charToEdit.capacidades=[];
+  },
+  watch: {
+    newEstadisticaName() {
+      this.addNewEstadistica();
+    }
   }
 }
 </script>
