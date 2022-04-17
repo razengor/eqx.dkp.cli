@@ -467,6 +467,10 @@
                   <div v-for="(itemId) in getInventario('inventario')" :key="'item-i-'+itemId" :title="this.charToEdit.inventario[itemId].nombre"
                    :class="itemId == this.objectToEditId ? 'selected':''" @click="loadExistingItem(this.charToEdit.inventario[itemId],itemId)">
                     <img :src="getBaseUrl()+'/assets/img/ico_'+this.charToEdit.inventario[itemId].tipo+'.png'" />
+                    <span class="item-name">{{cutItemName(this.charToEdit.inventario[itemId].nombre)}}</span>
+                    <span class="item-quantity">
+                      {{(this.charToEdit.inventario[itemId].cantidad?this.charToEdit.inventario[itemId].cantidad:'1')}}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -476,6 +480,10 @@
                   <div v-for="(itemId) in getInventario('transportado')" :key="'item-i-'+itemId" :title="this.charToEdit.inventario[itemId].nombre"
                    :class="itemId == this.objectToEditId ? 'selected':''" @click="loadExistingItem(this.charToEdit.inventario[itemId],itemId)">
                     <img :src="getBaseUrl()+'/assets/img/ico_'+this.charToEdit.inventario[itemId].tipo+'.png'" />
+                    <span class="item-name">{{cutItemName(this.charToEdit.inventario[itemId].nombre)}}</span>
+                    <span class="item-quantity">
+                      {{(this.charToEdit.inventario[itemId].cantidad?this.charToEdit.inventario[itemId].cantidad:'1')}}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -485,6 +493,10 @@
                   <div v-for="(itemId) in getInventario('equipado')" :key="'item-i-'+itemId" :title="this.charToEdit.inventario[itemId].nombre"
                    :class="itemId == this.objectToEditId ? 'selected':''" @click="loadExistingItem(this.charToEdit.inventario[itemId],itemId)">
                     <img :src="getBaseUrl()+'/assets/img/ico_'+this.charToEdit.inventario[itemId].tipo+'.png'" />
+                    <span class="item-name">{{cutItemName(this.charToEdit.inventario[itemId].nombre)}}</span>
+                    <span class="item-quantity">
+                      {{(this.charToEdit.inventario[itemId].cantidad?this.charToEdit.inventario[itemId].cantidad:'1')}}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -1095,6 +1107,16 @@ export default {
           inventoryResult.push(itemId);
       });
       return inventoryResult;
+    },
+    cutItemName(fullName) {
+      fullName = fullName + "";
+      console.log("Comprobando texto: "+fullName);
+      console.log("Length: "+fullName.length);
+      if(fullName.length > 9) {
+        return fullName.slice(0,6)+'...';
+      } else {
+        return fullName;
+      }
     },
     goBack() {
       if(this.isEditingObject) {
