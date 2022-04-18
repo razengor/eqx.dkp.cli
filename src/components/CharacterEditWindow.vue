@@ -311,7 +311,7 @@
                      @click="changeTalentoActual(tName,talento,cName)">
                       <b><u>{{tName.toUpperCase() + ':'}}</u></b>
                       <br>
-                      {{talento.desc}}
+                      {{(talento.desc.length>203)?talento.desc.slice(0,200)+'...':talento.desc}}
                     </div>
                   </div>
                 </div>
@@ -325,7 +325,7 @@
                    :class="talentoActualName==tName?'selected':''" @click="changeTalentoActual(tName,talento,talento.cName)">
                     <b><u>{{tName.toUpperCase() + ':'}}</u></b>
                     <br>
-                    {{talento.desc}}
+                    {{(talento.desc.length>203)?talento.desc.slice(0,200)+'...':talento.desc}}
                   </div>
                 </div>
               </div>
