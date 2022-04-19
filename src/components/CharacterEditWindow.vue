@@ -1020,7 +1020,7 @@ export default {
       this.objetoToEdit.estadisticas = [];
       this.estadisticasToEdit = [];
       // también reseteamos la info del select de nueva estadistica
-      this.newEstadisticaName = "daño";
+      this.newEstadisticaName = "";
     },
     transformEstadisticas(stats) {
       var result = [];
