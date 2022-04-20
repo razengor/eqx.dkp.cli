@@ -141,7 +141,7 @@ export default createStore({
               x.id = gameId;
               // Comprobamos si el usuario tiene algún personaje en esta partida, sólo si exiten personajes en esa partida
               if(x.characters)
-              Object.keys().forEach(cid => {
+              Object.keys(x.characters).forEach(cid => {
                 if(x.characters[cid].player == usuarioActual.uid) {
                   //añadimos ese personaje a la lista
                   playerCharacter.push(x.characters[cid])

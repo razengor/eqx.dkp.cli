@@ -1110,8 +1110,6 @@ export default {
     },
     cutItemName(fullName) {
       fullName = fullName + "";
-      console.log("Comprobando texto: "+fullName);
-      console.log("Length: "+fullName.length);
       if(fullName.length > 9) {
         return fullName.slice(0,6)+'...';
       } else {

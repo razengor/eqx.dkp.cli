@@ -725,6 +725,13 @@ body#body.editing-char {
                     float: left;
                     height: 100%;
                     width: 55%;
+                    .content {
+                        height: 95px;
+                        p {
+                            height: 100%;
+                            overflow: hidden;
+                        }
+                    }
                 }
             }
             .gcsc-talentos {
@@ -733,7 +740,7 @@ body#body.editing-char {
                 box-sizing: border-box;
                 .gcsc-talentos-disponibles, .gcsc-talento-seleccionado, .gcsc-talentos-actuales {
                     width: 49%;
-                    height: 50%;
+                    //height: 50%;
                     float: left;
                 }
                 .gcsc-talentos-disponibles {
@@ -808,6 +815,7 @@ body#body.editing-char {
                     }
                 }
                 .gcsc-talento-seleccionado {
+                    padding-top: 10px;
                     width: 100%;
                     h2 {
                         text-decoration: underline;
@@ -1945,11 +1953,9 @@ body#body.editing-char {
                         .gcsc-descripcion {
                             margin: 0;
                             padding-top: 15px;
-                            /*.content {
-                                p {
-                                    margin: 0;
-                                }
-                            }*/
+                            .content {
+                                height: fit-content;
+                            }
                         }
                     }
                     .gcsc-talentos {
