@@ -17,8 +17,8 @@
       </button>
       
       <!-- Add new game button -->
-      <input class="add-new-game" type="text" v-model="newGameName" placeholder="Nombre de la Partida nueva" v-show="isCreatingNewGame">
-      <button class="add-new-game" @click="createNewGame">Crear nueva Partida</button>
+      <input v-if="user.tipo!='jugador'" class="add-new-game" type="text" v-model="newGameName" placeholder="Nombre de la Partida nueva" v-show="isCreatingNewGame">
+      <button v-if="user.tipo!='jugador'" class="add-new-game" @click="createNewGame">Crear nueva Partida</button>
     </main>
 
     <Footer/>
