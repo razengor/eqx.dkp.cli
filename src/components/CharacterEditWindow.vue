@@ -79,6 +79,9 @@
                 <p>{{value}}</p>
               </div>
             </button>
+            <button id="gcs-editar-apuntes" class="edit-button-box" title="EDITAR APUNTES" @click="openVentanaEdicion('apuntes')">
+              ANOTACIONES
+            </button>
           </div>
 
           <div class="gcs-especializaciones">
@@ -644,6 +647,14 @@
                   ELIMINAR OBJETO
                 </button>
               </div>
+            </div>
+          </div>
+
+          <!-- EDICIÓN APUNTES -->
+          <div id="game-card-sheet-notes" class="edit-screen" v-if="editWindow=='apuntes'">
+            <div class="gcsn-container">
+              <h2>ANOTACIONES</h2>
+              <textarea class="gcsn-apuntes" v-model="charToEdit.apuntes" />
             </div>
           </div>
 

@@ -431,7 +431,6 @@ body#body.editing-char {
                 font-size: 1.5em;
             }
             .raza {
-                width: 150px;
                 font-size: 1.5em;
                 text-transform: uppercase;
             }
@@ -449,8 +448,7 @@ body#body.editing-char {
                 flex-direction: column;
                 width: fit-content;
                 box-sizing: border-box;
-                padding-top: 20px;
-                padding-right: 10px;
+                padding: 20px 5px 0 5px;
                 input {
                     border-radius: 3px;
                     font-size: 1.1em;
@@ -540,6 +538,11 @@ body#body.editing-char {
                         font-size: 1.5em;
                     }
                 }
+            }
+            #gcs-editar-apuntes {
+                margin-left: 25px;
+                padding: 8px 16px;
+                font-size: 1.1em;
             }
         }
         .gcs-especializaciones {
@@ -1626,6 +1629,22 @@ body#body.editing-char {
                 }
             }
         }
+        #game-card-sheet-notes {
+            .gcsn-container {
+                height: 100%;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0 15px;
+                textarea {
+                    max-height: 90%;
+                    min-height: 500px;
+                    
+                    width: 100%;
+                    font-family: 'Fira Sans', sans-serif;
+                    resize: none;
+                }
+            }
+        }
         /* EDICIÓN de FICHA */
         #game-card-sheet-ficha.container {
             text-align: center;
@@ -1905,6 +1924,10 @@ body#body.editing-char {
                     padding-top: 0;
                     display: flex;
                     justify-content: center;
+                    flex-direction: column;
+                    #gcs-editar-apuntes {
+                        margin: 10px 0 0 0;
+                    }
                 }
             }
             #game-card-sheet-edit {

@@ -139,7 +139,7 @@ export default createStore({
             Object.keys(data).forEach(gameId => {
               let x = data[gameId];
               x.id = gameId;
-              // Comprobamos si el usuario tiene algún personaje en esta partida, sólo si exiten personajes en esa partida
+              // Comprobamos si el usuario tiene algún personaje en esta partida, sólo si existen personajes en esa partida
               if(x.characters)
               Object.keys(x.characters).forEach(cid => {
                 if(x.characters[cid].player == usuarioActual.uid) {
