@@ -6,11 +6,14 @@
               <h1>Equinox</h1>
               <h2>Welcome</h2>
           </header>
-          <form method="POST" action="auth" @submit.prevent="signIn">
+          <form method="POST" action="auth" @submit.prevent="signIn" v-show="!loading">
               <input type="email" name="email" placeholder="E-mail..." required v-model="email"/>
               <input type="password" name="password" placeholder="Password..." required v-model="password"/>
-              <input type="submit" name="submit" value="Log in" />
+              <input type="submit" name="submit" value="Log in" @click="loading = true" />
           </form>
+          <div v-show="laoding">
+            <h2>LOADING</h2>
+          </div>
           <footer>
               <span>Equinox © All rights reserved</span>
           </footer>
@@ -28,17 +31,25 @@ export default {
   data: function() {
     return {
       email: "",
-      password: ""
+      password: "",
+      loading: false
     };
   },
   methods: {
     ...mapActions(['iniciarSesion']),
     async signIn() {
-      await this.iniciarSesion({email:this.email, password:this.password});
+      this.loading = !(this.iniciarSesion({email:this.email, password:this.password}));
     }
   },
   computed: {
     ...mapState(['user','error'])
+  },
+  watch: {
+    error() {
+      console.error(this.error);
+      this.loading = false;
+      window.alert("Ha ocurrido un error iniciando sesión, compruebe el email y contraseña o pruebe de nuevo más tarde.");
+    }
   }
 }
 </script>

@@ -84,6 +84,7 @@ export default createStore({
             console.log(error.message);
           });
       }
+      return true;
     },
     getUserSesion({ commit, dispatch }) {
       const auth = getAuth(app);
