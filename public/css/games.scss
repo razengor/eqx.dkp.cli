@@ -111,7 +111,6 @@ body div#app div#home {
         width: 100%;
         padding: 0 20px;
         box-sizing: border-box;
-        
         h3 {
             text-align: center;
             height: min-content;
@@ -137,6 +136,12 @@ body div#app div#home {
         background-image: url("/assets/img/bg-gray.jpg");
         div {
             width: min-content;
+        }
+        .info-basic {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
         }
     }
     #window-play {
@@ -275,6 +280,15 @@ body div#app div#home {
         button.cancel:hover {
             border: 2px double rgb(163, 72, 72);
             background-color: rgb(206, 126, 126);
+        }
+        button.remove {
+            border: 2px double #868686;
+            background-color: #616161;
+            margin-left: 15px;
+        }
+        button.remove:hover {
+            border: 2px double #616161;
+            background-color: #868686;
         }
     }
 }
@@ -483,7 +497,7 @@ body#body.editing-char {
                 cursor: pointer;
             }
             #gcs-asignar-jugadores {
-                margin-left: 10px;
+                //margin-left: 10px;
                 font-family: inherit;
                 font-size: inherit;
                 padding: 4px 8px;
