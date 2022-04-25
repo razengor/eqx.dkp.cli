@@ -48,7 +48,6 @@ export default {
     ...mapActions(['getGames','getUserSesion','createGame']),
     createNewGame() {
       if(this.isCreatingNewGame) {
-        //TODO: Ejecuta función crear nueva partida de store/index.js y vuelve a cargar getGames para remontar los componentes
         this.createGame(this.newGameName);
         //this.getGames();
       } else {

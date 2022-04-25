@@ -36,6 +36,15 @@
             </div>
           </div>
 
+          <div class="gcs-jugador-asignado" v-if="!isPlayer">
+            <!-- TODO: AÑADIR UN CHECK "VISIBLE PARA TODO EL MUNDO", SI ESTÁ MARCADO AL ABRIR TU CHARACTER SE ABRE LA VENTANA DE HOME -->
+            <!--<h3>VISIBLE PARA TODOS:</h3>
+            <input type="checkbox" v-model="charToEdit.visible">-->
+            <button id="gcs-asignar-jugadores" class="edit-button-box" title="ASIGNAR JUGADORES" @click="openVentanaEdicion('jugadores')">
+              ASIGNAR JUGADORES
+            </button>
+          </div>
+
           <button id="gcs-editar-clase" class="gcs-clase-nivel edit-button-box" title="EDITAR CLASE" @click="openVentanaEdicion('clase')">
               {{charToEdit.clase + ' NIVEL ' + charToEdit.nivel}}
           </button>
@@ -658,6 +667,17 @@
             </div>
           </div>
 
+          <!-- EDICIÓN JUGADORES ASIGNADOS -->
+          <div id="game-card-sheet-players" class="edit-screen" v-if="editWindow=='jugadores'">
+            <h3>ASIGNAR JUGADOR:</h3>
+            <select v-model="jugadorAsignadoEmail">
+              <option value="">NINGUNO</option>
+              <option v-for="email in game.players" :key="'player-email-'+email" :value="email">
+                {{email}}
+              </option>
+            </select>
+          </div>
+
           <!-- Botón de ir atrás -->
           <button class="go-back" v-if="editWindow!=''" @click="goBack">
             ATRÁS
@@ -668,9 +688,11 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+//mapActions, 
 export default {
   name: 'CharacterEditWindow',
-  props: ["char","charToEditId","info","isPlayer"],
+  props: ["char","charToEditId","info","isPlayer","game"],
   components: {},
   data () {
     return {
@@ -718,7 +740,9 @@ export default {
       // valor del select para añadir/eliminar nueva estadistica de un objeto
       newEstadisticaName: "",
       // variable para controlar la visibilidad del modal de edición (o creación) de objeto
-      isEditingObject: false
+      isEditingObject: false,
+      // email del jugador asignado a esta ficha, se usa junto con una función que relaciona email con UID
+      jugadorAsignadoEmail: ""
     }
   },
   methods: {
@@ -1133,6 +1157,14 @@ export default {
       } else {
         this.editWindow = '';
       }
+    },
+    updateAsignedPlayer() {
+      var tempUid = "";
+      Object.keys(this.users).forEach(u => {
+        if(this.jugadorAsignadoEmail == this.users[u].email)
+          tempUid = this.users[u].uid
+      });
+      this.charToEdit.player = tempUid;
     }
   },
   created() {},
@@ -1151,10 +1183,26 @@ export default {
       this.charToEdit.talentos=[];
     if(this.charToEdit.capacidades==null)
       this.charToEdit.capacidades=[];
+
+    // cargamos el email del usuario asignado a esta ficha
+    var tempEmail = "";
+    Object.keys(this.users).forEach(u => {
+      if(this.charToEdit.player == this.users[u].uid)
+        tempEmail = this.users[u].email
+    });
+    this.jugadorAsignadoEmail = tempEmail;
+  },
+  computed: {
+    ...mapState(['users'])
   },
   watch: {
     newEstadisticaName() {
       this.addNewEstadistica();
+    },
+    jugadorAsignadoEmail() {
+      console.log("this.jugadorAsignadoEmail: ")
+      console.log(this.jugadorAsignadoEmail);
+      this.updateAsignedPlayer();
     }
   }
 }

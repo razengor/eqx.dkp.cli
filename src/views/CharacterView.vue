@@ -1,7 +1,7 @@
 <template>
   <div id="home">
 
-    <edit-char-window v-if="charToEdit.nombre" :char="charToEdit" :charToEditId="charToEditId" :info="info" :isPlayer="true"
+    <edit-char-window v-if="charToEdit.nombre" :char="charToEdit" :charToEditId="charToEditId" :info="info" :isPlayer="true" :game="game"
      @closeChar="closeCharWindow" @saveChar="saveCharToEdit" @deleteChar="deleteChar" />
 
     <!--<div class="loading-screen" v-if="!games[0]">

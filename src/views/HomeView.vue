@@ -4,10 +4,10 @@
 
     <window-config  v-if="games[0]" v-show="selected=='conf'" />
     <window-players v-if="games[0]" v-show="selected=='play'" />
-    <window-char    v-if="games[0]" v-show="selected=='char'" :game="game" :gameId="gameid" :isPlayer="false" @editChar="openCharEditWindow" />
-    <window-comb    v-if="games[0]" v-show="selected=='comb'" />
+    <window-char    v-if="games[0] && selected=='char'" :game="game" :gameId="gameid" :isPlayer="false" @editChar="openCharEditWindow" />
+    <window-comb    v-if="games[0] && selected=='comb'" />
 
-    <edit-char-window v-if="editingChar" :char="charToEdit" :charToEditId="charToEditId" :info="info"
+    <edit-char-window v-if="editingChar" :char="charToEdit" :charToEditId="charToEditId" :info="info" :game="game"
      @closeChar="closeCharWindow" @saveChar="saveCharToEdit" @deleteChar="deleteChar" />
 
     <div class="loading-screen" v-if="!games[0]">
