@@ -36,8 +36,13 @@ export default {
       this.$emit('saveConf',this.editingGame)
     }
   },
-  mounted() {
+  created() {
     this.editingGame = this.game;
+  },
+  watch: {
+    game() {
+      this.editingGame = this.game;
+    }
   }
 }
 </script>

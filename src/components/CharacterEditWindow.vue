@@ -485,6 +485,7 @@
                     </span>
                   </div>
                 </div>
+                <p>PESO TOTAL: {{sumaPeso(getInventario('inventario'))}}</p>
               </div>
               <div class="gcso-transportado">
                 <h2>TRANSPORTADO</h2>
@@ -498,6 +499,7 @@
                     </span>
                   </div>
                 </div>
+                <p>PESO TOTAL: {{sumaPeso(getInventario('transportado'))}}</p>
               </div>
               <div class="gcso-equipo">
                 <h2>EQUIPADO</h2>
@@ -511,6 +513,7 @@
                     </span>
                   </div>
                 </div>
+                <p>PESO TOTAL: {{sumaPeso(getInventario('equipado'))}}</p>
               </div>
               <div class="container">
                 <button class="add-new-object" @click="isEditingObject = true;">AÑADIR OBJETO</button>
@@ -621,6 +624,7 @@
                         <option value="vida">vida</option>
                         <option value="mana">mana</option>
                         <option value="energia">energia</option>
+                        <option value="ki">ki</option>
                         <!-- atributos -->
                         <option value="agilidad">agilidad</option>
                         <option value="fuerza">fuerza</option>
@@ -1142,6 +1146,17 @@ export default {
           inventoryResult.push(itemId);
       });
       return inventoryResult;
+    },
+    sumaPeso(inv) {
+      if(inv) {
+        var total = 0;
+        inv.forEach(itemId => {
+          total += (parseFloat(this.charToEdit.inventario[itemId].peso + "") * parseInt(this.charToEdit.inventario[itemId].cantidad?this.charToEdit.inventario[itemId].cantidad:1));
+        });
+        return total;
+      } else {
+        return 0;
+      }
     },
     cutItemName(fullName) {
       fullName = fullName + "";
