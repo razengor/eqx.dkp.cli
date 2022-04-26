@@ -1967,6 +1967,10 @@ body#body.editing-char {
                     flex-wrap: wrap;
                     justify-content: center;
                 }
+                .gcs-jugador-asignado {
+                    flex-direction: column;
+                    justify-content: center;
+                }
                 #gcs-editar-clase, #gcs-editar-magias, #gcs-editar-tipos, #gcs-editar-roles, .gcs-especializaciones {
                     margin: 10px auto 0 auto;
                     width: fit-content;
