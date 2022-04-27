@@ -88,8 +88,19 @@
                 <p>{{value}}</p>
               </div>
             </button>
-            <button id="gcs-editar-apuntes" class="edit-button-box" title="EDITAR APUNTES" @click="openVentanaEdicion('apuntes')">
-              ANOTACIONES
+
+            <button v-if="!isPlayer && charToEdit.secondStats && charToEdit.secondStats.vida" id="gcs-editar-ficha-secundaria"
+             class="edit-button-box" title="EDITAR FICHA SECUNDARIA" @click="openVentanaEdicion('ficha2')">
+              <p>EDITAR FICHA SECUNDARIA</p>
+              <div v-for="(value,stat) in charToEdit.secondStats" :key="charToEdit.nombre+'-_'+stat" :class="'stat '+stat">
+                <img :src="getBaseUrl()+'/assets/img/ico_'+stat+'.png'" :title="stat" :alt="stat" />
+                <p>{{value}}</p>
+              </div>
+            </button>
+
+            <button v-if="!isPlayer" id="gcs-add-ficha-secundaria"
+             class="edit-button-box" title="AÑADIR FICHA SECUNDARIA" @click="checkFichaSecundaria();">
+              {{(charToEdit.secondStats && charToEdit.secondStats.vida)?'ELIMINAR FICHA SECUNDARIA':'AÑADIR FICHA SECUNDARIA'}}
             </button>
           </div>
 
@@ -112,14 +123,20 @@
           </div>
 
           <div class="gcs-dinero">
-            <div class="money">
-              <div class="coin gold"><input v-model="capitalToEdit.oro" type="text" name="oro"></div>
-              <div class="coin silver"><input v-model="capitalToEdit.plata" type="text" name="plata"></div>
-              <div class="coin copper"><input v-model="capitalToEdit.cobre" type="text" name="cobre"></div>
+            <div class="money-container">
+              <div class="money">
+                <div class="coin gold"><input v-model="capitalToEdit.oro" type="text" name="oro"></div>
+                <div class="coin silver"><input v-model="capitalToEdit.plata" type="text" name="plata"></div>
+                <div class="coin copper"><input v-model="capitalToEdit.cobre" type="text" name="cobre"></div>
+              </div>
             </div>
             
             <button id="gcs-editar-inventario" class="edit-button-box" title="EDITAR INVENTARIO" @click="openVentanaEdicion('inventario')">
               INVENTARIO
+            </button>
+
+            <button id="gcs-editar-apuntes" class="edit-button-box" title="EDITAR APUNTES" @click="openVentanaEdicion('apuntes')">
+              ANOTACIONES
             </button>
           </div>
 
@@ -214,6 +231,87 @@
               <div class="vision">
                 <p>VISIÓN</p>
                 <input name="vision" v-model="charToEdit.vision">
+              </div>
+            </div>
+          </div>
+
+          <!-- EDICIÓN DE FICHA SECUNDARIA -->
+          <div id="game-card-sheet-ficha-secundaria" class="container" v-if="editWindow=='ficha2'">
+            <h4>ATRIBUTOS (2)</h4>
+            <div class="attr">
+              <div>
+                <p>AGILIDAD</p>
+                <input type="text" v-model="charToEdit.secondAtributos.agilidad">
+              </div>
+              <div>
+                <p>FUERZA</p>
+                <input type="text" v-model="charToEdit.secondAtributos.fuerza">
+              </div>
+              <div>
+                <p>RESISTENCIA</p>
+                <input type="text" v-model="charToEdit.secondAtributos.resistencia">
+              </div>
+              <div>
+                <p>INTELIGENCIA</p>
+                <input type="text" v-model="charToEdit.secondAtributos.inteligencia">
+              </div>
+              <div>
+                <p>MANIPULACIÓN</p>
+                <input type="text" v-model="charToEdit.secondAtributos.manipulacion">
+              </div>
+              <div>
+                <p>VELO</p>
+                <input type="text" v-model="charToEdit.secondAtributos.velo">
+              </div>
+              <div>
+                <p>ASTUCIA</p>
+                <input type="text" v-model="charToEdit.secondAtributos.astucia">
+              </div>
+              <div>
+                <p>DESTREZA</p>
+                <input type="text" v-model="charToEdit.secondAtributos.destreza">
+              </div>
+              <div>
+                <p>SENSITIVIDAD</p>
+                <input type="text" v-model="charToEdit.secondAtributos.sensitividad">
+              </div>
+            </div>
+            <h4>HABILIDADES (2)</h4>
+            <div class="abil">
+              <div v-for="(column, name) in charToEdit.secondHabilidades" :key="'s-'+name" :class="name">
+                <div v-for="(value, ability) in column" :key="ability">
+                  <p>{{ability.toUpperCase()}}</p>
+                  <input v-model="charToEdit.secondHabilidades[name][ability]">
+                </div>
+              </div>
+            </div>
+            <h4>ESTADÍSTICAS (2)</h4>
+            <div class="stats" v-if="charToEdit.secondStats!=null">
+              <div class="vida">
+                <p>VIDA</p>
+                <input name="vida" v-model="charToEdit.secondStats.vida">
+              </div>
+              <div class="mana">
+                <p>MANA</p>
+                <input name="mana" v-model="charToEdit.secondStats.mana">
+              </div>
+              <div class="energia">
+                <p>ENERGÍA</p>
+                <input name="energia" v-model="charToEdit.secondStats.energia">
+              </div>
+            </div>
+            <div class="stats">
+              <div class="movilidad">
+                <p>MOVILIDAD</p>
+                <input name="movilidad" v-model="charToEdit.secondMovilidad">
+              </div>
+              <div class="iniciativa">
+                <p>INICIATIVA</p>
+                <input name="iniciativa" v-model="charToEdit.secondIniciativa">
+              </div>
+              <div class="vision">
+                <p>VISIÓN</p>
+                <input name="vision" v-model="charToEdit.secondVision">
               </div>
             </div>
           </div>
@@ -1199,6 +1297,34 @@ export default {
           tempUid = this.users[u].uid
       });
       this.charToEdit.player = tempUid;
+    },
+    // Si no existe una ficha secundaria la añadimos, si existe la borramos
+    checkFichaSecundaria() {
+      if(this.charToEdit.secondStats && this.charToEdit.secondStats.vida) {
+        //borramos
+        if(confirm("¿Está seguro de que quiere eliminar la ficha secundaria de "+this.charToEdit.nombre)+"?") {
+          this.charToEdit.secondStats = {};
+          this.charToEdit.secondAtributos = {};
+          this.charToEdit.secondHabilidades = {};
+          this.charToEdit.secondMovilidad = null;
+          this.charToEdit.secondIniciativa = null;
+          this.charToEdit.secondVision = null;
+
+          this.openVentanaEdicion('');
+        }
+      } else {
+        //añadimos
+        //pasamos los datos por JSON stringify para guardar los valores como copias y no como referencias
+        
+        this.charToEdit.secondStats = JSON.parse(JSON.stringify(this.charToEdit.stats));
+        this.charToEdit.secondAtributos = JSON.parse(JSON.stringify(this.charToEdit.atributos));
+        this.charToEdit.secondHabilidades = JSON.parse(JSON.stringify(this.charToEdit.habilidades));
+        this.charToEdit.secondMovilidad = this.charToEdit.movilidad;
+        this.charToEdit.secondIniciativa = this.charToEdit.iniciativa;
+        this.charToEdit.secondVision = this.charToEdit.vision;
+
+        this.openVentanaEdicion('ficha2');
+      }
     }
   },
   created() {},

@@ -11,7 +11,7 @@
      @closeChar="closeCharWindow" @saveChar="saveCharToEdit" @deleteChar="deleteChar" />
 
     <div class="loading-screen" v-if="!games[0]">
-      <h1>LOADING</h1>
+      <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     </div>
   </div>
 </template>

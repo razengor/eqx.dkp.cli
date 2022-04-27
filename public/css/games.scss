@@ -570,16 +570,16 @@ body#body.editing-char {
         .gcs-stats {
             justify-content: left;
             padding: 15px 0 0 0;
-            #gcs-editar-ficha {
+            #gcs-editar-ficha,#gcs-editar-ficha-secundaria {
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
                 justify-content: space-around;
                 //padding: 10px 0 6px 15px;
                 padding: 5px;
-                max-width: 200px;
+                max-width: 230px;
                 p {
-                    //width: 200px;
+                    width: 100%;
                     margin: 5px 0 10px 0;
                     font-size: 1.3em;
                 }
@@ -598,9 +598,12 @@ body#body.editing-char {
                     }
                 }
             }
-            #gcs-editar-apuntes {
+            #gcs-editar-ficha-secundaria {
                 margin-left: 25px;
-                padding: 8px 16px;
+            }
+            #gcs-add-ficha-secundaria {
+                margin-left: 25px;
+                padding: 8px 14px;
                 font-size: 1.1em;
             }
         }
@@ -633,61 +636,71 @@ body#body.editing-char {
             padding-top: 15px;
             float: left;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: wrap;
             //align-items: flex-start;
-            .money {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-                width: 220px;
-                height: 35px;
-                box-sizing: border-box;
-                padding: 3px 5px 2px 0;
-                border: 3px solid rgb(141, 141, 141);
-                border-radius: 4px;
-                background-color: rgb(141, 141, 141);
-                .gold {
-                    width: 80px;
-                    input {
-                        background-image: url("/assets/img/ico_gold.png");
+            .money-container {
+                flex-basis: 100%;
+                .money {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-around;
+                    max-width: 220px;
+                    height: 35px;
+                    box-sizing: border-box;
+                    padding: 3px 5px 2px 0;
+                    border: 3px solid rgb(141, 141, 141);
+                    border-radius: 4px;
+                    background-color: rgb(141, 141, 141);
+                    .gold {
+                        width: 80px;
+                        input {
+                            background-image: url("/assets/img/ico_gold.png");
+                        }
                     }
-                }
-                .silver {
-                    width: 60px;
-                    input {
-                        background-image: url("/assets/img/ico_silver.png");
+                    .silver {
+                        width: 60px;
+                        input {
+                            background-image: url("/assets/img/ico_silver.png");
+                        }
                     }
-                }
-                .copper {
-                    width: 60px;
-                    input {
-                        background-image: url("/assets/img/ico_copper.png");
+                    .copper {
+                        width: 60px;
+                        input {
+                            background-image: url("/assets/img/ico_copper.png");
+                        }
                     }
-                }
-                .gold, .silver, .copper {
-                    input {
-                        width: 100%;
-                        height: 100%;
-                        border: none;
-                        //border: 1px solid rgb(170, 170, 170);
-                        border-left: none;
-                        outline: none;
-                        background-size: 22px;
-                        background-repeat: no-repeat;
-                        background-position: 3px 0;
-                        background-color: rgb(156, 156, 156);
-                        padding-left: 28px;
-                        padding-bottom: 2px;
-                        box-sizing: border-box;
-                        color: rgb(221, 221, 221);
-                        font-weight: bold;
-                        font-size: 1.15em;
-                        font-family: 'Varela Round', sans-serif;
+                    .gold, .silver, .copper {
+                        input {
+                            width: 100%;
+                            height: 100%;
+                            border: none;
+                            //border: 1px solid rgb(170, 170, 170);
+                            border-left: none;
+                            outline: none;
+                            background-size: 22px;
+                            background-repeat: no-repeat;
+                            background-position: 3px 0;
+                            background-color: rgb(156, 156, 156);
+                            padding-left: 28px;
+                            padding-bottom: 2px;
+                            box-sizing: border-box;
+                            color: rgb(221, 221, 221);
+                            font-weight: bold;
+                            font-size: 1.15em;
+                            font-family: 'Varela Round', sans-serif;
+                        }
                     }
                 }
             }
             #gcs-editar-inventario {
                 margin-top: 5px;
+                padding: 6px 14px;
+                font-size: 1.1em;
+            }
+            #gcs-editar-apuntes {
+                margin-top: 5px;
+                margin-left: 25px;
                 padding: 6px 14px;
                 font-size: 1.1em;
             }
@@ -1720,7 +1733,7 @@ body#body.editing-char {
             }
         }
         /* EDICIÓN de FICHA */
-        #game-card-sheet-ficha.container {
+        #game-card-sheet-ficha.container,#game-card-sheet-ficha-secundaria.container {
             text-align: center;
             position: relative;
             height: 100%;
@@ -1863,7 +1876,7 @@ body#body.editing-char {
     #game-card-sheet {
         #gcs-capa {
             #game-card-sheet-edit {
-                #game-card-sheet-ficha {
+                #game-card-sheet-ficha,#game-card-sheet-ficha-secundaria {
                     .abil {
                         padding: 0;
                         .c1, .c2, .c3 {
@@ -1900,7 +1913,7 @@ body#body.editing-char {
                 }
             }
             #game-card-sheet-edit {
-                #game-card-sheet-ficha {
+                #game-card-sheet-ficha,#game-card-sheet-ficha-secundaria {
                     .stats {
                         padding: 0;
                         div {
@@ -2006,14 +2019,21 @@ body#body.editing-char {
                     display: flex;
                     justify-content: center;
                     flex-direction: column;
+                    #gcs-editar-ficha-secundaria,#gcs-add-ficha-secundaria {
+                        margin-left: 0;
+                        margin-top: 10px;
+                    }
+                }
+                .gcs-dinero {
+                    flex-direction: column;
                     #gcs-editar-apuntes {
-                        margin: 10px 0 0 0;
+                        margin-left: 0;
                     }
                 }
             }
             #game-card-sheet-edit {
                 font-size: 0.9em;
-                #game-card-sheet-ficha {
+                #game-card-sheet-ficha,#game-card-sheet-ficha-secundaria {
                     .stats {
                         div {
                             font-size: 0.9em;
@@ -2149,7 +2169,7 @@ body#body.editing-char {
                         }
                     }
                 }
-                #game-card-sheet-ficha {
+                #game-card-sheet-ficha,#game-card-sheet-ficha-secundaria {
                     display: flex;
                     flex-direction: row;
                     flex-wrap: wrap;
@@ -2264,7 +2284,7 @@ body#body.editing-char {
     #game-card-sheet {
         #gcs-capa {
             #game-card-sheet-edit {
-                #game-card-sheet-ficha {
+                #game-card-sheet-ficha,#game-card-sheet-ficha-secundaria {
                     .stats:nth-child(3) {
                         margin-left: 0px;
                     }
