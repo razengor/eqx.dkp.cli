@@ -69,6 +69,7 @@ export default createStore({
         .catch((error) => {
           console.log(error.message);
           commit("setError",error.message);
+          return true;
         });
       } else {
         signOut(auth)
@@ -77,14 +78,16 @@ export default createStore({
             commit("setUser", "");
             commit("setCharacters", []);
             commit("setGames", []);
-            console.log("Sesión cerrada satisfactoriamente");
+            //console.log("Sesión cerrada satisfactoriamente");
             router.push({name: "Login"});
+            return true;
           })
           .catch((error) => {
             console.log(error.message);
+            return true;
           });
       }
-      return true;
+      
     },
     getUserSesion({ commit, dispatch }) {
       const auth = getAuth(app);

@@ -11,8 +11,8 @@
               <input type="password" name="password" placeholder="Password..." required v-model="password"/>
               <input type="submit" name="submit" value="Log in" @click="loading = true" />
           </form>
-          <div v-show="laoding">
-            <h2>LOADING</h2>
+          <div class="loading-screen" v-show="loading">
+            <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
           </div>
           <footer>
               <span>Equinox © All rights reserved</span>
@@ -37,8 +37,13 @@ export default {
   },
   methods: {
     ...mapActions(['iniciarSesion']),
-    async signIn() {
-      this.loading = !(this.iniciarSesion({email:this.email, password:this.password}));
+    signIn() {
+      this.loading = true;
+      setTimeout(this.loadFalse,500)
+    },
+    loadFalse() {
+      //this.loading = false;
+      this.iniciarSesion({email:this.email, password:this.password});
     }
   },
   computed: {
