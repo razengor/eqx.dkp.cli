@@ -778,6 +778,25 @@ export default {
       } else {
         this.editWindow = ventana;
       }
+      //scroll abajo para que el usuario se de cuenta de que ha abierto algo
+      if(this.editWindow!='' && window.innerWidth<1560) {
+        setTimeout(
+          this.scrollToEditingWindow,100
+        );
+      }
+    },
+    // Hacemos scroll abajo dependiendo del tamaño de la pantalla
+    scrollToEditingWindow() {
+      var topToScrollTo = 0;
+      
+      if(window.innerHeight >= document.getElementById('game-card-sheet-edit').offsetHeight) {
+        topToScrollTo += window.innerHeight*2;
+      } else {
+        topToScrollTo += document.getElementById('game-card-sheet-config').offsetHeight;
+      }
+
+      if(topToScrollTo>0)
+      document.getElementById('game-card-sheet').scrollTop = topToScrollTo;
     },
     // Recogemos las capacidades raciales en una función para tratar con los valores null/undefined
     getCapacidades() {
