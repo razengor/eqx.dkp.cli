@@ -125,6 +125,9 @@ export default {
   mounted() {
     this.loaded = this.getUserSesion().uid!=null ? true : false;
     this.gameid = this.$route.params.gameid
+  },
+  beforeUnmount() {
+    document.getElementById("body").classList.remove('editing-char');
   }
 }
 </script>
