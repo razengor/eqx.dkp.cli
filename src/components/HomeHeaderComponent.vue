@@ -1,7 +1,13 @@
 <template>
   <div class="info-header">
-    <h1>{{ gameName }}</h1>
-    <h3>{{ gameVersion }}</h3>
+    <div class="header-menu">
+      <!-- Botón de volver al índice -->
+      <button class="return-to-index" @click="redirectIndex">
+        VOLVER
+      </button>
+      <h1>{{ gameName }}</h1>
+      <h3>{{ gameVersion }}</h3>
+    </div>
     <div class="header-tabs selectable-group">
       <div id="tab-conf" class="tab selectable selected" @click="this.$emit('changeTab',$event,'conf');changeTabClass('conf')">
         <img src="../assets/img/ico_configuration.png">
@@ -20,6 +26,8 @@
 </template>
 
 <script>
+import router from '../router/index'
+
 export default {
   name: 'HomeHeaderComponent',
   props: ["gameName","gameVersion"],
@@ -40,6 +48,9 @@ export default {
     changeTabClass(tab) {
       this.removeSelected();
       document.getElementById("tab-"+tab).classList.add('selected');
+    },
+    redirectIndex() {
+      router.push("/index");
     }
   }
 }
