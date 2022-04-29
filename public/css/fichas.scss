@@ -90,16 +90,16 @@ $button-green-light-2: rgb(131, 218, 131);
             }
         }
         .save {
-            background-color: rgb(64, 160, 64);
+            background-color: $button-green;
         }
         .save:hover {
-            background-color: rgb(104, 195, 101);
+            background-color: $button-green-light;
         }
         .close {
-            background-color: rgb(160, 59, 59);
+            background-color: $button-red;
         }
         .close:hover {
-            background-color: rgb(204, 91, 91);
+            background-color: $button-red-light;
         }
         //posicionamiento
         .save, .close {
@@ -610,7 +610,7 @@ $button-green-light-2: rgb(131, 218, 131);
                             background-color: rgb(93, 179, 80);
                         }
                         &.delete-talento {
-                            background-color: rgb(204, 91, 91);
+                            background-color: $button-red-light;
                         }
                         &.delete-talento:hover {
                             background-color: rgb(179, 80, 80);
@@ -739,7 +739,7 @@ $button-green-light-2: rgb(131, 218, 131);
                             background-color: rgb(93, 179, 80);
                         }
                         &.delete-magia {
-                            background-color: rgb(204, 91, 91);
+                            background-color: $button-red-light;
                         }
                         &.delete-magia:hover {
                             background-color: rgb(179, 80, 80);
@@ -1303,24 +1303,6 @@ $button-green-light-2: rgb(131, 218, 131);
                                 }
                             }
                         }
-                        /*.add-estadistica {
-                            margin-top: 10px;
-                            padding: 0;
-                            height: 36px;
-                            width: 36px;
-                            cursor: pointer;
-                            background-color: rgb(107, 187, 107);
-                            img {
-                                padding-top: 2px;
-                                padding-left: 1px;
-                                height: 22px;
-                                width: 22px;
-                            }
-                            $this: &;
-                            &:hover {
-                                background-color: rgb(131, 218, 131);
-                            }
-                        }*/
                     }
                 }
                 .descripcion-caracteristicas {
@@ -1349,7 +1331,7 @@ $button-green-light-2: rgb(131, 218, 131);
                         margin: 0 auto;
                         padding: 4px 8px;
                         cursor: pointer;
-                        background-color: rgb(107, 187, 107);
+                        background-color: $button-green-2;
                         img {
                             padding-top: 4px;
                             padding-left: 2px;
@@ -1358,7 +1340,7 @@ $button-green-light-2: rgb(131, 218, 131);
                         }
                         $this: &;
                         &:hover {
-                            background-color: rgb(131, 218, 131);
+                            background-color: $button-green-light-2;
                         }
                     }
                     .remove-object {
