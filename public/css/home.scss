@@ -149,15 +149,6 @@ body div#app div#home {
     }
     #window-conf {
         background-image: url("/assets/img/bg-gray.jpg");
-        div {
-            width: min-content;
-        }
-        .info-basic {
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
     }
     #window-play {
         background-image: url("/assets/img/bg-blue.jpg");
@@ -174,9 +165,15 @@ body div#app div#home {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        
+    }
+    .info-basic {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
         div {
             height: min-content;
+            width: min-content;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
@@ -233,8 +230,11 @@ body div#app div#home {
         }
     }
     .char-box {
+        width: 100%;
         justify-self: start;
         margin: 0;
+        box-sizing: border-box;
+        padding: 0 0 15px 0;
         display: flex;
         flex-direction: column;
         span {
@@ -262,6 +262,12 @@ body div#app div#home {
                 padding-left: 10px;
             }
         }
+    }
+    .info-comb {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: left;
     }
     .window-footer {
         justify-self: end;
