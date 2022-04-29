@@ -63,32 +63,10 @@ export default {
         Object.keys(this.characters).forEach(o => {
           var c = this.characters[o];
           if(c.cId == this.charToEditId) {
-            this.charToEdit = {
-              advanced: c.advanced,
-              altura: c.altura,
-              atributos: c.atributos,
-              capacidades: c.capacidades,
-              capital: c.capital,
-              clase: c.clase,
-              currentStats: c.currentStats,
-              edad: c.edad,
-              elemento: c.elemento,
-              grupo: c.grupo,
-              habilidades: c.habilidades,
-              iniciativa: c.iniciativa,
-              inventario: c.inventario,
-              movilidad: c.movilidad,
-              nivel: c.nivel,
-              nombre: c.nombre,
-              peso: c.peso,
-              player: c.player,
-              raza: c.raza,
-              stats: c.stats,
-              talentos: c.talentos,
-              unitRoles: c.unitRoles,
-              unitTypes: c.unitTypes,
-              vision: c.vision
-            }
+            this.charToEdit = JSON.parse(JSON.stringify(c));
+            this.charToEdit.cId = null;
+            this.charToEdit.gameId = null;
+            this.charToEdit.gameName = null;
           }
         });
         this.editingChar = true;
