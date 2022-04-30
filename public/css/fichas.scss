@@ -1,3 +1,5 @@
+/* VARIABLES COMUNES */
+$modal-bg: linear-gradient(rgb(169, 169, 169), rgb(179, 179, 179), rgb(191, 191, 191), rgb(227, 227, 227));
 // COLOR VARIABLES
 $button-red: rgb(160, 59, 59);
 $button-red-light: rgb(204, 91, 91);
@@ -6,7 +8,7 @@ $button-green-light: rgb(104, 195, 101);
 $button-green-2: rgb(107, 187, 107);
 $button-green-light-2: rgb(131, 218, 131);
 
-// DATOS FICHAS
+// VENTANA EDICIÓN DE FICHA
 #game-card-sheet {
     position: absolute;
     z-index: 90;
@@ -20,7 +22,7 @@ $button-green-light-2: rgb(131, 218, 131);
     padding: 7vh 10px 10px 10px;
     box-sizing: border-box;
     #gcs-capa {
-        background-image: linear-gradient(rgb(169, 169, 169), rgb(179, 179, 179), rgb(191, 191, 191), rgb(227, 227, 227));
+        background-image: $modal-bg;
         -webkit-box-shadow: inset 0 0 18px 8px rgb(70, 70, 70);
         box-shadow: inset 0 0 18px 8px rgb(70, 70, 70);
         width: 100%;

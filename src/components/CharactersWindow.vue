@@ -5,7 +5,7 @@
           <character-group-name v-for="group in charGroups" :key="'g-'+group.gname" :game="game" :group="group" @editChar="transmitEvent" />
         </div>
         <div class="window-footer">
-            <button class="add" @click="addNewChar">NUEVA FICHA</button>
+          <button class="add" @click="addNewChar">NUEVA FICHA</button>
         </div>
     </div>
 </template>

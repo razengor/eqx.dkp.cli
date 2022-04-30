@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'PlayersWindow',
-  props: [],
+  props: ["game"],
   data () {
     return {
 

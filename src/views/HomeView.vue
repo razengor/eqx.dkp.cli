@@ -3,9 +3,9 @@
     <Header v-if="games[0]" :gameName="getGame(gameid)?getGame(gameid).name:'Default'" :gameVersion="gameVersion" @changeTab="changeTab"/>
 
     <window-config  v-if="games[0] && selected=='conf'" :game="game" @saveConf="saveGameConfig" @removeGame="removeGame" />
-    <window-players v-if="games[0] && selected=='play'" />
+    <window-players v-if="games[0] && selected=='play'" :game="game"/>
     <window-char    v-if="games[0] && selected=='char'" :game="game" :gameId="gameid" :isPlayer="false" @editChar="openCharEditWindow" />
-    <window-comb    v-if="games[0] && selected=='comb'" />
+    <window-comb    v-if="games[0] && selected=='comb'" :game="game"/>
 
     <edit-char-window v-if="editingChar" :char="charToEdit" :charToEditId="charToEditId" :info="info" :game="game"
      @closeChar="closeCharWindow" @saveChar="saveCharToEdit" @deleteChar="deleteChar" />
