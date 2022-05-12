@@ -22,6 +22,7 @@
               <input placeholder="ancho" v-model="battleToEdit.ancho" v-if="battleToEdit.mapa==''">
               <input placeholder="alto" v-model="battleToEdit.alto" v-if="battleToEdit.mapa==''">
               <button class="add" @click="addNewBattle">{{battleToEditId==null?'CREAR COMBATE':'GUARDAR'}}</button>
+              <button class="add" v-if="battleToEditId" @click="goBattle">IR AL COMBATE</button>
               <button class="delete" v-if="battleToEditId" @click="deleteBattle">ELIMINAR</button>
               <button class="cancel" @click="closeNewBattle">CANCELAR</button>
             </div>
@@ -38,6 +39,7 @@ import BattleCard from '@/components/BattleCard'
 
 import app from '../firebase'
 import { getDatabase, ref, set, push, child } from "firebase/database";
+import router from '../router/index'
 
 import {mapActions, mapState} from 'vuex'
 
@@ -89,11 +91,24 @@ export default {
         this.battleToEditId = null;
       //si estábamos editando una batalla la mandamos a firebase
       } else if(this.battleToEditId==null) {
+        //generamos la matriz de casillas
+        this.battleToEdit.cellMatrix = [];
+        for(let x=1;x<=this.battleToEdit.ancho;x++) {
+          var tempRow = [];
+          for(let y=1;y<=this.battleToEdit.alto;y++) {
+            tempRow[y] = {
+              selected: false,
+              units: [],
+              obstacle: null
+            };
+          }
+          this.battleToEdit.cellMatrix[x] = tempRow;
+        }
         //creamos batalla
         const newBattleKey = push(child(ref(db), 'games/'+this.game.id+'/batallas')).key;
         set(ref(db, 'games/'+this.game.id+"/batallas/"+newBattleKey), this.battleToEdit);
         this.editingBattle = false;
-        //router.push('/g/:gameid/b/:battleid')
+        router.push('/g/'+this.game.id+'/b/'+newBattleKey);
       } else {
         //guardamos batalla
         set(ref(db, 'games/'+this.game.id+"/batallas/"+this.battleToEditId), this.battleToEdit);
@@ -111,6 +126,9 @@ export default {
         this.editingBattle = false;
         this.getGames();
       }
+    },
+    goBattle() {
+      router.push('/g/'+this.game.id+'/b/'+this.battleToEditId);
     }
   },
   computed: {

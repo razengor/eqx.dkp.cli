@@ -17,7 +17,8 @@ export default createStore({
     info: {},
     user: "",
     error: "",
-    characters: []
+    characters: [],
+    battleGame: ""
   },
   mutations: {
     setGames(state, list) {
@@ -42,6 +43,9 @@ export default createStore({
     },
     setCharacters(state, characters) {
       state.characters = characters;
+    },
+    setBattleGame(state, battleGame) {
+      state.battleGame = battleGame;
     }
   },
   actions: {
@@ -181,6 +185,40 @@ export default createStore({
       } else {
         console.error("NO TENEMOS USUARIO AL CARGAR PARTIDAS");
       }
+    },
+    loadBattleGame({ commit }, battleGameId) {
+      var battleGame = "";
+
+      onValue(ref(database,"games"), (snapshot) => {
+        var data = snapshot.val();
+
+        Object.keys(data).forEach(gameId => {
+          if(gameId == battleGameId) {
+            var x = data[gameId];
+            // Comprobamos si el usuario es owner o player de esta partida
+            if(this.state.user.tipo == "admin") {
+              battleGame = x;
+            } else if(x.owner == this.state.user.uid) {
+              battleGame = x;
+            } else if(x.players) {
+              Object.keys(x.players).forEach(pid => {
+                if(x.players[pid] == this.state.user.email) {
+                  battleGame = x;
+                }
+              });
+            }
+          }
+        });
+
+        //cargamos el battleGame
+        if(battleGame!="") {
+          commit('setBattleGame',battleGame);
+        } else {
+          console.warn("No tienes acceso a esta partida.");
+          router.push("/index");
+        }
+      });
+      
     },
     createGame({ dispatch },gameName) {
       if(this.state.user!="") {

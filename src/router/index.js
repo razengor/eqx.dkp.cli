@@ -3,6 +3,7 @@ import IndexView from '../views/IndexView.vue'
 import LoginView from '../views/LoginView.vue'
 import HomeView from '../views/HomeView.vue'
 import CharacterView from '../views/CharacterView.vue'
+import BattleView from '../views/BattleView.vue'
 import DefaultView from '../views/DefaultView.vue'
 import TestingCssView from '../views/TestingCssView.vue'
 
@@ -32,6 +33,12 @@ const routes = [
     path: '/g/:gameid/c/:characterid',
     name: 'Character',
     component: CharacterView,
+    meta: {requiresAuth:true}
+  },
+  {
+    path: '/g/:gameid/b/:battleid',
+    name: 'Battle',
+    component: BattleView,
     meta: {requiresAuth:true}
   },
   {
